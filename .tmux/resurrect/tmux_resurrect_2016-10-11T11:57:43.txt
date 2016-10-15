@@ -1,0 +1,6 @@
+pane	0	1	:python	1	:*	1	:/home/hrodde/catkin_ws/src/aerial_dev_tools	1	python	:/usr/bin/python /opt/ros/indigo/bin/roscore
+/usr/bin/python /opt/ros/indigo/bin/roslaunch adt_gazebo quadcopter.launch world_name:=paint image_resolution:=gz
+pane	0	1	:python	1	:*	2	:/home/hrodde/catkin_ws/src/aerial_dev_tools	0	python	:/usr/bin/python /opt/ros/indigo/bin/rqt_plot /hummingbird/optical_flow/integrated_x /hummingbird/optical_flow/integrated_y /hummingbird/ground_truth/odometry/twist/twist/linear/x /hummingbird/ground_truth/odometry/twist/twist/linear/y
+pane	0	1	:python	1	:*	3	:/home/hrodde/catkin_ws	0	bash	:
+window	0	1	1	:*	b537,172x53,0,0{85x53,0,0,5,86x53,86,0[86x26,86,0,10,86x26,86,27,15]}
+state	0	0

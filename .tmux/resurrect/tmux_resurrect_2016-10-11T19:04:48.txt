@@ -1,0 +1,6 @@
+pane	1	1	:bash	0	:-	1	:/home/hrodde	0	bash	:
+pane	1	1	:bash	0	:-	2	:/home/hrodde	1	bash	:
+pane	1	2	:fullscreen	1	:*	1	:/home/hrodde/catkin_ws/src/rotors_simulator	1	bash	:
+window	1	1	0	:-	594a,172x53,0,0{86x53,0,0,16,85x53,87,0,18}
+window	1	2	1	:*	5dd6,172x53,0,0,17
+state	1	

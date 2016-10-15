@@ -1,0 +1,6 @@
+pane	1	1	:bash	0	:-	1	:/home/hrodde/.bash.d	0	ssh	:ssh linaro
+pane	1	1	:bash	0	:-	2	:/home/hrodde	1	bash	:
+pane	1	2	:fullscreen	1	:*	1	:/home/hrodde/catkin_ws/src/aerial_dev_tools	1	ssh	:ssh linaro@10.131.4.153
+window	1	1	0	:-	1949,172x53,0,0{86x53,0,0,17,85x53,87,0,21}
+window	1	2	1	:*	ddcf,172x53,0,0,20
+state	1	1

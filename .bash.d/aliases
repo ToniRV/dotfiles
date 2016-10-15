@@ -1,0 +1,127 @@
+#!/bin/bash
+
+# Enable pbcopy and pbpaste on linux
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload='exec $SHELL -l'
+
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias cd..='cd ..'
+alias ~="cd ~"
+alias -- -='cd -'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ..2='cd ../..'
+alias ..3='cd ../../..'
+alias ..4='cd ../../../..'
+alias ..5='cd ../../../../..'
+alias ..6='cd ../../../../../..'
+
+# Shortcuts
+alias desktop='cd ~/Desktop'
+alias downloads='cd ~/Downloads'
+alias workspaces='cd ~/Workspaces'
+
+# So lazy am i
+alias g='git'
+alias h='history'
+alias j='jobs'
+
+# List all files colorized in long format
+alias l='ls -lhF --color'
+# List all files colorized ordered by last modified
+alias lt='ls -t --color'
+# List all files colorized in long format, including dot files
+alias la='ls -lhAF --color'
+# List only directories
+alias lsd='ls -lhF --color | grep --color=never '^d''
+# Always use color output for `ls`
+alias ls='ls --color'
+
+# Shortcut to remove all with force
+alias rmf='rm -rf'
+
+# Folder manipulation
+alias md='mkdir -p'
+alias rd='rmdir'
+alias d='dirs -v | head -10'
+
+# Always use color output for `grep`
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# tmux aliases
+alias ta='tmux attach'
+alias tls='tmux ls'
+alias tat='tmux attach -t'
+alias tns='tmux new-session -s'
+
+# Print path directories
+alias path='echo -e ${PATH//:/\\n}'
+
+# Recommended 'top' invocation to minimize resources
+alias ttop='top -R -F -s 10 -o rsize'
+
+# Get week number
+alias week='date +%V'
+
+# Stopwatch
+alias timer='e_header "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
+# Intuitive map function
+# For example, to list all directories that contain a certain file:
+# find . -name .gitattributes | map dirname
+alias map='xargs -n1'
+
+# Trim new lines and copy to clipboard
+alias c='tr -d "\n" | pbcopy'
+
+# Copy my public key to the pasteboard
+alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | e_success 'Public key copied to pasteboard.'"
+
+# Usage: cppcompile main.cpp
+alias c++11='c++ -std=c++11 -stdlib=libc++'
+
+# IP addresses
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias localip='ipconfig getifaddr en1'
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# Show all open TCP/IP sockets
+alias netcons='sudo lsof -i'
+
+# Display open sockets
+alias lsock='sudo lsof -i -P'
+
+# Display only open UDP sockets
+alias lsock-ucp='sudo lsof -nP | grep UDP'
+
+# Display only open TCP sockets
+alias lsock-tcp='sudo lsof -nP | grep TCP'
+
+# All listening connections
+alias lsock-opened='sudo lsof -i | grep LISTEN'
+
+# View HTTP traffic
+alias httpdump='sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*'
+
+# One of @janmoesen’s ProTip™s
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+  alias "$method"="lwp-request -m '$method'"
+done
+
+# URL-encode strings
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+
+# Recursively delete `.DS_Store` files
+alias cleanup-ds="find . -type f -name '*.DS_Store' -ls -delete"
+alias cleanup-dots="find . -type f -name '._*' -ls -delete"

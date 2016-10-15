@@ -1,0 +1,7 @@
+pane	0	1	:bash	0	: 	1	:/home/hrodde	1	bash	:
+pane	0	2	:bash	1	:*	1	:/home/hrodde/catkin_ws	1	bash	:
+pane	0	3	:bash	0	:-	1	:/home/hrodde/Workspaces/Matrix/matrix	1	bash	:
+window	0	1	0	: 	b07e,123x41,0,0,1
+window	0	2	1	:*	ac80,123x40,0,0,3
+window	0	3	0	:-	ac81,123x40,0,0,4
+state	0	0

@@ -1,0 +1,7 @@
+pane	0	1	:bash	0	:-	1	:/home/hrodde	0	bash	:
+pane	0	1	:bash	0	:-	2	:/home/hrodde	1	bash	:
+pane	0	1	:bash	0	:-	3	:/home/hrodde/catkin_ws/src/aerial_dev_tools/adt_ekf	0	bash	:
+pane	0	2	:fullscreen	1	:*	1	:/home/hrodde/catkin_ws/src/aerial_dev_tools	1	bash	:
+window	0	1	0	:-	780c,202x59,0,0{100x59,0,0,18,101x59,101,0[101x29,101,0,46,101x29,101,30,43]}
+window	0	2	1	:*	6907,202x59,0,0,37
+state	0	

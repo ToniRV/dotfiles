@@ -1,0 +1,6 @@
+pane	0	1	:python	0	:-	1	:/mnt/hgfs/hrodde/Workspaces/ros-tutorials	1	python	:/usr/bin/python /opt/ros/indigo/bin/roscore
+pane	0	2	:bash	1	:*	1	:/mnt/hgfs/hrodde/Workspaces/ros-tutorials	0	add_two_ints_server	:/mnt/hgfs/hrodde/Workspaces/ros-tutorials/devel/lib/beginner_tutorials/add_two_ints_server
+pane	0	2	:bash	1	:*	2	:/mnt/hgfs/hrodde/Workspaces/ros-tutorials	1	bash	:
+window	0	1	0	:-	c05d,213x64,0,0,0
+window	0	2	1	:*	f2ca,213x64,0,0[213x32,0,0,1,213x31,0,33,2]
+state	0	

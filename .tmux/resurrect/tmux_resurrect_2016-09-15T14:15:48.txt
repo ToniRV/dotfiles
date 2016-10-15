@@ -1,0 +1,7 @@
+pane	0	1	:python	0	:-	1	:/home/hrodde	1	python	:/usr/bin/python /opt/ros/indigo/bin/roslaunch aerial_dev_tools quadcopter.launch
+pane	0	2	:python	0	: 	1	:/home/hrodde	1	python	:/usr/bin/python /opt/ros/indigo/bin/rqt
+pane	0	3	:[tmux]	1	:*	1	:/home/hrodde	1	bash	:
+window	0	1	0	:-	caa1,98x29,0,0,4
+window	0	2	0	: 	caa2,98x29,0,0,5
+window	0	3	1	:*	caa3,98x29,0,0,6
+state	0	0

@@ -1,0 +1,4 @@
+pane	0	1	:bash	1	:*	1	:/opt/eclipse/installer	0	./eclipse-inst	:./eclipse-inst
+pane	0	1	:bash	1	:*	2	:/opt/eclipse	1	bash	:
+window	0	1	1	:*	2700,239x68,0,0{120x68,0,0,5,118x68,121,0,6}
+state	0	0

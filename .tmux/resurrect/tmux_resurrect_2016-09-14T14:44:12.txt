@@ -1,0 +1,11 @@
+pane	0	1	:python	0	: 	1	:/home/hrodde/catkin_ws	1	python	:/usr/bin/python /opt/ros/indigo/bin/roslaunch aerial_dev_tools quadcopter.launch
+pane	0	2	:bash	0	: 	1	:/home/hrodde	1	bash	:
+pane	0	3	:python	0	: 	1	:/home/hrodde	1	python	:python /opt/ros/indigo/bin/rqt_image_view
+pane	0	4	:python	0	:-	1	:/home/hrodde	1	python	:/usr/bin/python /opt/ros/indigo/bin/rqt_plot
+pane	0	5	:python	1	:*	1	:/home/hrodde	1	python	:/usr/bin/python /opt/ros/indigo/bin/rostopic pub /ardrone/command/pose geometry_msgs/PoseStamped {header: {stamp: now}, pose: {position: {x: 1.0, y: 2.0, z: 1.0}}}
+window	0	1	0	: 	ca9e,94x39,0,0,1
+window	0	2	0	: 	ac9f,94x41,0,0,2
+window	0	3	0	: 	caa2,94x39,0,0,5
+window	0	4	0	:-	caa3,94x39,0,0,6
+window	0	5	1	:*	caa4,94x39,0,0,7
+state	0	

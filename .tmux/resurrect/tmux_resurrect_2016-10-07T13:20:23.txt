@@ -1,0 +1,4 @@
+pane	0	1	:bash	1	:*	1	:/home/hrodde/catkin_ws/bags	0	python	:/usr/bin/python /opt/ros/indigo/bin/roslaunch adt_gazebo quadcopter.launch
+pane	0	1	:bash	1	:*	2	:/home/hrodde/catkin_ws	1	bash	:
+window	0	1	1	:*	7eb0,239x72,0,0[239x36,0,0,3,239x35,0,37,5]
+state	0	

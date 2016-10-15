@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Add completion for marks shortcuts
+_completemarks() {
+  local curw=${COMP_WORDS[COMP_CWORD]}
+  local wordlist=$(find $MARKPATH -type l | awk -F"/" '{printf "%s ",$NF}')
+  COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
+  return 0
+}
+complete -F _completemarks jump unmark
+
+# Enable vagrant command autocompletion for `vg` alias as well
+# complete -o default -F _vagrant vg
+
+# Enable pip command autocompletion for `gpip` alias as well
+# complete -o default -F _pip gpip
+
+# Enable git command  autocompletion for 'g' as well
+# complete -o default -o nospace -F __git g
+
+# Enable Tab completion to select options
+# bind 'set show-all-if-ambiguous on'
+# bind 'TAB:menu-complete'
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o default -o nospace -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;

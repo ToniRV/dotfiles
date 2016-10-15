@@ -1,0 +1,7 @@
+pane	0	1	:bash	1	:*	1	:/home/hrodde/Workspaces/aerial-dev-tools	1	bash	:
+pane	0	2	:bash	0	:-	1	:/home/hrodde	1	bash	:
+pane	0	3	:bash	0	: 	1	:/home/hrodde	1	bash	:
+window	0	1	1	:*	ce3e,132x58,0,0,1
+window	0	2	0	:-	ce3f,132x58,0,0,2
+window	0	3	0	: 	ce40,132x58,0,0,3
+state	0	0

@@ -1,0 +1,4 @@
+pane	1	1	:ssh	1	:*	1	:/home/hrodde/.bash.d	0	bash	:
+pane	1	1	:ssh	1	:*	2	:/home/hrodde	1	ssh	:ssh linaro
+window	1	1	1	:*	9948,172x53,0,0{86x53,0,0,17,85x53,87,0,20}
+state	1	1

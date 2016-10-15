@@ -1,0 +1,4 @@
+pane	0	1	:python	1	:*	1	:/home/hrodde	1	python	:/home/hrodde/Workspaces/range-sensors/devel/lib/terarangerone/terarangerone_node _portname:=/dev/ttyUSB0
+/usr/bin/python /opt/ros/indigo/bin/rqt
+window	0	1	1	:*	b77f,102x62,0,0,2
+state	0	0

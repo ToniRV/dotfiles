@@ -1,0 +1,4 @@
+pane	0	1	:optical_flow_node	1	:*	1	:/home/hrodde/catkin_ws/bags	0	python	:/usr/bin/python /opt/ros/indigo/bin/rosbag play optical_flow_2016-10-03-18-36-12.bag
+pane	0	1	:optical_flow_node	1	:*	2	:/home/hrodde/catkin_ws/bags	1	optical_flow_node	:/home/hrodde/catkin_ws/devel/lib/adt_optical_flow/optical_flow_node image_raw:=/hummingbird/camera_down/image_raw imu:=/hummingbird/imu
+window	0	1	1	:*	3a6c,172x53,0,0{86x53,0,0,3,85x53,87,0,4}
+state	0	0

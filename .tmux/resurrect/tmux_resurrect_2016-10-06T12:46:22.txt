@@ -1,0 +1,4 @@
+pane	0	1	:bash	1	:*	1	:/home/hrodde/Documents	0	bash	:/usr/bin/python /opt/ros/indigo/bin/roscore
+pane	0	1	:bash	1	:*	2	:/home/hrodde	1	bash	:
+window	0	1	1	:*	4c2a,172x53,0,0[172x26,0,0,13,172x26,0,27,16]
+state	0	0

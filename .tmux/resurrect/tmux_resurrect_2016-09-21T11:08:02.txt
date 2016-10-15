@@ -1,0 +1,4 @@
+pane	0	1	:bash	1	:*	1	:/home/hrodde	0	gedit	:gedit .local/share/applications/eclipse.desktop
+pane	0	1	:bash	1	:*	2	:/home/hrodde/catkin_ws/src	1	bash	:
+window	0	1	1	:*	4f50,213x64,0,0{106x64,0,0,1,106x64,107,0,3}
+state	0	0

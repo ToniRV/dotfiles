@@ -1,0 +1,5 @@
+pane	0	1	:python	1	:*	1	:/home/hrodde/catkin_ws/src/aerial_dev_tools	1	python	:/usr/bin/python /usr/bin/catkin build --workspace /home/hrodde/catkin_ws -DCMAKE_BUILD_TYPE=RelWithDebInfo
+/usr/bin/python /opt/ros/indigo/bin/roscore
+pane	0	1	:python	1	:*	2	:/home/hrodde/catkin_ws	0	bash	:
+window	0	1	1	:*	225c,179x53,0,0{87x53,0,0,5,91x53,88,0,15}
+state	0	0
