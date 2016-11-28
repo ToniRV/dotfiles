@@ -1,7 +1,0 @@
-My dotfiles
-
-Install the fonts for the vim configs to work well: 
-https://github.com/powerline/fonts
-
-To get clipboard copy-paste in vim with "+ register
-sudo apt-get install vim-gnome
