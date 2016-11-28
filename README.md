@@ -1,6 +1,6 @@
-My dotfiles
+# My dotfiles
 
-Install the fonts for the vim configs to work well: 
+Install the fonts for the vim configs to work well: tm
 https://github.com/powerline/fonts
 
 To get clipboard copy-paste in vim with "+ register
