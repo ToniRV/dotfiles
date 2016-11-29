@@ -464,3 +464,6 @@ cnoremap <C-K> <C-U>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 "}}}
+
+" Command line remapping to write file as sudo
+cmap w!! w !sudo tee > /dev/null %
