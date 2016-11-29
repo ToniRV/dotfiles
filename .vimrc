@@ -226,8 +226,8 @@ set modelines=4
 " set exrc
 " set secure
 
-" Enable mouse in all modes
-set mouse=a
+" Enable in all modes
+set mouse=vic
 
 " Disable error bells
 set noerrorbells
