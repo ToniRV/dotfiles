@@ -122,7 +122,6 @@ function to_install() {
 }
 
 export SVGA_VGPU10=0
-export WINS_mac=MBR-3158
 
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
 
