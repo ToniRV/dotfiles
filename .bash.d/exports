@@ -32,3 +32,12 @@ export MARKPATH=~/.marks
 
 # Downgrade OpenGL from 3.3 to 2.1 for VMware 3D graphics acceleration
 export SVGA_VGPU10=0
+
+#export CATKIN_WORKSPACE=~/catkin_ws
+export CATKIN_WORKSPACE=~/catkin_ws
+
+# MAVlink for mavros
+export PYTHONPATH=${PYTHONPATH}:${CATKIN_WORKSPACE}/src/mavlink-gbp-release
+
+# QTcreator to work with catkin workspace
+export CURRENT_CMAKE_BUILD_DIR="$(catkin locate --workspace $CATKIN_WORKSPACE --build)"

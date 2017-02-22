@@ -121,3 +121,17 @@ function to_install() {
   echo "${remain[@]}"
 }
 
+export SVGA_VGPU10=0
+export WINS_mac=MBR-3158
+
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+
+## HEXAGON SDK installation
+# For cmake
+if [ "x`echo $PATH | grep '/opt/cmake-3.4.3-Linux-x86_64/bin'`" = "x" ]; then
+ PATH=/opt/cmake-3.4.3-Linux-x86_64/bin:$PATH
+fi
+export PATH=$PATH
+
+# Qtcreator
+source /opt/qt57/bin/qt57-env.sh

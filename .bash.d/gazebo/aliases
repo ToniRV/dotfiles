@@ -1,0 +1,3 @@
+#!/bin/bash
+
+alias osrf='rosrun osrf_gear gear.py -f `catkin_find --share osrf_gear config`/sample.yaml'

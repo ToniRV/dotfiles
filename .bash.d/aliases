@@ -125,3 +125,19 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 # Recursively delete `.DS_Store` files
 alias cleanup-ds="find . -type f -name '*.DS_Store' -ls -delete"
 alias cleanup-dots="find . -type f -name '._*' -ls -delete"
+
+# Alias
+alias cd..="cd .."
+alias ..="cd .."
+alias cb="catkin build --workspace $CATKIN_WORKSPACE -DCMAKE_BUILD_TYPE=RelWithDebInfo"
+
+# Mounting Snapdragon filesystem
+alias mountSnap="sshfs linaro:/home/linaro/catkin_ws/src/ /home/arosinol/remoteSnapdragon/"
+alias unmountSnap="fusermount -u ~/remoteSnapdragon"
+
+# Transferring snap_cam from host to Snapdragon.
+alias transferSnap="cp -r $CATKIN_WORKSPACE/src/aerial_dev_tools/adt_optical_flow ~/remoteSnapdragon/"
+
+# source bashrc
+alias sbash="source ~/.bashrc"
+
