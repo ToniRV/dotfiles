@@ -29,7 +29,7 @@ load_dotfiles() {
         ${HOME}/.bash.d/autocompletes # Autocompletes
         ${HOME}/.bash.d/aliases       # Aliases
         ${HOME}/.bash.d/functions/*   # Functions
-        ${HOME}/.bash.d/ros           # ROS specific setup
+        ${HOME}/.bash.d/ros/ros       # ROS specific setup
     )
 
     # if these files are readable, source them
