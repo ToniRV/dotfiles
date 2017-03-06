@@ -30,3 +30,4 @@ to something like <Alt><Super>
  * [GitGutter](https://sublime.wbond.net/packages/GitGutter)
  * [Markdown Preview](https://sublime.wbond.net/packages/Markdown%20Preview)
  
+For linting related stuff have a look [here](https://realpython.com/blog/python/setting-up-sublime-text-3-for-full-stack-python-development/#SublimeLinter)
