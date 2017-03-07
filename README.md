@@ -33,3 +33,4 @@ to something like <Alt><Super>
 For linting related stuff have a look [here](https://realpython.com/blog/python/setting-up-sublime-text-3-for-full-stack-python-development/#SublimeLinter)
 
 ### Sublime settings for Latex
+http://rudvfaden.github.io/LaTeXing%20and%20Sublime%20text/
