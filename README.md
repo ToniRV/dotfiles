@@ -34,3 +34,5 @@ For linting related stuff have a look [here](https://realpython.com/blog/python/
 
 ### Sublime settings for Latex
 https://github.com/SublimeText/LaTeXTools#linux (what about http://vim-latex.sourceforge.net/ for vim instead)
+<- this guy is super long...
+1. sudo apt-get install texlive ghostscript imagemagick biber texlive-xetex 
