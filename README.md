@@ -33,6 +33,6 @@ to something like <Alt><Super>
 For linting related stuff have a look [here](https://realpython.com/blog/python/setting-up-sublime-text-3-for-full-stack-python-development/#SublimeLinter)
 
 ### Sublime settings for Latex
-https://github.com/SublimeText/LaTeXTools#linux (what about http://vim-latex.sourceforge.net/ for vim instead)
-<- this guy is super long...
+https://github.com/SublimeText/LaTeXTools#linux 
+<- this guy is super long...(what about http://vim-latex.sourceforge.net/ for vim instead)
 1. sudo apt-get install texlive ghostscript imagemagick biber texlive-xetex 
