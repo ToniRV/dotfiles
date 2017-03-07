@@ -36,3 +36,7 @@ For linting related stuff have a look [here](https://realpython.com/blog/python/
 https://github.com/SublimeText/LaTeXTools#linux 
 <- this guy is super long...(what about http://vim-latex.sourceforge.net/ for vim instead)
 1. sudo apt-get install texlive ghostscript imagemagick biber texlive-xetex 
+
+
+### I haven't tried yet but, what about python devel in vim: 
+https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
