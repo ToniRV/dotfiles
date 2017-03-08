@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Enables virtualenvwrapper with sweet commands to use virtual envs
+source /usr/local/bin/virtualenvwrapper.sh
+
+# Automagically activates the virtual environment in the directory
+# you are in if there is a .env
+source ~/.autoenv/activate.sh
+

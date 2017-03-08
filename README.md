@@ -40,3 +40,16 @@ https://github.com/SublimeText/LaTeXTools#linux
 
 ### I haven't tried yet but, what about python devel in vim: 
 https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
+
+## Python utilities
+### [virtualenvwrapper](http://docs.python-guide.org/en/latest/dev/virtualenvs/#virtualenvwrapper)
+To have a nice organization of virtual environments
+``` bash
+pip install virtualenvwrapper
+```
+
+### [autoenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/#autoenv)
+``` bash
+git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
+```
+
