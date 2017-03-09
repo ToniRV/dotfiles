@@ -14,7 +14,8 @@ to something like <Alt><Super>
 
 ## For sublime settings geared towards python development: 
 (Reference [here](https://github.com/mjhea0/sublime-setup-for-python))
-(*Note*: so actually with [Jupyter](https://jupyter.org/), there is no real need for all of this... :
+
+(**Note**: so actually with [Jupyter](https://jupyter.org/), there is no real need for all of this... :
 * Just make sure that you comment out the sourcing of virtualenvwrapper.sh :+1:)
 
 1. Install package control: copy the Python code for Sublime Text 3 found [here](https://sublime.wbond.net/installation#st3). Click **View > Show** Console to open the ST3 console. Paste the code into the console. Press enter. Reboot ST3.
