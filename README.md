@@ -12,7 +12,7 @@ sudo apt-get install compizconfig-settings-manager
 Run CompizConfig, go to ubuntu Unity Plugin and change the Key to show the Dash, Launcher and Help Overlay from <Super>
 to something like <Alt><Super>
 
-## For sublime settings geared towards python development:
+## For sublime settings geared towards python development: OK so actually with [Jupyter](https://jupyter.org/), there is no real need for this...
 (Reference [here](https://github.com/mjhea0/sublime-setup-for-python))
 
 1. Install package control: copy the Python code for Sublime Text 3 found [here](https://sublime.wbond.net/installation#st3). Click **View > Show** Console to open the ST3 console. Paste the code into the console. Press enter. Reboot ST3.
