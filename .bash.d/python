@@ -1,9 +1,16 @@
 #!/bin/bash
 
+# added by Anaconda3 4.3.0 installer
+export PATH="/home/tonirv/anaconda3/bin:$PATH"
+
+### UNCOMMENT the lines below when working with python2.7, not with anaconda
+# needed for virtualenvwrapper
+#export WORKON_HOME=$HOME/.virtualenvs
+
 # Enables virtualenvwrapper with sweet commands to use virtual envs
-source /usr/local/bin/virtualenvwrapper.sh
+#source /usr/local/bin/virtualenvwrapper.sh
 
 # Automagically activates the virtual environment in the directory
 # you are in if there is a .env
-source ~/.autoenv/activate.sh
+#source ~/.autoenv/activate.sh
 
