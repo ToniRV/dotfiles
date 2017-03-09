@@ -30,6 +30,7 @@ to something like <Alt><Super>
  * [GitGutter](https://sublime.wbond.net/packages/GitGutter)
  * [Markdown Preview](https://sublime.wbond.net/packages/Markdown%20Preview)
  * [Python Breakpoints](https://packagecontrol.io/packages/Python%20Breakpoints)
+ * [SublimeREPL](http://sublimerepl.readthedocs.io/en/latest/) Most important shortcut (Ctrl+,)+f to pass the file to the interpreter.
  
 For linting related stuff have a look [here](https://realpython.com/blog/python/setting-up-sublime-text-3-for-full-stack-python-development/#SublimeLinter)
 
