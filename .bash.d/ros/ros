@@ -6,9 +6,8 @@ alias rospath='echo -e ${ROS_PACKAGE_PATH//:/\\n}'
 
 source /opt/ros/indigo/setup.bash
 
-
 # Source Workspace if built
-if [ -f ~/catkin_ws_2/devel/setup.bash ]; then
+if [ -f $CATKIN_WORKSPACE/devel/setup.bash ]; then
   source $CATKIN_WORKSPACE/devel/setup.bash
 fi
 
