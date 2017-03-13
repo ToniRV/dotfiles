@@ -73,7 +73,11 @@ function prompt_update() {
   # Check if we're in a virtualenv
   if [[ -n "$VIRTUAL_ENV" ]]; then
     venv="$(basename "${VIRTUAL_ENV}") ";
-  else
+  fi;
+  if [[ -n "$CONDA_PREFIX" ]]; then
+    venv="$(basename "${CONDA_PREFIX}") ";
+  fi;
+  if [[ -z "$VIRTUAL_ENV"  && -z "$CONDA_PREFIX" ]]; then
     venv="";
   fi;
 
@@ -92,6 +96,10 @@ function prompt_update() {
 function prompt_venv() {
   if [[ -n "$VIRTUAL_ENV" ]]; then
     echo -e "${orange}${venv}${reset}"
+  else
+    if [[ -n "$CONDA_PREFIX" ]]; then
+      echo -e "${orange}${venv}${reset}"
+    fi;
   fi;
 }
 
