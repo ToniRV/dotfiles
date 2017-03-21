@@ -12,6 +12,8 @@ sudo apt-get install compizconfig-settings-manager
 Run CompizConfig, go to ubuntu Unity Plugin and change the Key to show the Dash, Launcher and Help Overlay from <Super>
 to something like <Alt><Super>
 
+Install [Vundle](https://github.com/VundleVim/Vundle.vim) to manage vim plugins
+
 ## For sublime settings geared towards python development: 
 (Reference [here](https://github.com/mjhea0/sublime-setup-for-python))
 
