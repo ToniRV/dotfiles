@@ -4,12 +4,36 @@
 alias rosenv='env | grep ROS | grep -v ROS_PACKAGE_PATH'
 alias rospath='echo -e ${ROS_PACKAGE_PATH//:/\\n}'
 
+# Check if we have sourced a ros workspace
+path_array=()
+if [[ -n "$ROSLISP_PACKAGE_DIRECTORIES" ]]; then
+  # Parse catkin_workspace env variable, to get all workspaces.
+  IFS=: read -r -d '' -a path_array < <(printf '%s:\0' "$ROSLISP_PACKAGE_DIRECTORIES")
+fi;
+
 source /opt/ros/indigo/setup.bash
 
-# Source Workspace if built
-if [ -f $CATKIN_WORKSPACE/devel/setup.bash ]; then
-  source $CATKIN_WORKSPACE/devel/setup.bash
+# Source Workspace if it was previously sourced already
+if [ ${#path_array[@]} -ne 0 ]; then
+  for workspace in "${path_array[@]}"; do
+    source "${workspace%"share/common-lisp"}"/setup.bash --extend
+  done
 fi
+
+# Function to source a workspace and to set
+# a env var for the prompting the workspace
+# Usage: sws <workspace_name>
+# All workspace names should be at home
+# directory and be prefixed by ws_
+function sws {
+  source $HOME/ws_$1/devel/setup.bash
+  export CATKIN_WORKSPACE="$HOME/ws_$1"
+}
+
+# Aliases to source the correct workspace
+alias smaplab='sws maplab'
+alias smuma='sws muma'
+alias smav='sws mav'
 
 path_ros="$HOME/.bash.d/ros"
 ip_ros=$(cat $path_ros/ros_ip)
