@@ -467,3 +467,6 @@ cnoremap <C-N> <Down>
 
 " Command line remapping to write file as sudo
 cmap w!! w !sudo tee > /dev/null %
+" Disable syntastic since it makes vim to freezes when saving
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
