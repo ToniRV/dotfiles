@@ -35,7 +35,7 @@ Install [Vundle](https://github.com/VundleVim/Vundle.vim) to manage vim plugins
  * [GitGutter](https://sublime.wbond.net/packages/GitGutter)
  * [Markdown Preview](https://sublime.wbond.net/packages/Markdown%20Preview)
  * [Python Breakpoints](https://packagecontrol.io/packages/Python%20Breakpoints) (Ctrl+Shift+b) to toggle breakpoint
- * [SublimeREPL](http://sublimerepl.readthedocs.io/en/latest/) Most important shortcut (Ctrl+,)+f to pass the file to the interpreter. Follow (these instructions)[http://stackoverflow.com/a/23722631] to get a nice workflow: ctrl+shift+b to add breakpoints and ctrl+b to build.
+ * [SublimeREPL](http://sublimerepl.readthedocs.io/en/latest/) Most important shortcut (Ctrl+,)+f to pass the file to the interpreter. Follow these [instructions](ttp://stackoverflow.com/a/23722631)to get a nice workflow: ctrl+shift+b to add breakpoints and ctrl+b to build.
  
 For linting related stuff have a look [here](https://realpython.com/blog/python/setting-up-sublime-text-3-for-full-stack-python-development/#SublimeLinter)
 
