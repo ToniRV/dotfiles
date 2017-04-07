@@ -129,7 +129,7 @@ alias cleanup-dots="find . -type f -name '._*' -ls -delete"
 # Alias
 alias cd..="cd .."
 alias ..="cd .."
-alias cb="catkin build --workspace $CATKIN_WORKSPACE -DCMAKE_BUILD_TYPE=RelWithDebInfo"
+alias cb="catkin build -w $CATKIN_WORKSPACE -DCMAKE_BUILD_TYPE=Release"
 
 # Mounting Snapdragon filesystem
 alias mountSnap="sshfs linaro:/home/linaro/catkin_ws/src/ /home/arosinol/remoteSnapdragon/"
