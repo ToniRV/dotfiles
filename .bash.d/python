@@ -2,23 +2,23 @@
 
 # If we are not using ros, aka we have not build the ros source code.
 # Then do not source anaconda3 since ros uses python 2.7
-if [ ! -f $CATKIN_WORKSPACE/devel/setup.bash ]; then
+#if [ ! -f $CATKIN_WORKSPACE/devel/setup.bash ]; then
 
 # added by Anaconda3 4.3.0 installer
-export PATH="/home/tonirv/anaconda3/bin:$PATH"
+#export PATH="/home/tonirv/anaconda3/bin:$PATH"
 
-else
+#else
 
 ### Use the lines below when working with python2.7, not with anaconda
 # Needed for virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
+#export WORKON_HOME=$HOME/.virtualenvs
 
 # Enables virtualenvwrapper with sweet commands to use virtual envs
-source /usr/local/bin/virtualenvwrapper.sh
+#source /usr/local/bin/virtualenvwrapper.sh
 
 # Automagically activates the virtual environment in the directory
 # you are in if there is a .env
-source ~/.autoenv/activate.sh
+#source ~/.autoenv/activate.sh
 
-fi
+#fi
 
