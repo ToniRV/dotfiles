@@ -29,7 +29,7 @@ function rosmaster() {
 source /opt/ros/indigo/setup.bash
 
 # Set ROS server address
-rosmaster localhost
+#rosmaster localhost
 
 # Source Workspace if built
 if [ -f ~/catkin_ws/devel/setup.bash ]; then
