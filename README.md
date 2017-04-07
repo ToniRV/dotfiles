@@ -25,7 +25,7 @@ Install [Vundle](https://github.com/VundleVim/Vundle.vim) to manage vim plugins
 2. You can now install packages by using the keyboard shortcut **cmd+shift+P**. Start typing install until Package Control: Install Package appears. Press enter and search for available packages.
 
 3. For language specific settings click **Sublime Text > Preferences > Settings – More > Syntax Specific – User**. Then save the file using the following format: **LANGUAGE.sublime-settings**. So, for Python-specific settings, save the file as Python.sublime-settings.
-  * As base use: save the code as Preferences.sublime-settings [code](https://github.com/mjhea0/sublime-setup-for-python/blob/master/dotfiles/Preferences.sublime-settings) **Before saving this, install Flatland Theme and add the following line: "color_scheme": "Packages/Theme - Flatland/Flatland Dark.tmTheme" in the settings file.
+  * As base use: save the code as Preferences.sublime-settings [code](https://github.com/mjhea0/sublime-setup-for-python/blob/master/dotfiles/Preferences.sublime-settings) **Before saving this, install Flatland Theme and add the following line: ``` "color_scheme": "Packages/Theme - Flatland/Flatland Dark.tmTheme"``` in the settings file.
   * As Python specific: save the config as Python.sublime-settings [code](https://github.com/mjhea0/sublime-setup-for-python/blob/master/dotfiles/Python.sublime-settings)
 
 ### Other interesting packages for ST3
