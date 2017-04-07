@@ -81,7 +81,21 @@ function prompt_update() {
     venv="";
   fi;
 
-  rightLength=$((${#venv}+${gitLength}));
+
+  # Check if we have sourced a ros workspace
+  if [[ -n "$ROSLISP_PACKAGE_DIRECTORIES" ]]; then
+    # Parse catkin_workspace env variable, to get all workspaces.
+    IFS=: read -r -d '' -a path_array < <(printf '%s:\0' "$ROSLISP_PACKAGE_DIRECTORIES")
+    ros_ws=""
+    for workspace in "${path_array[@]}"; do
+      ros_ws="$ros_ws $(basename "${workspace%"/devel/share/common-lisp"}") ";
+    done
+  fi;
+  if [[ -z "$ROSLISP_PACKAGE_DIRECTORIES" ]]; then
+    ros_ws="";
+  fi;
+
+  rightLength=$((${#ros_ws}+${#venv}+${gitLength}));
 
   shortPWD=${PWD/${HOME}/"~"};
   if (( $(($(tput cols)-${rightLength}-${#shortPWD})) < 5 )); then
@@ -103,6 +117,13 @@ function prompt_venv() {
   fi;
 }
 
+# Prompt currently sourced ROS workspace
+function prompt_ros_ws() {
+  if [[ -n "$ROSLISP_PACKAGE_DIRECTORIES" ]]; then
+    echo -e "${orange}${ros_ws}${reset}"
+  fi;
+}
+
 # Prompt git
 function prompt_git() {
   if is_git_repository; then
@@ -116,17 +137,17 @@ function prompt_command() {
   if [[ "${user}" == "root" ]]; then
     p="\[${red}\]▶";
   else
-    p="\[${violet}\]❯";
+    p="\[${blue}\]❯";
   fi;
   echo -e "${p} \[${reset}\]";
 }
 
 function prompt_align() {
   prompt_update;
-  local offset=35;
+  local offset=52;
 
   PLEFT="\[${tan}\]\h: \[${blue}\]${shortPWD}\[${reset}\]";
-  PRIGHT="\$(prompt_venv)\$(prompt_git)\[${reset}\]";
+  PRIGHT="\$(prompt_ros_ws)\$(prompt_venv)\$(prompt_git)\[${reset}\]";
 
   PS1=$(printf "%s%*s\r%s\n%s" "$(set_title)" "$(($(tput cols)+${offset}-${rightLength}))" "$PRIGHT" "$PLEFT" "$(prompt_command)");
 }
