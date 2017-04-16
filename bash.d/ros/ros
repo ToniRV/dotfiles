@@ -40,9 +40,9 @@ alias scatkin='sws catkin'
 path_ros="$HOME/.bash.d/ros"
 ip_ros=$(cat $path_ros/ros_ip)
 master_uri=$(cat $path_ros/ros_master_uri)
-#export ROS_IP=$ip_ros
-#export ROS_HOSTNAME=$ROS_IP
-#export ROS_MASTER_URI=http://$master_uri:11311
+export ROS_IP=$ip_ros
+export ROS_HOSTNAME=$ROS_IP
+export ROS_MASTER_URI=http://$master_uri:11311
 
 # Shortcut to change ROS server URI
 # Usage: rosmaster [localhost|me|10.131.xx.yy] [eth0|wlan0|eth2...]
