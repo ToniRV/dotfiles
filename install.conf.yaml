@@ -6,7 +6,12 @@
 - clean: ['~', '~/.config']
 
 - link:
+    ~/.config/terminator:
+      create: true
+      path: config/terminator
     ~/.bashrc:
+    ~/.bash_profile:
+    ~/.bash.d:
     ~/.gitconfig:
     ~/.inputrc:
     ~/.vim:
