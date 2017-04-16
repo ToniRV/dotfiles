@@ -1,6 +1,0 @@
-pane	0	1	:adt_ekf_node	1	:*	1	:/home/hrodde	0	python	:/usr/bin/python /opt/ros/indigo/bin/roslaunch adt_gazebo quadcopter.launch
-pane	0	1	:adt_ekf_node	1	:*	2	:/home/hrodde/catkin_ws/src/aerial_dev_tools	1	adt_ekf_node	:/home/hrodde/catkin_ws/devel/lib/adt_ekf/adt_ekf_node
-pane	0	2	:python	0	:-	1	:/home/hrodde	1	python	:/usr/bin/python /opt/ros/indigo/bin/rqt
-window	0	1	1	:*	fea0,239x68,0,0{119x68,0,0,18,119x68,120,0,37}
-window	0	2	0	:-	6a28,239x68,0,0,38
-state	0	

@@ -1,5 +1,0 @@
-pane	0	1	:python	0	:-	1	:/home/hrodde	1	python	:/usr/bin/python /opt/ros/indigo/bin/roscore
-pane	0	2	:bash	1	:*	1	:/home/hrodde	1	bash	:
-window	0	1	0	:-	b77f,102x62,0,0,2
-window	0	2	1	:*	b786,102x62,0,0,9
-state	0	0

@@ -1,0 +1,26 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~', '~/.config']
+
+- link:
+    ~/.config/terminator:
+      create: true
+      path: config/terminator
+    ~/.bashrc:
+    ~/.bash_profile:
+    ~/.bash.d:
+    ~/.gitconfig:
+    ~/.inputrc:
+    ~/.vim:
+    ~/.vimrc:
+
+- shell:
+  - git submodule update --init --recursive
+  -
+    command: bash ./bin/install_powerline_fonts
+    stdout: true
+  - vim +PluginInstall +qall
+  #- git update-submodules # after linking ~/.gitconfig

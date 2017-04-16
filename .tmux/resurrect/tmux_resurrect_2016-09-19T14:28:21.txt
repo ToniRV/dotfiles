@@ -1,5 +1,0 @@
-pane	0	1	:[tmux]	1	:*	1	:/home/hrodde/catkin_ws	1	bash	:
-pane	0	2	:bash	0	:-	1	:/home/hrodde/Workspaces/ecl	1	bash	:
-window	0	1	1	:*	ac7e,123x40,0,0,1
-window	0	2	0	:-	ac80,123x40,0,0,3
-state	0	0

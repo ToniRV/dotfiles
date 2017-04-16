@@ -1,3 +1,0 @@
-pane	1	1	:bash	1	:*	1	:/home/hrodde/catkin_ws/src/aerial_dev_tools	1	bash	:
-window	1	1	1	:*	5dd6,172x53,0,0,17
-state	1	

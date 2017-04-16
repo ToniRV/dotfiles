@@ -1,5 +1,0 @@
-pane	0	1	:python	1	:*	1	:/home/hrodde/catkin_ws/src	1	python	:/usr/bin/python /opt/ros/indigo/bin/roslaunch aerial_dev_tools quadcopter.launch
-pane	0	2	:bash	0	:-	1	:/home/hrodde	1	bash	:
-window	0	1	1	:*	61f8,106x55,0,0,19
-window	0	2	0	:-	e1f3,106x55,0,0,24
-state	0	0

@@ -1,4 +1,0 @@
-pane	0	1	:bash	1	:*	1	:/home/hrodde	0	python	:/usr/bin/python /opt/ros/indigo/bin/roslaunch adt_gazebo quadcopter.launch
-pane	0	1	:bash	1	:*	2	:/home/hrodde/catkin_ws	1	bash	:
-window	0	1	1	:*	fea0,239x68,0,0{119x68,0,0,18,119x68,120,0,37}
-state	0	
