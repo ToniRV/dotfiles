@@ -1,4 +1,6 @@
 [global_config]
+  title_font = Liberation Mono for Powerline 10
+  title_use_system_font = False
 [keybindings]
   close_term = <Primary>w
   close_window = <Primary><Alt>w
@@ -24,5 +26,7 @@
 [profiles]
   [[default]]
     background_image = None
+    font = Liberation Mono for Powerline 10
     scroll_on_output = False
     scrollback_infinite = True
+    use_system_font = False
