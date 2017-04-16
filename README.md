@@ -1,11 +1,11 @@
 # My dotfiles
 
-Install the fonts for the vim configs to work well: tm
+Install the fonts for the vim configs to work well:
 https://github.com/powerline/fonts
 
 Install Terminator
 
-Then configure Terminator to use Liberation Mono for Powerline. Use Regular style and Size 10.
+Then configure Terminator to use Liberation Mono for Powerline. Use Regular style and Size 10. Apply these changes in the Profile tab.
 
 To unset <Super>+t shortcut that pops the trash in ubuntu on Mac
 sudo apt-get install compizconfig-settings-manager
