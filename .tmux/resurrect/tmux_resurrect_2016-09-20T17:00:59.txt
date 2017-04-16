@@ -1,3 +1,0 @@
-pane	0	1	:vim	1	:*	1	:/home/hrodde/catkin_ws	1	vim	:vim /home/hrodde/.bash.d/prompt
-window	0	1	1	:*	b941,119x33,0,0,4
-state	0	0

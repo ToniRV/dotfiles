@@ -1,4 +1,0 @@
-pane	1	1	:bash	1	:*	1	:/home/hrodde/catkin_ws/src/aerial_dev_tools	1	bash	:
-pane	1	1	:bash	1	:*	2	:/usr/lib	0	bash	:
-window	1	1	1	:*	d94c,172x53,0,0{86x53,0,0,17,85x53,87,0,19}
-state	1	1

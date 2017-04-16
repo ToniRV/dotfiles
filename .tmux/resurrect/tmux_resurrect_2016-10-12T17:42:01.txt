@@ -1,3 +1,0 @@
-pane	1	1	:vim	1	:*	1	:/home/hrodde/catkin_ws/src/aerial_dev_tools/snapdragon_camera_driver/include	1	vim	:vim logging.h
-window	1	1	1	:*	5dd6,172x53,0,0,17
-state	1	1

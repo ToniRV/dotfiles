@@ -1,3 +1,0 @@
-pane	0	1	:[tmux]	1	:*	1	:/home/hrodde	1	bash	:
-window	0	1	1	:*	b93e,119x33,0,0,1
-state	0	0

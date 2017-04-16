@@ -1,4 +1,0 @@
-pane	1	1	:vim	1	:*	1	:/home/hrodde	1	vim	:vim .ssh/config
-pane	1	1	:vim	1	:*	2	:/home/hrodde/catkin_ws/src/aerial_dev_tools	0	ssh	:ssh linaro@10.131.4.153
-window	1	1	1	:*	9948,172x53,0,0{86x53,0,0,17,85x53,87,0,20}
-state	1	1

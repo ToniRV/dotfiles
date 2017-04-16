@@ -1,4 +1,0 @@
-pane	0	1	:bash	1	:*	1	:/home/hrodde	0	vim	:vim .bash.d/ros
-pane	0	1	:bash	1	:*	2	:/home/hrodde	1	bash	:
-window	0	1	1	:*	3a75,172x53,0,0{86x53,0,0,5,85x53,87,0,6}
-state	0	0
