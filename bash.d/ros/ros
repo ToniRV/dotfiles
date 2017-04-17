@@ -11,7 +11,7 @@ if [[ -n "$ROSLISP_PACKAGE_DIRECTORIES" ]]; then
   IFS=: read -r -d '' -a path_array < <(printf '%s:\0' "$ROSLISP_PACKAGE_DIRECTORIES")
 fi;
 
-source /opt/ros/indigo/setup.bash
+source /opt/ros/kinetic/setup.bash
 
 # Source Workspace if it was previously sourced already
 if [ ${#path_array[@]} -ne 0 ]; then
