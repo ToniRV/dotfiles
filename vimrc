@@ -510,3 +510,6 @@ nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 " This modeline will folf this file to make it visibly appealing
 " Basically folds {{{ }}}
 " vim:foldmethod=marker:foldlevel=0
+
+" Toggle between nopaste and paste
+set pastetoggle=<F10>

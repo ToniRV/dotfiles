@@ -43,5 +43,8 @@ if [[ -n $CATKIN_WORKSPACE ]]; then
   export CURRENT_CMAKE_BUILD_DIR="$(catkin locate --workspace $CATKIN_WORKSPACE --build)"
 fi
 
+# To adapt qtcreator IDE to adapt to high resolution screen
+export QT_SCALE_FACTOR=1.3
+
 # For speeding up builds
 export PATH="/usr/lib/ccache:$PATH"
