@@ -74,3 +74,7 @@ function cattest() {
   catkin build $1 "${@:2}" --workspace $CATKIN_WORKSPACE --catkin-make-args run_tests
   catkin_test_results $CATKIN_WORKSPACE/build/$1 --verbose
 }
+
+# Weird flag to make it run in RPG lab Optitrack
+# Allow ssh to launch remote nodes. This is required for Optitrack flights.
+export ROSLAUNCH_SSH_UNKNOWN=1
