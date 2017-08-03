@@ -22,5 +22,6 @@
   -
     command: bash ./bin/install_powerline_fonts
     stdout: true
+  - sudo apt-get install vim-gnome
   - vim +PluginInstall +qall
   #- git update-submodules # after linking ~/.gitconfig
