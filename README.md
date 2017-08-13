@@ -1,11 +1,11 @@
 # My dotfiles
 
-Install the fonts for the vim configs to work well: tm
+Install the fonts for the vim configs to work well:
 https://github.com/powerline/fonts
 
 Install Terminator
 
-Then configure Terminator to use Liberation Mono for Powerline. Use Regular style and Size 10.
+Then configure Terminator to use Liberation Mono for Powerline. Use Regular style and Size 10. Apply these changes in the Profile tab.
 
 To unset <Super>+t shortcut that pops the trash in ubuntu on Mac
 sudo apt-get install compizconfig-settings-manager
@@ -60,3 +60,6 @@ pip install virtualenvwrapper
 git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
 ```
 **Note** When sourcing ROS, it sets PYTHONPATH env variable which interferes with your usage of python. Specially when you set up a fresh new virtual environment with --no-site-packages, and you try to run pip freeze to see the current dependencies it will output plenty of ros and rqt things... If you just want to see your dependencies in your new venv then unset $PYTHONPATH variable. Nonetheless, your venv will still "use" the globally installed packages such as ros :O
+
+#TODO
+Check that vim is installed
