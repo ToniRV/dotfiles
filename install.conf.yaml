@@ -22,6 +22,20 @@
   -
     command: bash ./bin/install_powerline_fonts
     stdout: true
-  - sudo apt-get install vim-gnome
+  - sudo apt install exuberant-ctags
+  - sudo apt install vim-gnome
   - vim +PluginInstall +qall
+  -
+    command: sudo apt-get install build-essential cmake
+    stdin: true
+    stdout: true
+    stderr: true
+    description: Dependencies for YouCompleteMe
+  -
+    command: ~/.vim/bundle/YouCompleteMe/install.py
+    stdin: true
+    stdout: true
+    stderr: true
+    description: Installing YouCompleteMe vim plugin
+
   #- git update-submodules # after linking ~/.gitconfig

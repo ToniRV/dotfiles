@@ -7,9 +7,9 @@ colorscheme Tomorrow-Night
 
 " {{{ Vundle
 
-" Required for Vundl
-set nocompatible
-filetype off
+" Required for Vundle
+set nocompatible " required
+filetype off     " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -20,6 +20,11 @@ call vundle#begin('~/.vim/bundle')
 
 " Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
+"
+
+" Add all your plugins below
+
+" Colors
 Plugin 'flazz/vim-colorschemes'
 
 " Ack, we actually use this but to run Ag searcher
@@ -40,11 +45,22 @@ Plugin 'tpope/vim-repeat'
 " Vim plugin for intensely orgasmic commenting
 Plugin 'scrooloose/nerdcommenter'
 
+" File tree
+Plugin 'scrooloose/nerdtree'
+
+" File tree with tabs
+Plugin 'jistr/vim-nerdtree-tabs'
+
 " Lean & mean status/tabline for vim that's light as air
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'bling/vim-bufferline'
 
 " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plugin 'Raimondi/delimitMate'
+
+" Autocomplete tool
+Bundle 'Valloric/YouCompleteMe'
 
 " Vim script for text filtering and alignment
 " Plugin 'godlygeek/tabular'
@@ -73,7 +89,33 @@ Plugin 'mattn/emmet-vim'
 " Markdown support
 Plugin 'tpope/vim-markdown'
 
-call vundle#end()
+" For better folding in Python
+Plugin 'tmhedberg/SimpylFold'
+
+" For faster folding
+Plugin 'Konfekt/FastFold'
+
+" Fix autoindent for python
+Plugin 'vim-scripts/indentpython.vim'
+
+" Add virtualenv support for Python devel in vim
+Plugin 'jmcantrell/vim-virtualenv'
+
+" Add PEP8 checking
+Plugin 'nvie/vim-flake8'
+
+" Search for anything
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" Tag bar
+Plugin 'majutsushi/tagbar'
+
+" Nerd tree git plugin
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+" All Plugins must be added before the following line.
+call vundle#end()         " required
+filetype plugin indent on " required
 " }}}
 
 " {{{ Interface
@@ -313,7 +355,9 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:UltiSnipsEditSplit="vertical"
 
 " Airline
+let g:airline_theme='badwolf'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 1
 let g:airline_powerline_fonts = 1
 
 " Supertab
@@ -379,7 +423,8 @@ inoremap <C-@> <C-Space>
 " clear highlighted search
 noremap <leader><space> :set hlsearch! hlsearch?<cr>
 
-" toggle paste mode
+" Toggle between nopaste and paste
+set pastetoggle=<leader><leader>p
 map <leader>v :set paste!<cr>
 map <leader>V :set nopaste!<cr>
 
@@ -490,7 +535,7 @@ cno $h ~/
 cno $d ~/Desktop/
 cno $c ./
 cno $b ~/.bash.d/
-cno $w ~/catkin_ws/
+cno $w ~/ws_catkin
 
 " Bash like keys for the command line
 cnoremap <C-A> <Home>
@@ -503,10 +548,129 @@ cnoremap <C-N> <Down>
 
 " Command line remapping to write file as sudo
 cmap w!! w !sudo tee > /dev/null %
+
+" Syntastic ------------------------------
 " Disable syntastic since it makes vim to freezes when saving
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': [] }
 nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
-" This modeline will folf this file to make it visibly appealing
+" show list of errors and warnings on the current file
+nmap <leader>e :Errors<CR>
+" turn to next or previous errors, after open errors list
+nmap <leader>n :lnext<CR>
+nmap <leader>p :lprevious<CR>
+" check also when just opened the file
+let g:syntastic_check_on_open = 1
+" syntastic checker for javascript.
+" eslint is the only tool support JSX.
+" If you don't need write JSX, you can use jshint.
+" And eslint is slow, but not a hindrance
+ let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_javascript_checkers = ['eslint']
+" don't put icons on the sign column (it hides the vcs status icons of signify)
+let g:syntastic_enable_signs = 1
+" custom icons (enable them if you use a patched font, and enable the previous
+" setting)
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_style_warning_symbol = '💩'
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
+" This modeline will fold this file to make it visibly appealing
 " Basically folds {{{ }}}
 " vim:foldmethod=marker:foldlevel=0
+
+" See docstrings for folded code
+let g:SimpylFold_docstring_preview=1
+
+" {{{ Python development
+" Proper PEP8 indentation
+au BufNewFile,BufRead *.py:
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
+" Make python code look pretty
+let python_highlight_all=1
+syntax on
+
+" }}}
+
+" {{{ Full stack development
+au BufNewFile,BufRead *.js, *.html, *.css:
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+" }}}
+
+" Mark extraneous whitespace
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" YouCompleteMe configuration
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Nerd Tree config
+nnoremap <leader>f :NERDTreeToggle<CR>
+nnoremap <leader><leader>f :NERDTreeFind<CR>
+let NERDTreeIgnore=['\.pyc$', '\~$'] " ignore files in NERDTree
+let NERDTreeAutoDeleteBuffer = 1
+let NERdTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:nerdtree_tabs_open_on_console_startup=1
+
+autocmd VimEnter * NERDTree " Start NERDTree every time Vim starts
+autocmd VimEnter * wincmd p
+
+
+" Tag bar config
+nnoremap <leader><leader>b :TagbarToggle<CR>
+
+" FINDING FILES:
+
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+
+" Display all matching files when we tab complete
+set wildmenu
+
+" TAG JUMPING:
+
+" Create the `tags` file (may need to install ctags first)
+" Use this instead of the YouCompleteMe
+command! MakeTags !ctags -R .
+
+" NOW WE CAN:
+" - Use ctrl-] to jump to tag under cursor
+" - Use g-ctrl-] for ambiguous tags
+" - Use ctrl-t to jump back up the tag stack. Changed to ctrl-[
+nnoremap <c-[> <c-t>
+
+" THINGS TO CONSIDER:
+" - This doesn't help if you want a visual list of tags
+
+" For Nerd tree git plugin
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+"
