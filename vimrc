@@ -674,3 +674,6 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 "
+
+" Remap to do calculations on the fly.
+ino <C-A> <C-O>yiW<End>=<C-R>=<C-R>0<CR>
