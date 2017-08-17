@@ -22,6 +22,7 @@
   -
     command: bash ./bin/install_powerline_fonts
     stdout: true
+  - sudo apt install terminator
   - sudo apt install exuberant-ctags
   - sudo apt install vim-gnome
   - vim +PluginInstall +qall
