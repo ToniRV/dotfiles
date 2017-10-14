@@ -30,7 +30,7 @@
   # Amend the currently staged files to the latest commit
   amend = commit --amend --reuse-message=HEAD
   # Remove branches that have already been merged with master
-  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+  removeBranches = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
   # Show the diff between the latest commit and the current state
   di = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
   # Show the diff between staged work and last HEAD
@@ -141,8 +141,8 @@
   untracked = white
 
 [user]
-  email = tonirosinol@hotmail.com
-  name = Toni Rosinol
+  email = rosinol.gabriel@gmail.com
+  name = Bielrv
 
 [grep]
   lineNumber = true
