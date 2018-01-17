@@ -17,7 +17,7 @@ mv ~/.config/terminator ~/.config/terminator_backup
 Find and replace the [user] fields with your details in the ```gitconfig``` file:
 ```
 [user]
-  email = youremail@gmail.com
+  email = youremail
   name = yourname
 ```
 
