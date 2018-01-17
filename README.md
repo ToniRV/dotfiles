@@ -1,6 +1,7 @@
 # My dotfiles
 
 Clone the repo: ```git clone git@github.com:ToniRV/dotfiles.git```
+
 Backup your previous dotfiles:
 ```
 mv ~/.bashrc ~/.bashrc_backup
@@ -10,6 +11,7 @@ mv ~/.inputrc ~/.inputrc_backup
 mv ~/.vimrc ~/.vimrc_backup
 mv ~/.config/terminator ~/.config/terminator_backup
 ```
+
 Install: 
 ```./install```
 
