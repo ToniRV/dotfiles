@@ -1,0 +1,6 @@
+# Ignore vim plugins
+vim/bundle
+! vim/bundle/Vundle.vim
+
+# Ignore this thing
+.netrwhist

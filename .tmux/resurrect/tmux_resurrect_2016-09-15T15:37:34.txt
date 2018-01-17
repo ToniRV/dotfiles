@@ -1,9 +1,0 @@
-pane	0	1	:python	0	:-	1	:/home/hrodde	1	bash	:
-pane	0	2	:python	0	: 	1	:/home/hrodde	1	python	:/usr/bin/python /opt/ros/indigo/bin/rqt
-pane	0	3	:python	0	: 	1	:/home/hrodde	1	python	:/usr/bin/python /opt/ros/indigo/bin/rostopic pub /ardrone/command/pose geometry_msgs/PoseStamped {header: {stamp: now}, pose: {position: {x: 1.0, y: 2.0, z: 4.0}}}
-pane	0	4	:bash	1	:*	1	:/home/hrodde	1	bash	:
-window	0	1	0	:-	b13f,115x41,0,0,2
-window	0	2	0	: 	b141,115x41,0,0,4
-window	0	3	0	: 	b142,115x41,0,0,5
-window	0	4	1	:*	b144,115x41,0,0,7
-state	0	0

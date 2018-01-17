@@ -1,3 +1,0 @@
-pane	0	1	:bash	1	:*	1	:/home/hrodde/catkin_ws	1	bash	:
-window	0	1	1	:*	5bf8,102x62,0,0,19
-state	0	0

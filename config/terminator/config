@@ -1,0 +1,32 @@
+[global_config]
+  title_font = Liberation Mono for Powerline 10
+  title_use_system_font = False
+[keybindings]
+  close_term = <Primary>w
+  close_window = <Primary><Alt>w
+  copy = <Primary>c
+  go_down = <Primary><Alt>j
+  go_left = <Primary><Alt>h
+  go_right = <Primary><Alt>l
+  new_tab = <Primary>t
+  next_tab = <Primary>Tab
+  paste = <Primary>v
+  split_horiz = <Primary><Alt>e
+  split_vert = <Primary><Alt>r
+  toggle_zoom = <Primary><Shift>q
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_image = None
+    font = Liberation Mono for Powerline 10
+    scroll_on_output = False
+    scrollback_infinite = True
+    use_system_font = False

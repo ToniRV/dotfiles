@@ -1,4 +1,0 @@
-pane	0	1	:vim	1	:*	1	:/home/hrodde/.bash.d/functions	1	vim	:vim catproject
-pane	0	1	:vim	1	:*	2	:/home/hrodde	0	bash	:
-window	0	1	1	:*	4f50,213x64,0,0{106x64,0,0,1,106x64,107,0,3}
-state	0	0

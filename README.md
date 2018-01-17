@@ -1,11 +1,11 @@
 # My dotfiles
 
-Install the fonts for the vim configs to work well: tm
+Install the fonts for the vim configs to work well:
 https://github.com/powerline/fonts
 
 Install Terminator
 
-Then configure Terminator to use Liberation Mono for Powerline. Use Regular style and Size 10.
+Then configure Terminator to use Liberation Mono for Powerline. Use Regular style and Size 10. Apply these changes in the Profile tab.
 
 To unset <Super>+t shortcut that pops the trash in ubuntu on Mac
 sudo apt-get install compizconfig-settings-manager
@@ -25,7 +25,7 @@ Install [Vundle](https://github.com/VundleVim/Vundle.vim) to manage vim plugins
 2. You can now install packages by using the keyboard shortcut **cmd+shift+P**. Start typing install until Package Control: Install Package appears. Press enter and search for available packages.
 
 3. For language specific settings click **Sublime Text > Preferences > Settings – More > Syntax Specific – User**. Then save the file using the following format: **LANGUAGE.sublime-settings**. So, for Python-specific settings, save the file as Python.sublime-settings.
-  * As base use: save the code as Preferences.sublime-settings [code](https://github.com/mjhea0/sublime-setup-for-python/blob/master/dotfiles/Preferences.sublime-settings)
+  * As base use: save the code as Preferences.sublime-settings [code](https://github.com/mjhea0/sublime-setup-for-python/blob/master/dotfiles/Preferences.sublime-settings) **Before saving this, install Flatland Theme and add the following line: ``` "color_scheme": "Packages/Theme - Flatland/Flatland Dark.tmTheme"``` in the settings file.
   * As Python specific: save the config as Python.sublime-settings [code](https://github.com/mjhea0/sublime-setup-for-python/blob/master/dotfiles/Python.sublime-settings)
 
 ### Other interesting packages for ST3
@@ -60,3 +60,6 @@ pip install virtualenvwrapper
 git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
 ```
 **Note** When sourcing ROS, it sets PYTHONPATH env variable which interferes with your usage of python. Specially when you set up a fresh new virtual environment with --no-site-packages, and you try to run pip freeze to see the current dependencies it will output plenty of ros and rqt things... If you just want to see your dependencies in your new venv then unset $PYTHONPATH variable. Nonetheless, your venv will still "use" the globally installed packages such as ros :O
+
+#TODO
+Check that vim is installed
