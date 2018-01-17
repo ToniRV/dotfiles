@@ -37,6 +37,7 @@ alias smav='sws mav'
 alias scatkin='sws catkin'
 alias skalibr='sws kalibr'
 alias seye='sws zurich_eye'
+alias siros='sws iros'
 
 # Uncomment this if you are not using node_manager
 path_ros="$HOME/.bash.d/ros"
