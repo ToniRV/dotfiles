@@ -24,6 +24,12 @@ Plugin 'gmarik/Vundle.vim'
 
 " Add all your plugins below
 
+" Plugins for Snippets in code
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
 " Colors
 Plugin 'flazz/vim-colorschemes'
 
@@ -112,6 +118,9 @@ Plugin 'majutsushi/tagbar'
 
 " Nerd tree git plugin
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+" Plugin for Latex
+Plugin 'lervag/vimtex'
 
 " All Plugins must be added before the following line.
 call vundle#end()         " required
@@ -279,8 +288,8 @@ set modeline
 set modelines=1
 
 " Enable per-directory .vimrc files and disable unsafe commands in them
-" set exrc
-" set secure
+set exrc
+set secure
 
 " Enable in all modes
 set mouse=vic
@@ -600,7 +609,7 @@ au BufNewFile,BufRead *.py:
     \ set fileformat=unix
 
 " Make python code look pretty
-let python_highlight_all=1
+"let python_highlight_all=1
 syntax on
 
 " }}}
@@ -627,10 +636,10 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] " ignore files in NERDTree
 let NERDTreeAutoDeleteBuffer = 1
 let NERdTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_open_on_console_startup=0
 
-autocmd VimEnter * NERDTree " Start NERDTree every time Vim starts
-autocmd VimEnter * wincmd p
+"autocmd VimEnter * NERDTree " Start NERDTreeevery time Vim starts
+"autocmer * wincmd p
 
 
 " Tag bar config
@@ -655,7 +664,7 @@ command! MakeTags !ctags -R .
 " - Use ctrl-] to jump to tag under cursor
 " - Use g-ctrl-] for ambiguous tags
 " - Use ctrl-t to jump back up the tag stack. Changed to ctrl-[
-nnoremap <c-[> <c-t>
+"nnoremap <c-[> <c-t>
 
 " THINGS TO CONSIDER:
 " - This doesn't help if you want a visual list of tags
@@ -677,3 +686,10 @@ let g:NERDTreeIndicatorMapCustom = {
 
 " Remap to do calculations on the fly.
 ino <C-A> <C-O>yiW<End>=<C-R>=<C-R>0<CR>
+
+" Latex settings
+let g:tex_flavor = 'latex'
+set syntax=context
+
+" Add automatic header for python files when starting from vim
+au BufNewFile *.py 0r /home/tonirv/dotfiles/python_template.txt
