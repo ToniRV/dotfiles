@@ -15,6 +15,8 @@ mv ~/.config/terminator ~/.config/terminator_backup
 Install: 
 ```./install```
 
+Delete your backup files if you do not need them anymore.
+
 <!---
 Install the fonts for the vim configs to work well:
 https://github.com/powerline/fonts
