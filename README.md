@@ -1,18 +1,36 @@
 # My dotfiles
 
+Clone the repo: ```git clone git@github.com:ToniRV/dotfiles.git```
+Backup your previous dotfiles:
+```
+mv ~/.bashrc ~/.bashrc_backup
+mv ~/.bash_profile ~/.bash_profile_backup
+mv ~/.gitconfig ~/.gitconfig_backup
+mv ~/.inputrc ~/.inputrc_backup
+mv ~/.vimrc ~/.vimrc_backup
+mv ~/.config/terminator ~/.config/terminator_backup
+```
+Install: 
+```./install```
+
+<!---
 Install the fonts for the vim configs to work well:
 https://github.com/powerline/fonts
 
+<!---
 Install Terminator
-
+<!---
 Then configure Terminator to use Liberation Mono for Powerline. Use Regular style and Size 10. Apply these changes in the Profile tab.
 
+<!---
 To unset <Super>+t shortcut that pops the trash in ubuntu on Mac
 sudo apt-get install compizconfig-settings-manager
 Run CompizConfig, go to ubuntu Unity Plugin and change the Key to show the Dash, Launcher and Help Overlay from <Super>
 to something like <Alt><Super>
-
+<!---
 Install [Vundle](https://github.com/VundleVim/Vundle.vim) to manage vim plugins
+ 
+---> You can safely ignore the rest of the README.md.
 
 ## For sublime settings geared towards python development: 
 (Reference [here](https://github.com/mjhea0/sublime-setup-for-python))
