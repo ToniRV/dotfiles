@@ -1,5 +1,7 @@
 # My dotfiles
 
+Meant for Ubuntu 16.04, with ROS kinetic.
+
 Clone the repo: ```git clone git@github.com:ToniRV/dotfiles.git```
 
 Backup your previous dotfiles:
