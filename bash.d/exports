@@ -44,6 +44,7 @@ fi
 
 # To adapt qtcreator IDE to adapt to high resolution screen
 export QT_SCALE_FACTOR=1.5
+# Or in desktop application use: Exec=env QT_SCALE_FACTOR=1.5 /opt/qt57/bin/qtcreator-wrapper %F
 
 # For speeding up builds
 export PATH="/usr/lib/ccache:$PATH"
