@@ -696,7 +696,7 @@ set syntax=context
 let g:vimtex_compiler_latexmk = {
     \ 'backend' : 'jobs',
     \ 'background' : 3,
-    \ 'build_dir' : '',
+    \ 'build_dir' : 'build/',
     \ 'callback' : 0,
     \ 'continuous' : 1,
     \ 'executable' : 'latexmk',
