@@ -691,5 +691,25 @@ ino <C-A> <C-O>yiW<End>=<C-R>=<C-R>0<CR>
 let g:tex_flavor = 'latex'
 set syntax=context
 
+" Add -shell-escape to vimtex default value, to allow autocompilation of
+" pdf_tex files through inkscape
+let g:vimtex_compiler_latexmk = {
+    \ 'backend' : 'jobs',
+    \ 'background' : 3,
+    \ 'build_dir' : '',
+    \ 'callback' : 0,
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
+    \ 'options' : [
+    \   '-shell-escape',
+    \   '-pdf',
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \   '-output-directory=build'
+    \ ],
+    \}
+
 " Add automatic header for python files when starting from vim
 au BufNewFile *.py 0r /home/tonirv/dotfiles/python_template.txt
