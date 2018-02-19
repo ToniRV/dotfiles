@@ -101,6 +101,9 @@ Plugin 'tmhedberg/SimpylFold'
 " For faster folding
 Plugin 'Konfekt/FastFold'
 
+" Folding for tex
+Plugin 'matze/vim-tex-fold'
+
 " Fix autoindent for python
 Plugin 'vim-scripts/indentpython.vim'
 
@@ -392,6 +395,7 @@ if has('autocmd') && !exists('autocommands_loaded')
   autocmd BufNewFile,BufRead *.svg set filetype=xml
   autocmd BufNewFile,BufRead *.xacro set filetype=xml
   autocmd BufNewFile,BufRead *.launch set filetype=xml
+  autocmd BufNewFile,BufRead *.tex let g:tex_fold_enabled=1
 endif
 "}}}
 
