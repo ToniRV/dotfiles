@@ -142,7 +142,7 @@ alias transferSnap="cp -r $CATKIN_WORKSPACE/src/aerial_dev_tools/adt_optical_flo
 alias sbash="source ~/.bashrc"
 
 # virtualenv activate
-alias ae = 'deactivate &> /dev/null; source ./venv/bin/activate'
-alias de = 'deactivate'
+alias ae="deactivate &> /dev/null; source ./venv/bin/activate"
+alias de="deactivate"
 
 
