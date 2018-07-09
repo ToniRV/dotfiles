@@ -141,8 +141,8 @@
   untracked = white
 
 [user]
-  email = rosinol.gabriel@gmail.com
-  name = Bielrv
+	email = rosinol.gabriel@gmail.com
+	name = Bielrv
 
 [grep]
   lineNumber = true
