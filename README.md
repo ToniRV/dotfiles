@@ -1,5 +1,33 @@
 # My dotfiles
 
+Dotfiles tested on Ubuntu 16.04 LTS.
+
+Clone the repo: https://github.com/bielrv/dotfiles.git
+
+## Instructions
+
+1- Change your current dot files so that they do not interfere with the install.
+
+`mv ~/.bashrc ~/.bashrc_backup`  
+`mv ~/.bash_profile ~/.bash_profile_backup`  
+`mv ~/.gitconfig ~/.gitconfig_backup`  
+`mv ~/.inputrc ~/.inputrc_backup`   
+`mv ~/.vimrc ~/.vimrc_backup`  
+`mv ~/.config/terminator ~/.config/terminator_backup`  
+
+2- Find and replace the [user] fields with your details in the `gitconfig` file:
+
+`[user]`  
+       `email = youremail`  
+       `name = yourname`
+
+3- Install:
+ `./install`
+
+4- Delete your backup files if you do not need them anymore.
+
+## Installs
+
 Install the fonts for the vim configs to work well:
 https://github.com/powerline/fonts
 
@@ -14,7 +42,7 @@ to something like <Alt><Super>
 
 Install [Vundle](https://github.com/VundleVim/Vundle.vim) to manage vim plugins
 
-## For sublime settings geared towards python development: 
+## For sublime settings geared towards python development:
 (Reference [here](https://github.com/mjhea0/sublime-setup-for-python))
 
 (**Note**: so actually with [Jupyter](https://jupyter.org/), there is no real need for all of this... :
@@ -36,17 +64,13 @@ Install [Vundle](https://github.com/VundleVim/Vundle.vim) to manage vim plugins
  * [Markdown Preview](https://sublime.wbond.net/packages/Markdown%20Preview)
  * [Python Breakpoints](https://packagecontrol.io/packages/Python%20Breakpoints) (Ctrl+Shift+b) to toggle breakpoint
  * [SublimeREPL](http://sublimerepl.readthedocs.io/en/latest/) Most important shortcut (Ctrl+,)+f to pass the file to the interpreter. Follow these [instructions](http://stackoverflow.com/a/23722631) to get a nice workflow: ctrl+shift+b to add breakpoints and ctrl+b to build.
- 
+
 For linting related stuff have a look [here](https://realpython.com/blog/python/setting-up-sublime-text-3-for-full-stack-python-development/#SublimeLinter)
 
 ### Sublime settings for Latex
-https://github.com/SublimeText/LaTeXTools#linux 
+https://github.com/SublimeText/LaTeXTools#linux
 <- this guy is super long...(what about http://vim-latex.sourceforge.net/ for vim instead)
-1. sudo apt-get install texlive ghostscript imagemagick biber texlive-xetex 
-
-
-### I haven't tried yet but, what about python devel in vim: 
-https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/
+1. sudo apt-get install texlive ghostscript imagemagick biber texlive-xetex
 
 ## Python utilities
 ### [virtualenvwrapper](http://docs.python-guide.org/en/latest/dev/virtualenvs/#virtualenvwrapper)
@@ -60,6 +84,3 @@ pip install virtualenvwrapper
 git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
 ```
 **Note** When sourcing ROS, it sets PYTHONPATH env variable which interferes with your usage of python. Specially when you set up a fresh new virtual environment with --no-site-packages, and you try to run pip freeze to see the current dependencies it will output plenty of ros and rqt things... If you just want to see your dependencies in your new venv then unset $PYTHONPATH variable. Nonetheless, your venv will still "use" the globally installed packages such as ros :O
-
-#TODO
-Check that vim is installed
