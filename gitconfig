@@ -146,3 +146,5 @@
 
 [grep]
   lineNumber = true
+[credential]
+	helper = cache
