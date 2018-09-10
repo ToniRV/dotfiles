@@ -19,6 +19,7 @@
     ~/.inputrc:
     ~/.vim:
     ~/.vimrc:
+    ~/.ctags:
 
 - shell:
   - git submodule update --init --recursive
@@ -26,6 +27,7 @@
     command: bash ./bin/install_powerline_fonts
     stdout: true
   - sudo apt install terminator
+  - sudo apt install zathura
   - sudo apt install exuberant-ctags
   - sudo apt install vim-gnome
   - vim +PluginInstall +qall

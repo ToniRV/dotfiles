@@ -7,6 +7,8 @@
   br = branch
   # Patches
   patches = log -p
+  # Diff only the staged changes
+  c = diff --cached
   # Clone a repository including all submodules
   cr = clone --recursive
   # Commit
@@ -106,6 +108,7 @@
   legacyheaders = false
 
   pager = less -+e
+	autocrlf = input
 
 [gc]
   packrefs = true

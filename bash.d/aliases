@@ -141,3 +141,6 @@ alias transferSnap="cp -r $CATKIN_WORKSPACE/src/aerial_dev_tools/adt_optical_flo
 # source bashrc
 alias sbash="source ~/.bashrc"
 
+#source evo (delete this)
+alias sevo="source ~/code/evo/venv/bin/activate"
+
