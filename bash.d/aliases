@@ -44,7 +44,7 @@ alias la='ls -lhAF --color'
 # List only directories
 alias lsd='ls -lhF --color | grep --color=never '^d''
 # Always use color output for `ls`
-alias ls='ls --color'
+#alias ls='ls --color'
 
 # Shortcut to remove all with force
 alias rmf='rm -rf'
