@@ -4,7 +4,6 @@ set history=1000
 set background=dark
 colorscheme Tomorrow-Night
 
-
 " {{{ Vundle
 
 " Required for Vundle
@@ -20,7 +19,6 @@ call vundle#begin('~/.vim/bundle')
 
 " Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
-"
 
 " Add all your plugins below
 
@@ -102,9 +100,6 @@ Plugin 'terryma/vim-multiple-cursors'
 
 " Emmet for vim
 Plugin 'mattn/emmet-vim'
-
-" Markdown support
-Plugin 'tpope/vim-markdown'
 
 " For better folding in Python
 Plugin 'tmhedberg/SimpylFold'

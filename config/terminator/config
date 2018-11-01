@@ -1,7 +1,7 @@
 [global_config]
-  borderless = True
   enabled_plugins = ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, MavenPluginURLHandler, LaunchpadBugURLHandler
   handle_size = -3
+  scroll_tabbar = True
   suppress_multiple_term_dialog = True
   title_font = Liberation Mono for Powerline 10
   title_transmit_bg_color = "#ff0000"

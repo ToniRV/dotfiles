@@ -1,21 +1,24 @@
-#!/bin/bash
+#!/bin/zsh
 
-# Check the window size after each command and, if necessary, update the values
-# of LINES and COLUMNS.
-shopt -s checkwinsize
+# awesome cd movements from zshkit
+setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars
+DIRSTACKSIZE=5
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
+# Enable extended globbing
+setopt extendedglob
+
+# Allow [ or ] whereever you want
+unsetopt nomatch
 
 # Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
+setopt append_history;
 
 # Autocorrect typos in path names when using `cd`
-shopt -s cdspell;
+#setopt cdspell;
 
 # Enable some Bash 4 features when possible:
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
 # * Recursive globbing, e.g. `echo **/*.txt`
 for option in autocd globstar; do
-  shopt -s "$option" 2> /dev/null;
+  setopt "$option" 2> /dev/null;
 done;

@@ -1,4 +1,6 @@
 #!/bin/bash
+autoload bashcompinit
+bashcompinit
 
 # Add completion for marks shortcuts
 _completemarks() {

@@ -6,12 +6,9 @@
 - clean: ['~', '~/.config']
 
 - link:
-    ~/.config/terminator:
-      create: true
-      path: config/terminator
-    ~/.config/zathura:
-      create: true
-      path: config/zathura
+    #~/.config/terminator:
+      #create: true
+      #path: config/terminator
     ~/.bashrc:
     ~/.bash_profile:
     ~/.bash.d:
@@ -19,20 +16,24 @@
     ~/.inputrc:
     ~/.vim:
     ~/.vimrc:
-    ~/.ctags:
+    ~/.marks:
 
 - shell:
   - git submodule update --init --recursive
   -
     command: bash ./bin/install_powerline_fonts
     stdout: true
-  - sudo apt install terminator
-  - sudo apt install zathura
-  - sudo apt install exuberant-ctags
-  - sudo apt install vim-gnome
+  - brew update
+  - brew doctor
+  - brew install zsh
+  - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  - brew cask install iterm2
+  #- brew install terminator
+  #- brew install exuberant-ctags
+  - brew install vim
   - vim +PluginInstall +qall
   -
-    command: sudo apt-get install build-essential cmake
+    command: brew install cmake
     stdin: true
     stdout: true
     stderr: true
