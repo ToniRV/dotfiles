@@ -4,7 +4,6 @@ set history=1000
 set background=dark
 colorscheme Tomorrow-Night
 
-
 " {{{ Vundle
 
 " Required for Vundle
@@ -20,7 +19,6 @@ call vundle#begin('~/.vim/bundle')
 
 " Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
-"
 
 " Add all your plugins below
 
@@ -30,6 +28,17 @@ Plugin 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
+
+" Alternative to YouCompleteMe
+Plugin 'Shougo/neocomplete' "{{{
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 2
+"}}}
+
 " Colors
 Plugin 'flazz/vim-colorschemes'
 
@@ -45,7 +54,7 @@ Plugin 'tpope/vim-obsession'
 " A Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
 
-" Enable repeating supported plugin maps with "."
+" Enable repeating supported plugin maps with \"."
 Plugin 'tpope/vim-repeat'
 
 " Vim plugin for intensely orgasmic commenting
@@ -66,7 +75,7 @@ Plugin 'bling/vim-bufferline'
 Plugin 'Raimondi/delimitMate'
 
 " Autocomplete tool
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe' " Doesn't work now :(
 
 " Vim script for text filtering and alignment
 " Plugin 'godlygeek/tabular'
@@ -92,14 +101,16 @@ Plugin 'terryma/vim-multiple-cursors'
 " Emmet for vim
 Plugin 'mattn/emmet-vim'
 
-" Markdown support
-Plugin 'tpope/vim-markdown'
-
 " For better folding in Python
 Plugin 'tmhedberg/SimpylFold'
 
 " For faster folding
 Plugin 'Konfekt/FastFold'
+
+" Folding for tex
+Plugin 'matze/vim-tex-fold'", { 'for': 'tex' } {{{
+let g:tex_fold_additional_envs = ['tikzpicture']
+"}}}
 
 " Fix autoindent for python
 Plugin 'vim-scripts/indentpython.vim'
@@ -121,6 +132,12 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Plugin for Latex
 Plugin 'lervag/vimtex'
+
+" Plugin to interpret ANSI color codes.
+Plugin 'powerman/vim-plugin-AnsiEsc'
+
+" Plugin to have ctags up to date all the time
+Plugin 'ludovicchabant/vim-gutentags'
 
 " All Plugins must be added before the following line.
 call vundle#end()         " required
@@ -360,6 +377,11 @@ set viminfo^=%
 " If you wanted to avoid loading EditorConfig for any remote files over ssh
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
+" For UltiSnips to work with YouCompleteMe
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
@@ -392,6 +414,7 @@ if has('autocmd') && !exists('autocommands_loaded')
   autocmd BufNewFile,BufRead *.svg set filetype=xml
   autocmd BufNewFile,BufRead *.xacro set filetype=xml
   autocmd BufNewFile,BufRead *.launch set filetype=xml
+  "autocmd BufNewFile,BufRead *.tex let g:tex_fold_enabled=1 " Slows down everything...
 endif
 "}}}
 
@@ -480,6 +503,8 @@ nmap <silent> <leader>gw :Gwrite<cr>
 
 " switch between current and last buffer
 nmap <leader>. <c-^>
+" move to next buffer
+nmap <leader>b :bn<CR>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -560,7 +585,7 @@ cmap w!! w !sudo tee > /dev/null %
 
 " Syntastic ------------------------------
 " Disable syntastic since it makes vim to freezes when saving
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': [] }
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
 " show list of errors and warnings on the current file
@@ -664,7 +689,7 @@ command! MakeTags !ctags -R .
 " - Use ctrl-] to jump to tag under cursor
 " - Use g-ctrl-] for ambiguous tags
 " - Use ctrl-t to jump back up the tag stack. Changed to ctrl-[
-"nnoremap <c-[> <c-t>
+nnoremap <c-[> <c-t>
 
 " THINGS TO CONSIDER:
 " - This doesn't help if you want a visual list of tags
@@ -684,12 +709,52 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 "
 
-" Remap to do calculations on the fly.
-ino <C-A> <C-O>yiW<End>=<C-R>=<C-R>0<CR>
-
 " Latex settings
 let g:tex_flavor = 'latex'
 set syntax=context
 
+" Add -shell-escape to vimtex default value, to allow autocompilation of
+" pdf_tex files through inkscape
+let g:vimtex_compiler_latexmk = {
+    \ 'backend' : 'jobs',
+    \ 'background' : 1,
+    \ 'build_dir' : 'build',
+    \ 'callback' : 0,
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
+    \ 'options' : [
+    \   '-shell-escape',
+    \   '-pdf',
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \   '-output-directory=build'
+    \ ],
+    \}
+
+let g:vimtex_view_general_viewer = 'zathura'
+
 " Add automatic header for python files when starting from vim
 au BufNewFile *.py 0r /home/tonirv/dotfiles/python_template.txt
+
+" Pass a line (equation) to bc (calculator).
+map gbc yypkA =<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
+
+" Remap to do calculations on the fly.
+
+" Sum multiple lines in visual mode:
+" 10
+" 20
+" ==
+" 30
+" Does not work right now...
+vmap gs y'>p:'[,']-1s/$/+/\|'[,']+1j!<CR>'[0"wy$:.s§.*§\=w§<CR>'[yyP:.s/./=/g<CR>_j
+
+" Avoid gutentags polluting all my directories, store tags in:
+let g:gutentags_cache_dir = '~/.vim/gutentags'
+
+" When scrolling with the mouse there were characters inserted...
+" This solves the problem.
+" needed so that vim still understands escape sequences
+nnoremap <esc>^[ <esc>^[]

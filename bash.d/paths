@@ -11,8 +11,7 @@ declare -a dirs_to_append=(
 )
 
 # Prepend directories to PATH
-for index in ${!dirs_to_prepend[*]}
-do
+for ((index = 1; index <= ${#dirs_to_prepend}; index++)); do
     if [ -d ${dirs_to_prepend[$index]} ]; then
         # If these directories exist, then prepend them to existing PATH
         PATH="${dirs_to_prepend[$index]}:$PATH"
@@ -20,8 +19,7 @@ do
 done
 
 # Append directories to PATH
-for index in ${!dirs_to_append[*]}
-do
+for ((index = 1; index <= ${#dirs_to_append}; index++)); do
     if [ -d ${dirs_to_append[$index]} ]; then
         # If these bins exist, then append them to existing PATH
         PATH="$PATH:${dirs_to_append[$index]}"

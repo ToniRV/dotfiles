@@ -9,7 +9,7 @@ export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 
 # Make some commands not show up in history
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:*"
 
 # Prefer US English and use UTF-8
 export LANG="en_US.UTF-8"
@@ -43,7 +43,11 @@ if [[ -n $CATKIN_WORKSPACE ]]; then
 fi
 
 # To adapt qtcreator IDE to adapt to high resolution screen
-export QT_SCALE_FACTOR=1.5
+export QT_SCALE_FACTOR=1.0
+# Or in desktop application use: Exec=env QT_SCALE_FACTOR=1.5 /opt/qt57/bin/qtcreator-wrapper %F
 
 # For speeding up builds
 export PATH="/usr/lib/ccache:$PATH"
+
+# For scaling applications such as zathura, chromium, firefox...
+#export GDK_SCALE=1.5
