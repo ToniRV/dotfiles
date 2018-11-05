@@ -692,4 +692,10 @@ let g:tex_flavor = 'latex'
 set syntax=context
 
 " Add automatic header for python files when starting from vim
-au BufNewFile *.py 0r /home/tonirv/dotfiles/python_template.txt
+if has("autocmd")
+augroup content
+autocmd BufNewFile *.py
+   \ 0put = '#!/usr/bin/env python'  |
+   \ norm gg19jf]
+augroup END
+endif
