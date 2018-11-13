@@ -107,7 +107,8 @@
 
   legacyheaders = false
 
-  pager = less -+e
+  # In linux I have it as: pager = less -+e
+  pager = less -F -X
 	autocrlf = input
 
 [gc]

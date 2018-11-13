@@ -30,8 +30,11 @@ alias desktop='cd ~/Desktop'
 alias downloads='cd ~/Downloads'
 alias workspaces='cd ~/Workspaces'
 
+# Because of zsh...
+alias git='noglob git'
+
 # So lazy am i
-alias g='git'
+alias g='noglob git'
 alias h='history'
 alias j='jobs'
 
