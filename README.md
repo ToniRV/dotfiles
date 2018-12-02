@@ -97,3 +97,8 @@ git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
 
 #TODO
 Check that vim is installed
+
+
+## VSCODE 
+Use ```Settings Sync``` extension to upload/download settings from github gist ```cloudSettings```.
+(Token is stored in gdrive ```Others``` folder in ```PhD MIT```)
