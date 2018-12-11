@@ -11,7 +11,7 @@ if [[ -n "$ROSLISP_PACKAGE_DIRECTORIES" ]]; then
   IFS=: read -r -d '' -a path_array < <(printf '%s:\0' "$ROSLISP_PACKAGE_DIRECTORIES")
 fi;
 
-source /opt/ros/kinetic/setup.bash
+# source /opt/ros/kinetic/setup.bash
 
 # Source Workspace if it was previously sourced already
 if [ ${#path_array[@]} -ne 0 ]; then
@@ -31,6 +31,8 @@ function sws {
 }
 
 # Aliases to source the correct workspace
+alias svnav='sws vnav'
+alias straj='sws trajectory_generation'
 alias smaplab='sws maplab'
 alias smuma='sws muma'
 alias smav='sws mav'

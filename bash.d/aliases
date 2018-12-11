@@ -32,6 +32,7 @@ alias workspaces='cd ~/Workspaces'
 
 # So lazy am i
 alias g='git'
+alias gc='git commit -m'
 alias h='history'
 alias j='jobs'
 
