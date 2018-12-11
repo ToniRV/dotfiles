@@ -4,3 +4,4 @@ vim/bundle
 
 # Ignore this thing
 .netrwhist
+gutentags
