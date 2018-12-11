@@ -9,6 +9,9 @@
     ~/.config/terminator:
       create: true
       path: config/terminator
+    ~/.config/dconf:
+      create: true
+      path: config/dconf
     ~/.config/zathura:
       create: true
       path: config/zathura
