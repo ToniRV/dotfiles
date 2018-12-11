@@ -104,7 +104,13 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'mattn/emmet-vim'
 
 " Markdown support
-Plugin 'tpope/vim-markdown'
+"Plugin 'tpope/vim-markdown'
+
+" Plugin to have nice markdown highlight
+Bundle 'gabrielelana/vim-markdown'
+
+" Plugin for markdown preview in browser
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 " For better folding in Python
 Plugin 'tmhedberg/SimpylFold'
@@ -763,3 +769,10 @@ let g:gutentags_cache_dir = '~/.vim/gutentags'
 " This solves the problem.
 " needed so that vim still understands escape sequences
 nnoremap <esc>^[ <esc>^[]
+
+" QF auto open quickfix
+let g:qf_auto_open_quickfix = 0
+
+" Remap markdown preview hotkey
+let g:vim_markdown_preview_hotkey='<localleader>m'
+let g:vim_markdown_preview_toggle=3
