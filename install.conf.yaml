@@ -26,13 +26,13 @@
   -
     command: bash ./bin/install_powerline_fonts
     stdout: true
-  - sudo apt install terminator
-  - sudo apt install zathura
-  - sudo apt install exuberant-ctags
-  - sudo apt install vim-gnome
+  - sudo apt-get install terminator -y
+  - sudo apt-get install zathura -y
+  - sudo apt-get install exuberant-ctags -y
+  - sudo apt-get install vim-gnome -y
   - vim +PluginInstall +qall
   -
-    command: sudo apt-get install build-essential cmake
+    command: sudo apt-get install build-essential cmake -y
     stdin: true
     stdout: true
     stderr: true
