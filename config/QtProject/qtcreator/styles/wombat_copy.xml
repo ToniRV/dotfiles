@@ -7,7 +7,7 @@
   <style name="SearchResult" foreground="#d57544" bold="true"/>
   <style name="SearchScope" foreground="#000000"/>
   <style name="Parentheses" foreground="#e3e0d7" bold="true"/>
-  <style name="ParenthesesMismatch" background="#ff00ff"/>
+  <style name="ParenthesesMismatch" foreground="#000000" background="#f576ff"/>
   <style name="AutoComplete" foreground="#000080" background="#c0c0ff"/>
   <style name="CurrentLine" foreground="#000000" background="#c2e1ff"/>
   <style name="CurrentLineNumber" foreground="#857b6f"/>
@@ -26,6 +26,8 @@
   <style name="Keyword" foreground="#88b8f6" bold="true"/>
   <style name="PrimitiveType" foreground="#808000"/>
   <style name="Operator" foreground="#f6f3e8"/>
+  <style name="Overloaded Operator" foreground="#00677c"/>
+  <style name="Punctuation" foreground="#f6f6f6" background="#2b2b2b"/>
   <style name="Preprocessor" foreground="#e5786d"/>
   <style name="Label" foreground="#95e454"/>
   <style name="Comment" foreground="#9c998e" bold="true"/>
@@ -48,17 +50,19 @@
   <style name="RemovedLine" foreground="#ff0000"/>
   <style name="DiffFile" foreground="#000080"/>
   <style name="DiffLocation" foreground="#0000ff"/>
-  <style name="DiffFileLine" background="#ffff00"/>
-  <style name="DiffContextLine" background="#afd7e7"/>
-  <style name="DiffSourceLine" background="#ffdfdf"/>
-  <style name="DiffSourceChar" background="#ffafaf"/>
-  <style name="DiffDestLine" background="#dfffdf"/>
-  <style name="DiffDestChar" background="#afffaf"/>
+  <style name="DiffFileLine" foreground="#000000" background="#ffff00"/>
+  <style name="DiffContextLine" foreground="#000000" background="#afd7e7"/>
+  <style name="DiffSourceLine" foreground="#000000" background="#ffdfdf"/>
+  <style name="DiffSourceChar" foreground="#2e3436" background="#ffafaf"/>
+  <style name="DiffDestLine" foreground="#000000" background="#dfffdf"/>
+  <style name="DiffDestChar" foreground="#000000" background="#afffaf"/>
   <style name="LogChangeLine" foreground="#c00000"/>
   <style name="Warning" underlineColor="#ffbe00" underlineStyle="SingleUnderline"/>
   <style name="WarningContext" underlineColor="#ffbe00" underlineStyle="DotLine"/>
   <style name="Error" underlineColor="#ff0000" underlineStyle="SingleUnderline"/>
   <style name="ErrorContext" underlineColor="#ff0000" underlineStyle="DotLine"/>
   <style name="Declaration" bold="true"/>
-  <style name="C_OUTPUT_ARGUMENT"/>
+  <style name="FunctionDefinition" foreground="#f6f6f6" background="#2b2b2b"/>
+  <style name="OutputArgument" italic="true"/>
+  <style name="LastStyleSentinel"/>
 </style-scheme>
