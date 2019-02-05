@@ -25,6 +25,7 @@
     ~/.ctags:
     ~/.sshrc:
     ~/.sshrc.d:
+    ~/.global_gitignore:
 
 - shell:
   - git submodule update --init --recursive
