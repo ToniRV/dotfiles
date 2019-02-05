@@ -23,6 +23,8 @@
     ~/.vim:
     ~/.vimrc:
     ~/.ctags:
+    ~/.sshrc:
+    ~/.sshrc.d:
 
 - shell:
   - git submodule update --init --recursive
@@ -46,5 +48,12 @@
     stdout: true
     stderr: true
     description: Installing YouCompleteMe vim plugin
+  -
+    command: ln -s ~/.bash.d ~/.sshrc.d/
+    command: ln -s ~/.gitconfig ~/.sshrc.d/
+    stdin: true
+    stdout: true
+    stderr: true
+    description: Linking bash.d and gitconfig for sshrc to work.
 
   #- git update-submodules # after linking ~/.gitconfig

@@ -94,3 +94,11 @@ git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
 
 #TODO
 Check that vim is installed
+
+
+## SSHRC
+
+Make your dotfiles follow you wherever you go.
+Install sshrc from github, each time you want to ssh to another computer, use `sshrc` instead of `ssh`.
+Currently works with the dotfile structure here, by sourcing `.sshrc` and copying the `.sshrc.d` folder into a `tmp` folder in the host.
+> Note: in order to make `.gitconfig` settings work, we had to be a little bit more intrusive and add a `include.path` change in the --global git config file...
