@@ -16,17 +16,17 @@ fi
 
 load_dotfiles() {
     declare -a files=(
-        ${SSHHOME}/.sshrc.d/.bash.d/colors        # Colors
-        ${SSHHOME}/.sshrc.d/.bash.d/utils         # Utils
-        ${SSHHOME}/.sshrc.d/.bash.d/options       # Options
-        ${SSHHOME}/.sshrc.d/.bash.d/exports       # Exports
-        ${SSHHOME}/.sshrc.d/.bash.d/paths         # Path modifications
-        ${SSHHOME}/.sshrc.d/.bash.d/prompt        # Custom bash prompt
-        ${SSHHOME}/.sshrc.d/.bash.d/autocompletes # Autocompletes
-        ${SSHHOME}/.sshrc.d/.bash.d/aliases       # Aliases
-        ${SSHHOME}/.sshrc.d/.bash.d/functions/*   # Functions
-        #${SSHHOME}/.sshrc.d/.bash.d/ros/ros       # ROS specific setup
-        ${SSHHOME}/.sshrc.d/.bash.d/python        # Python utilities
+        ${SSHHOME}/.sshrc.d/bash.d/colors        # Colors
+        ${SSHHOME}/.sshrc.d/bash.d/utils         # Utils
+        ${SSHHOME}/.sshrc.d/bash.d/options       # Options
+        ${SSHHOME}/.sshrc.d/bash.d/exports       # Exports
+        ${SSHHOME}/.sshrc.d/bash.d/paths         # Path modifications
+        ${SSHHOME}/.sshrc.d/bash.d/prompt        # Custom bash prompt
+        ${SSHHOME}/.sshrc.d/bash.d/autocompletes # Autocompletes
+        ${SSHHOME}/.sshrc.d/bash.d/aliases       # Aliases
+        ${SSHHOME}/.sshrc.d/bash.d/functions/*   # Functions
+        #${SSHHOME}/.sshrc.d/bash.d/ros/ros       # ROS specific setup
+        ${SSHHOME}/.sshrc.d/bash.d/python        # Python utilities
     )
 
     # if these files are readable, source them

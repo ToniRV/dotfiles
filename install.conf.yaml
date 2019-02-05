@@ -25,6 +25,12 @@
     ~/.ctags:
     ~/.sshrc:
     ~/.sshrc.d:
+    ~/.sshrc.d/sshrc_profile:
+      path: sshrc_profile
+    ~/.sshrc.d/gitconfig:
+      path: gitconfig
+    ~/.sshrc.d/bash.d:
+      path: bash.d
     ~/.global_gitignore:
 
 - shell:
@@ -49,12 +55,5 @@
     stdout: true
     stderr: true
     description: Installing YouCompleteMe vim plugin
-  -
-    command: ln -s ~/.bash.d ~/.sshrc.d/
-    command: ln -s ~/.gitconfig ~/.sshrc.d/
-    stdin: true
-    stdout: true
-    stderr: true
-    description: Linking bash.d and gitconfig for sshrc to work.
 
   #- git update-submodules # after linking ~/.gitconfig
