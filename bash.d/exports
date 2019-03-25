@@ -47,8 +47,5 @@ fi
 export QT_SCALE_FACTOR=1.0
 # Or in desktop application use: Exec=env QT_SCALE_FACTOR=1.5 /opt/qt57/bin/qtcreator-wrapper %F
 
-# For speeding up builds
-export PATH="/usr/lib/ccache:$PATH"
-
 # For scaling applications such as zathura, chromium, firefox...
 #export GDK_SCALE=1.5

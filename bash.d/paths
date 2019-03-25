@@ -4,27 +4,35 @@
 
 # Directories to be prepended to PATH
 declare -a dirs_to_prepend=(
+  # For things installed by the usr.
+  "/usr/local/bin"
+  "/usr/local/opt/ccache/libexec"
 )
 
 # Directories to be appended to PATH
 declare -a dirs_to_append=(
+  "/Applications/Visual Studio Code 2.app/Contents/Resources/app/bin/"
 )
 
 # Prepend directories to PATH
 for index in ${!dirs_to_prepend[*]}
 do
-    if [ -d ${dirs_to_prepend[$index]} ]; then
+    if [ -d "${dirs_to_prepend[$index]}" ]; then
         # If these directories exist, then prepend them to existing PATH
         PATH="${dirs_to_prepend[$index]}:$PATH"
+    else
+        echo "Error prepending path: ${dirs_to_prepend[$index]} is not a directory or does not exist."
     fi
 done
 
 # Append directories to PATH
 for index in ${!dirs_to_append[*]}
 do
-    if [ -d ${dirs_to_append[$index]} ]; then
+    if [ -d "${dirs_to_append[$index]}" ]; then
         # If these bins exist, then append them to existing PATH
         PATH="$PATH:${dirs_to_append[$index]}"
+    else
+        echo "Error appending path: ${dirs_to_append[$index]} is not a directory or does not exist."
     fi
 done
 
