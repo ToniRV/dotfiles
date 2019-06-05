@@ -52,3 +52,21 @@ export PATH="/usr/lib/ccache:$PATH"
 
 # For scaling applications such as zathura, chromium, firefox...
 #export GDK_SCALE=1.5
+
+# For Tensorflow dependency CUPTI which ships with the CUDA toolkit.
+# https://www.tensorflow.org/install/gpu
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64
+
+# For cityscapes dataset
+export CITYSCAPES_DATASET="~/datasets/cityscapes"
+
+# Avoid sending reports to Microsoft
+# This is for developing in C#
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+# SOURCE
+source /opt/intel/bin/compilervars.sh intel64
+
+# For gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
