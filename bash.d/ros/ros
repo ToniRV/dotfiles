@@ -31,6 +31,7 @@ function sws {
 }
 
 # Aliases to source the correct workspace
+alias sros='source /opt/ros/melodic/setup.bash'
 alias svnav='sws vnav'
 alias straj='sws trajectory_generation'
 alias smaplab='sws maplab'
@@ -40,6 +41,18 @@ alias scatkin='sws catkin'
 alias skalibr='sws kalibr'
 alias seye='sws zurich_eye'
 alias siros='sws iros'
+alias sgoggles="source $HOME/Code/ROS/flight_goggles_ws/devel/setup.bash"
+alias srotors="source $HOME/Code/ROS/rotors_ws/devel/setup.bash"
+alias sspark="source $HOME/Code/ROS/spark_vio_ws/devel/setup.bash"
+alias stess="source $HOME/Code/ROS/tess_ws/devel/setup.bash"
+alias sslam="source $HOME/Code/SLAM/SLAM_ws/devel/setup.bash"
+alias sflame="source $HOME/Code/ROS/flame_ws/devel/setup.bash"
+alias selas="source $HOME/Code/ROS/elas_ws/devel/setup.bash"
+alias srosmitnet="sros &
+source /home/tonirv/Code/ROS/spark_vio_ws/src/rosmitnet/venv/bin/activate --extend &
+source /home/tonirv/Code/ROS/spark_vio_ws/devel/setup.bash &
+source /home/tonirv/Code/ROS/cv_bridge_py3_ws/install/setup.bash --extend &
+"
 
 # Uncomment this if you are not using node_manager
 path_ros="$HOME/.bash.d/ros"

@@ -3,6 +3,11 @@
 # Make vim the default editor
 export EDITOR="vim"
 
+# Colorize compiler output gcc/g++
+export CFLAGS="$CFLAGS -fdiagnostics-color=always"
+export CXXFLAGS="$CXXFLAGS -fdiagnostics-color=always"
+export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
+
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
@@ -47,7 +52,7 @@ fi
 export QT_SCALE_FACTOR=1.0
 # Or in desktop application use: Exec=env QT_SCALE_FACTOR=1.5 /opt/qt57/bin/qtcreator-wrapper %F
 
-# For speeding up builds
+# For speeding up builds, use ccache
 export PATH="/usr/lib/ccache:$PATH"
 
 # For scaling applications such as zathura, chromium, firefox...
