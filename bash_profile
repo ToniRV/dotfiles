@@ -16,17 +16,17 @@ fi
 
 load_dotfiles() {
     declare -a files=(
-        ${HOME}/.bash.d/colors        # Colors
-        ${HOME}/.bash.d/utils         # Utils
-        ${HOME}/.bash.d/options       # Options
-        ${HOME}/.bash.d/exports       # Exports
-        ${HOME}/.bash.d/paths         # Path modifications
-        ${HOME}/.bash.d/prompt        # Custom bash prompt
-        ${HOME}/.bash.d/autocompletes # Autocompletes
-        ${HOME}/.bash.d/aliases       # Aliases
-        ${HOME}/.bash.d/functions/*   # Functions
-        ${HOME}/.bash.d/ros/ros       # ROS specific setup
-        ${HOME}/.bash.d/python        # Python utilities
+        ${HOME}/.bash.d/colors          # Colors
+        ${HOME}/.bash.d/utils           # Utils
+        ${HOME}/.bash.d/options         # Options
+        ${HOME}/.bash.d/exports         # Exports
+        ${HOME}/.bash.d/paths           # Path modifications
+        ${HOME}/.bash.d/prompt          # Custom bash prompt
+        ${HOME}/.bash.d/autocompletes   # Autocompletes
+        ${HOME}/.bash.d/aliases         # Aliases
+        ${HOME}/.bash.d/functions/*     # Functions
+        ${HOME}/.bash.d/ros/ros         # ROS specific setup
+        ${HOME}/.bash.d/python/aliases  # Python scripts
     )
 
     # if these files are readable, source them

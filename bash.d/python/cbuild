@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+
+import signal
+import sys
+import os
+import subprocess
+import argparse
+
+def signal_handler(sig, frame):
+    print('You pressed Ctrl+C!')
+    sys.exit(0)
+
+# Group of Different functions for different styles
+if sys.platform.lower() == "win32":
+    os.system('color')
+BLACK ='\033[30m'
+RED = '\033[31m'
+GREEN = '\033[32m'
+YELLOW = '\033[33m'
+BLUE = '\033[34m'
+MAGENTA = '\033[35m'
+CYAN = '\033[36m'
+WHITE = '\033[37m'
+UNDERLINE = '\033[4m'
+RESET = '\033[0m'
+
+def cmake():
+    print(GREEN + "Calling cmake:" + RESET)
+    if not os.path.exists('./CMakeLists.txt'):
+        raise Exception ('Missing CMakeLists.txt.')
+    try:
+        subprocess.call('cmake ..', shell = True, cwd="./build")
+    except:
+        raise Exception (RED + 'cmake failed.' + RESET)
+    return True
+
+def make_clean():
+    print(GREEN + "Calling make clean." + RESET)
+    try:
+        subprocess.call('make clean', shell=True, cwd='./build')
+    except:
+        raise Exception (RED + 'make clean failed.' + RESET)
+    return True
+
+def make():
+    print(GREEN + "Calling make:" + RESET)
+    try:
+        subprocess.call('make -j $(nproc)', shell=True, cwd='./build')
+    except:
+        raise Exception (RED + 'make failed.' + RESET)
+    return True
+
+def parser():
+    import argparse
+    basic_desc = "Automated build: cmake + make. Use `cbuild clean` to call `make clean`."
+    parser = argparse.ArgumentParser(add_help=True, description="{}".format(basic_desc))
+    parser.add_argument("--clean", action="store_true", help="Call make clean.",)
+    return parser
+
+if __name__ == "__main__":
+    signal.signal(signal.SIGINT, signal_handler)
+
+    # Parse command line flags
+    args = parser().parse_args()
+
+    if not os.path.isdir('build'):
+        print(GREEN + 'Creating build folder.' + RESET)
+        os.mkdir('build')
+
+    assert(cmake())
+    if args.clean:
+        assert(make_clean())
+    assert(make())
