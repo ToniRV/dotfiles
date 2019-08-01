@@ -1,3 +1,6 @@
 #!/bin/bash
 
 alias cbuild="${HOME}/.bash.d/python/cbuild"
+alias cb="cbuild"
+alias cbc="cbuild --clean"
+alias cbt="cbuild --test"
