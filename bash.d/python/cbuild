@@ -63,8 +63,8 @@ def parser():
     basic_desc = "Automated build: cmake + make. Use `cbuild --clean` to call `make clean`. \
     Or `cbuild --test` to call `make test`."
     parser = argparse.ArgumentParser(add_help=True, description="{}".format(basic_desc))
-    parser.add_argument("--clean", action="store_true", help="Call make clean.",)
-    parser.add_argument("--test", action="store_true", help="Call make test.",)
+    parser.add_argument("-c", "--clean", action="store_true", help="Call make clean.",)
+    parser.add_argument("-t", "--test", action="store_true", help="Call make test.",)
     return parser
 
 if __name__ == "__main__":
