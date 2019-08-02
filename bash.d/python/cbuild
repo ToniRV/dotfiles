@@ -6,22 +6,11 @@ import os
 import subprocess
 import argparse
 
-def signal_handler(sig, frame):
-    print('You pressed Ctrl+C!')
-    sys.exit(0)
-
 # Group of Different functions for different styles
 if sys.platform.lower() == "win32":
     os.system('color')
-BLACK ='\033[30m'
 RED = '\033[31m'
 GREEN = '\033[32m'
-YELLOW = '\033[33m'
-BLUE = '\033[34m'
-MAGENTA = '\033[35m'
-CYAN = '\033[36m'
-WHITE = '\033[37m'
-UNDERLINE = '\033[4m'
 RESET = '\033[0m'
 
 def cmake():
@@ -68,8 +57,6 @@ def parser():
     return parser
 
 if __name__ == "__main__":
-    signal.signal(signal.SIGINT, signal_handler)
-
     # Parse command line flags
     args = parser().parse_args()
 
