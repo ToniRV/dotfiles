@@ -110,7 +110,7 @@ Plugin 'mattn/emmet-vim'
 Bundle 'gabrielelana/vim-markdown'
 
 " Plugin for markdown preview in browser
-Plugin 'JamshedVesuna/vim-markdown-preview'
+"Plugin 'JamshedVesuna/vim-markdown-preview'
 
 " For better folding in Python
 Plugin 'tmhedberg/SimpylFold'
@@ -776,3 +776,7 @@ let g:qf_auto_open_quickfix = 0
 " Remap markdown preview hotkey
 let g:vim_markdown_preview_hotkey='<localleader>m'
 let g:vim_markdown_preview_toggle=3
+let g:vim_markdown_preview_github=0
+
+" Change Color highlighting for spelling mistakes
+:hi SpellBad cterm=italic,underline ctermfg=lightred ctermbg=none
