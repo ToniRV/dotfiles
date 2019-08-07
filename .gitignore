@@ -5,3 +5,5 @@ vim/bundle
 # Ignore this thing
 .netrwhist
 gutentags
+ipupdater.log
+lastip
