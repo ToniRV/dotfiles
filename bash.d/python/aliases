@@ -1,6 +1,10 @@
 #!/bin/bash
 
+# For cbuild
 alias cbuild="${HOME}/.bash.d/python/cbuild"
 alias cb="cbuild"
 alias cbc="cbuild --clean"
 alias cbt="cbuild --test"
+
+# For mp4-to-gif
+alias mp4-to-gif="${HOME}/.bash.d/python/mp4-to-gif"
