@@ -1,0 +1,15 @@
+# Ignore virtualenv
+/venv
+
+# Ignore vim plugins
+vim/bundle
+! vim/bundle/Vundle.vim
+
+# Ignore this thing
+.netrwhist
+
+# Ignore QtCreator files
+CMakeLists.txt.user
+
+# Ignore MacOS things
+.DS_Store
