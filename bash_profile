@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # set 256 color profile where possible
 export TERM=xterm-256color
