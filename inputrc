@@ -6,6 +6,9 @@ set completion-ignore-case on
 # List all matches in case multiple possible completions are possible
 set show-all-if-ambiguous on
 
+# Use tab to do partial competion up to unambiguous character, then displays menu of options
+TAB: complete
+
 # Immediately add a trailing slash when autocompleting symlinks to directories
 set mark-symlinked-directories on
 
@@ -18,7 +21,7 @@ set mark-symlinked-directories on
 set match-hidden-files off
 
 # Show all autocomplete results at once
-set page-completions off
+set page-completions on
 
 # If there are more than 200 possible completions for a word, ask to show them all
 set completion-query-items 200
@@ -52,3 +55,6 @@ $if term=rxvt
 "\eOc": forward-word
 "\eOd": backward-word
 $endif
+
+# Do not convert tilde to absolute path
+set expand-tilde on
