@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Tab-completion after typing cd to only suggest directories
+complete -d cd
+
 # Add completion for marks shortcuts
 _completemarks() {
   local curw=${COMP_WORDS[COMP_CWORD]}
