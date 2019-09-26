@@ -10,17 +10,23 @@ _completemarks() {
 complete -F _completemarks jump unmark
 
 # Enable vagrant command autocompletion for `vg` alias as well
-# complete -o default -F _vagrant vg
+complete -o default -F _vagrant vg
 
 # Enable pip command autocompletion for `gpip` alias as well
-# complete -o default -F _pip gpip
+complete -o default -F _pip gpip
 
 # Enable git command  autocompletion for 'g' as well
-# complete -o default -o nospace -F __git g
+complete -o default -o nospace -F __git g
 
 # Enable Tab completion to select options
-# bind 'set show-all-if-ambiguous on'
-# bind 'TAB:menu-complete'
+# I think this shoudl be done in inputrc...
+ bind 'set show-all-if-ambiguous on'
+ bind 'TAB:complete'
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o default -o nospace -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+
+# Source autocompletes in /etc/bash_completion for MacOS (needs brew)
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
