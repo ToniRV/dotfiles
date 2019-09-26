@@ -27,6 +27,7 @@ load_dotfiles() {
         ${HOME}/.bash.d/functions/*   # Functions
         ${HOME}/.bash.d/ros/ros       # ROS specific setup
         ${HOME}/.bash.d/python        # Python utilities
+        $(brew --prefix)/etc/bash_completion # Bash completion (installed via Homebrew)
     )
 
     # if these files are readable, source them
@@ -39,3 +40,12 @@ load_dotfiles() {
 
 load_dotfiles
 unset load_dotfiles
+
+# System-wide .profile for sh(1)
+if [ -x /usr/libexec/path_helper ]; then
+	eval `/usr/libexec/path_helper -s`
+fi
+
+if [ "${BASH-no}" != "no" ]; then
+	[ -r /etc/bashrc ] && . /etc/bashrc
+fi
