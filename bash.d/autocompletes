@@ -18,11 +18,6 @@ complete -o default -F _pip gpip
 # Enable git command  autocompletion for 'g' as well
 complete -o default -o nospace -F __git g
 
-# Enable Tab completion to select options
-# I think this shoudl be done in inputrc...
- bind 'set show-all-if-ambiguous on'
- bind 'TAB:complete'
-
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o default -o nospace -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
