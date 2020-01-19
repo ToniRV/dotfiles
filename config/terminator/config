@@ -10,6 +10,7 @@
   close_term = <Primary>w
   close_window = <Primary><Alt>w
   copy = <Primary>c
+  full_screen = <Primary><Alt>f
   go_down = <Primary><Alt>j
   go_left = <Primary><Alt>h
   go_right = <Primary><Alt>l
