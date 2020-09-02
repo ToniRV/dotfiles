@@ -706,7 +706,7 @@ nnoremap <c-[> <c-t>
 " - This doesn't help if you want a visual list of tags
 
 " For Nerd tree git plugin
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
