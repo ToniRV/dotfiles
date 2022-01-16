@@ -92,8 +92,11 @@ git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
 ```
 **Note** When sourcing ROS, it sets PYTHONPATH env variable which interferes with your usage of python. Specially when you set up a fresh new virtual environment with --no-site-packages, and you try to run pip freeze to see the current dependencies it will output plenty of ros and rqt things... If you just want to see your dependencies in your new venv then unset $PYTHONPATH variable. Nonetheless, your venv will still "use" the globally installed packages such as ros :O
 
-#TODO
+#TODO for VIM
 Check that vim is installed
+
+- [] Make vim directories: .vim/colors, .vim/swaps, .vim/backups, .vim/undo
+- [] Download Tomorrow-Night theme and add in .vim/colors
 
 
 ## SSHRC
