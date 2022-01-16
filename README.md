@@ -55,9 +55,6 @@ Install [Vundle](https://github.com/VundleVim/Vundle.vim) to manage vim plugins
 
 2. You can now install packages by using the keyboard shortcut **cmd+shift+P**. Start typing install until Package Control: Install Package appears. Press enter and search for available packages.
 
-
--- Checkout http://sourabhbajaj.com/mac-setup/ for Mac setup
-
 3. For language specific settings click **Sublime Text > Preferences > Settings – More > Syntax Specific – User**. Then save the file using the following format: **LANGUAGE.sublime-settings**. So, for Python-specific settings, save the file as Python.sublime-settings.
   * As base use: save the code as Preferences.sublime-settings [code](https://github.com/mjhea0/sublime-setup-for-python/blob/master/dotfiles/Preferences.sublime-settings) **Before saving this, install Flatland Theme and add the following line: ``` "color_scheme": "Packages/Theme - Flatland/Flatland Dark.tmTheme"``` in the settings file.
   * As Python specific: save the config as Python.sublime-settings [code](https://github.com/mjhea0/sublime-setup-for-python/blob/master/dotfiles/Python.sublime-settings)
@@ -99,6 +96,9 @@ git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
 Check that vim is installed
 
 
-## VSCODE 
-Use ```Settings Sync``` extension to upload/download settings from github gist ```cloudSettings```.
-(Token is stored in gdrive ```Others``` folder in ```PhD MIT```)
+## SSHRC
+
+Make your dotfiles follow you wherever you go.
+Install sshrc from github, each time you want to ssh to another computer, use `sshrc` instead of `ssh`.
+Currently works with the dotfile structure here, by sourcing `.sshrc` and copying the `.sshrc.d` folder into a `tmp` folder in the host.
+> Note: in order to make `.gitconfig` settings work, we had to be a little bit more intrusive and add a `include.path` change in the --global git config file...

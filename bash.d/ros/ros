@@ -11,7 +11,7 @@ if [[ -n "$ROSLISP_PACKAGE_DIRECTORIES" ]]; then
   IFS=: read -r -d '' -a path_array < <(printf '%s:\0' "$ROSLISP_PACKAGE_DIRECTORIES")
 fi;
 
-source /opt/ros/kinetic/setup.bash
+#source /opt/ros/melodic/setup.bash
 
 # Source Workspace if it was previously sourced already
 if [ ${#path_array[@]} -ne 0 ]; then
@@ -31,13 +31,33 @@ function sws {
 }
 
 # Aliases to source the correct workspace
-alias smaplab='sws maplab'
+alias sros='source /opt/ros/melodic/setup.bash'
+alias smaplab='source /home/tonirv/Code/ROS/maplab_ws/devel/setup.bash'
+alias skimera='source /home/tonirv/Code/ROS/kimera_ws/devel/setup.bash'
+alias svnav='sws vnav'
+alias straj='sws trajectory_generation'
 alias smuma='sws muma'
 alias smav='sws mav'
 alias scatkin='sws catkin'
 alias skalibr='sws kalibr'
 alias seye='sws zurich_eye'
 alias siros='sws iros'
+alias sgoggles="source $HOME/Code/ROS/flight_goggles_ws/devel/setup.bash"
+alias sflightmare="source $HOME/Code/ROS/flightmare_ws/devel/setup.bash"
+alias srotors="source $HOME/Code/ROS/rotors_ws/devel/setup.bash"
+alias sspark="source $HOME/Code/ROS/spark_vio_ws/devel/setup.bash"
+alias stess="source $HOME/Code/ROS/tess_ws/devel/setup.bash"
+alias sslam="source $HOME/Code/SLAM/SLAM_ws/devel/setup.bash"
+alias sflame="source $HOME/Code/ROS/flame_ws/devel/setup.bash"
+alias selas="source $HOME/Code/ROS/elas_ws/devel/setup.bash"
+alias svins="source $HOME/Code/SLAM/vins_ws/devel/setup.bash"
+alias srosmitnet="sros &
+source /home/tonirv/Code/ROS/spark_vio_ws/src/rosmitnet/venv/bin/activate --extend &
+source /home/tonirv/Code/ROS/spark_vio_ws/devel/setup.bash &
+source /home/tonirv/Code/ROS/cv_bridge_py3_ws/install/setup.bash --extend &
+"
+alias svoxblox="source $HOME/Code/ROS/voxblox_ws/devel/setup.bash"
+alias sreal="source $HOME/Code/ROS/realsense_ws/devel/setup.bash"
 
 # Uncomment this if you are not using node_manager
 path_ros="$HOME/.bash.d/ros"

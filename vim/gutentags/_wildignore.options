@@ -1,0 +1,7 @@
+*.o
+*~
+*.pyc
+.git*
+.hg*
+.svn*
+.meteor

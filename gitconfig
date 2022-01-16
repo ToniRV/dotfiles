@@ -7,6 +7,8 @@
   br = branch
   # Patches
   patches = log -p
+  # Diff only the staged changes
+  c = diff --cached
   # Clone a repository including all submodules
   cr = clone --recursive
   # Commit
@@ -42,7 +44,7 @@
   # Set upstream remote branch
   upstr = !"f() { git branch --set-upstream-to=origin/$1 $1; }; f"
   # I know what you did yesterday - great for follow-ups
-  logme = log --since '1 day ago' --oneline --author hrodde@gopro.com
+  logme = log --since '1 day ago' --oneline --author tonirosinol@hotmail.com
   # Credit an author on the latest commit
   credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
   # List contributors with number of commits
@@ -76,6 +78,7 @@
     fi \
   }; f"
   springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
+	pullall = "!f(){ git pull \"$@\" && git submodule update --init --recursive; }; f"
   # Runs `git pull` on every directory within the current directory
   # updateall = "!f() { find . -type d -print -maxdepth 1 -execdir git --git-dir={}/.git --work-tree=$PWD/{} pull \; }; f"
 
@@ -87,7 +90,7 @@
   editor = vim
 
   # Use custom `.gitignore` and `.gitattributes`
-  # excludesfile = ~/.gitignore
+  excludesfile = ~/.global_gitignore
   # attributesfile = ~/.gitattributes
 
   # Treat spaces before tabs and all kinds of trailing whitespace as an error
@@ -106,6 +109,7 @@
   legacyheaders = false
 
   pager = less -+e
+	autocrlf = input
 
 [gc]
   packrefs = true
@@ -142,7 +146,7 @@
 
 [user]
   email = tonirosinol@hotmail.com
-  name = Toni Rosinol
+  name = Toni
 
 [grep]
   lineNumber = true

@@ -9,6 +9,12 @@
     ~/.config/terminator:
       create: true
       path: config/terminator
+    ~/.config/dconf:
+      create: true
+      path: config/dconf
+    ~/.config/zathura:
+      create: true
+      path: config/zathura
     ~/.bashrc:
     ~/.bash_profile:
     ~/.bash.d:
@@ -16,18 +22,32 @@
     ~/.inputrc:
     ~/.vim:
     ~/.vimrc:
+    ~/.ctags:
+    ~/.sshrc:
+    ~/.sshrc.d:
+    ~/.sshrc.d/sshrc_profile:
+      path: sshrc_profile
+    ~/.sshrc.d/gitconfig:
+      path: gitconfig
+    ~/.sshrc.d/bash.d:
+      path: bash.d
+    ~/.global_gitignore:
 
 - shell:
   - git submodule update --init --recursive
   -
     command: bash ./bin/install_powerline_fonts
     stdout: true
-  - sudo apt install terminator
-  - sudo apt install exuberant-ctags
-  - sudo apt install vim-gnome
+  - sudo apt-get install python -y
+  - sudo apt-get install terminator -y
+  - sudo apt-get install zathura -y
+  - sudo apt-get install htop -y
+  - sudo apt-get install exuberant-ctags -y
+  - sudo apt-get install vim-gnome -y
+  - sudo apt-get install python-argcomplete
   - vim +PluginInstall +qall
   -
-    command: sudo apt-get install build-essential cmake
+    command: sudo apt-get install build-essential cmake -y
     stdin: true
     stdout: true
     stderr: true

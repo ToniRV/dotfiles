@@ -3,13 +3,19 @@
 # Make vim the default editor
 export EDITOR="vim"
 
+# Colorize compiler output gcc/g++
+export CFLAGS="$CFLAGS -fdiagnostics-color=always"
+export CXXFLAGS="$CXXFLAGS -fdiagnostics-color=always"
+export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
+
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 
 # Make some commands not show up in history
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+# This is not working as supposed...
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date"
 
 # Prefer US English and use UTF-8
 export LANG="en_US.UTF-8"
@@ -20,6 +26,7 @@ export LC_ALL="en_US.UTF-8"
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Pip should only run if there is a virtualenv currently activated
+# Setting it to false to make it work with conda for now...
 export PIP_REQUIRE_VIRTUALENV=true
 
 # Highlight section titles in manual pages
@@ -43,7 +50,70 @@ if [[ -n $CATKIN_WORKSPACE ]]; then
 fi
 
 # To adapt qtcreator IDE to adapt to high resolution screen
-export QT_SCALE_FACTOR=1.5
+export QT_SCALE_FACTOR=1.0
+# Or in desktop application use: Exec=env QT_SCALE_FACTOR=1.5 /opt/qt57/bin/qtcreator-wrapper %F
 
-# For speeding up builds
+# For speeding up builds, use ccache
 export PATH="/usr/lib/ccache:$PATH"
+
+# For scaling applications such as zathura, chromium, firefox...
+#export GDK_SCALE=1.5
+
+# For Tensorflow dependency CUPTI which ships with the CUDA toolkit.
+# https://www.tensorflow.org/install/gpu
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64
+
+# For cityscapes dataset
+export CITYSCAPES_DATASET="~/datasets/cityscapes"
+
+# Avoid sending reports to Microsoft
+# This is for developing in C#
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="/home/tonirv/gems/bin:$PATH"
+
+# Source Intel TBB and MKL and others, check compilervars.sh
+#source /opt/intel/bin/compilervars.sh intel64
+#source /opt/intel/compilers_and_libraries_2018.2.199/linux/bin/compilervars.sh intel64
+
+# Source only MKL
+#source /opt/intel/mkl/bin/mklvars.sh intel64
+#export LD_PRELOAD="$LD_PRELOAD:/opt/intel/mkl/lib/intel64/libmkl_core.so:/opt/intel/mkl/lib/intel64/libmkl_sequential.so"
+
+# Finally converged to the solution here:
+# https://github.com/pytorch/pytorch/issues/1505
+# After too much pain...
+export MKL_ROOT=/opt/intel/mkl
+export MKL_INCLUDE=$MKL_ROOT/include
+export MKL_LIBRARY=$MKL_ROOT/lib/intel64
+source /opt/intel/mkl/bin/mklvars.sh intel64
+source /opt/intel/bin/compilervars.sh intel64
+export CMAKE_INCLUDE_PATH=$MKL_INCLUDE:$CMAKE_INCLUDE_PATH
+export CMAKE_LIBRARY_PATH=$MKL_LIBRARY:$CMAKE_LIBRARY_PATH
+
+# Intel vtune debugger
+# source $HOME/intel/vtune_amplifier_2019/amplxe-vars.sh
+
+# DeepMesh exports
+# export DEEP_MESH_ROOT=/home/tonirv/Code/DeepMesh
+# export PYG_ROOT=$DEEP_MESH_ROOT/third_party/pytorch_geometric
+# export CPATH=/usr/local/cuda-10.0/include:$CPATH
+# export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:$LD_LIBRARY_PATH
+
+# For Cuda 10.2
+# export PATH=$PATH:/usr/local/cuda-10.2/bin
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.2/lib64
+
+# For Cuda 11.1
+export PATH=$PATH:/usr/local/cuda-11.1/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.1/lib64
+
+# For Cuda 11.6
+export PATH=$PATH:/usr/local/cuda-11.6/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.6/lib64
+
+# For OptiX
+export PATH=$PATH:/usr/local/OptiX-7-4
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/OptiX-7-4/build/lib
