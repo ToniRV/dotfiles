@@ -40,10 +40,12 @@
     stdout: true
   - sudo apt-get install python -y
   - sudo apt-get install terminator -y
+  - sudo apt-get install net-tools -y
   - sudo apt-get install zathura -y
   - sudo apt-get install htop -y
+  - sudo apt-get install tree -y
   - sudo apt-get install exuberant-ctags -y
-  - sudo apt-get install vim-gnome -y
+  - sudo apt-get install vim-gtk3 -y
   - sudo apt-get install python-argcomplete
   - vim +PluginInstall +qall
   -

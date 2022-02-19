@@ -26,6 +26,7 @@
     cursor_color = "#0087ff"
     font = Liberation Mono for Powerline 12
     scrollback_infinite = True
+    login_shell = True
     use_system_font = False
 [layouts]
   [[default]]
