@@ -7,5 +7,5 @@ function f() {
 
 # File search using grep
 function r() {
-  grep "$1" ${@:2} -Rn .
+  grep "$1" ${@:2} -Rn . --exclude-dir=venv
 }
