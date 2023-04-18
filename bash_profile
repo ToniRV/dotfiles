@@ -27,7 +27,7 @@ load_dotfiles() {
         ${HOME}/.bash.d/functions/*   # Functions
         ${HOME}/.bash.d/ros/ros       # ROS specific setup
         ${HOME}/.bash.d/python        # Python utilities
-        $(brew --prefix)/etc/bash_completion # Bash completion (installed via Homebrew)
+        #$(brew --prefix)/etc/bash_completion # Bash completion (installed via Homebrew)
     )
 
     # if these files are readable, source them
@@ -49,3 +49,19 @@ fi
 if [ "${BASH-no}" != "no" ]; then
 	[ -r /etc/bashrc ] && . /etc/bashrc
 fi
+# added by Anaconda3 2019.07 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/Users/tonirv/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/Users/tonirv/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/tonirv/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/Users/tonirv/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<

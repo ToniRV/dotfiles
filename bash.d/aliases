@@ -145,3 +145,5 @@ alias sbash="source ~/.bashrc"
 #source evo (delete this)
 alias sevo="source ~/code/evo/venv/bin/activate"
 
+
+alias svenv="source ./venv/bin/activate"

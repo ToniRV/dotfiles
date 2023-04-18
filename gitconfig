@@ -67,17 +67,8 @@
   tree = "log --graph --decorate --abbrev-commit --date-order --pretty=format:'%Cgreen%h%Creset : %s%Cred%d%Creset (%Cblue%an%Creset, %Cblue%ar%Creset)'"
   tree-all = "log --graph --decorate --abbrev-commit --date-order --pretty=format:'%Cgreen%h%Creset : %s%Cred%d%Creset (%Cblue%an%Creset, %Cblue%ar%Creset)' --all"
   # Merge GitHub pull request on top of the `master` branch
-  mpr = "!f() { \
-    if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-      git fetch origin refs/pull/$1/head:pr/$1 && \
-      git rebase master pr/$1 && \
-      git checkout master && \
-      git merge pr/$1 && \
-      git branch -D pr/$1 && \
-      git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-    fi \
-  }; f"
-  springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
+  #  mpr = "!f() { \
+  #  springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
   # Runs `git pull` on every directory within the current directory
   # updateall = "!f() { find . -type d -print -maxdepth 1 -execdir git --git-dir={}/.git --work-tree=$PWD/{} pull \; }; f"
 
@@ -86,7 +77,7 @@
   whitespace = fix
 
 [core]
-  editor = vim
+	editor = /usr/bin/vim
 
   # Use custom `.gitignore` and `.gitattributes`
   excludesfile = ~/.gitignore
@@ -145,7 +136,9 @@
 
 [user]
   email = tonirosinol@hotmail.com
-  name = Toni Rosinol
+	name = Toni
 
 [grep]
   lineNumber = true
+[init]
+	defaultBranch = main

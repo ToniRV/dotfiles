@@ -26,7 +26,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Plugins for Snippets in code
 " Track the engine.
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
@@ -110,7 +110,7 @@ Plugin 'mattn/emmet-vim'
 Bundle 'gabrielelana/vim-markdown'
 
 " Plugin for markdown preview in browser
-Plugin 'JamshedVesuna/vim-markdown-preview'
+" Plugin 'JamshedVesuna/vim-markdown-preview'
 
 " For better folding in Python
 Plugin 'tmhedberg/SimpylFold'
@@ -300,7 +300,7 @@ set lazyredraw
 set esckeys
 
 " Add the g flag to search/replace by default
-set gdefault
+" set gdefault
 
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
@@ -704,9 +704,10 @@ nnoremap <c-[> <c-t>
 
 " THINGS TO CONSIDER:
 " - This doesn't help if you want a visual list of tags
+"
 
 " For Nerd tree git plugin
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
@@ -776,3 +777,6 @@ let g:qf_auto_open_quickfix = 0
 " Remap markdown preview hotkey
 let g:vim_markdown_preview_hotkey='<localleader>m'
 let g:vim_markdown_preview_toggle=3
+
+" Set vertical line in 80th character
+:set colorcolumn=80
