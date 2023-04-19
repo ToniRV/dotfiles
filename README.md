@@ -1,8 +1,10 @@
 # My dotfiles
 
-Meant for Ubuntu 16.04, with ROS kinetic.
+Meant for MacOS
 
 Clone the repo: ```git clone git@github.com:ToniRV/dotfiles.git```
+
+`git checkout MacOS/bash`
 
 Backup your previous dotfiles:
 ```
@@ -23,6 +25,8 @@ Find and replace the [user] fields with your details in the ```gitconfig``` file
 
 Install: 
 ```./install```
+
+-> iTerm2 users need to set both the Regular font and the Non-ASCII Font in "iTerm > Preferences > Profiles > Text" to use a patched font (per this issue).
 
 Delete your backup files if you do not need them anymore.
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+#
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # set 256 color profile where possible
 export TERM=xterm-256color
@@ -11,6 +13,8 @@ if ! shopt -oq posix; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
+  elif [ -f /etc/profile.d/bash_completion.sh ]; then
+    source /etc/profile.d/bash_completion.sh
   fi
 fi
 
@@ -65,3 +69,5 @@ else
 fi
 unset __conda_setup
 # <<< conda init <<<
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

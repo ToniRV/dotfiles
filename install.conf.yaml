@@ -29,10 +29,11 @@
   -
     command: bash ./bin/install_powerline_fonts
     stdout: true
-  - sudo apt install terminator
-  - sudo apt install zathura
-  - sudo apt install exuberant-ctags
-  - sudo apt install vim-gnome
+  - brew install terminator
+  - brew install zathura
+    #- brew install exuberant-ctags
+  - brew install vim-gnome
+  - brew install universal-ctags
   - vim +PluginInstall +qall
   -
     command: sudo apt-get install build-essential cmake
