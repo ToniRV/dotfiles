@@ -1,0 +1,4 @@
+# Qt creator stuff
+CMakeLists.txt.user*
+.vscode
+venv/

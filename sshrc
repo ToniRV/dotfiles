@@ -1,0 +1,10 @@
+#!/bin/bash
+# Use my own gitconfig
+# !! This modifies the host global gitconfig file!
+git config --global include.path "$SSHHOME/.sshrc.d/gitconfig"
+
+############## COPY OF MY BASH PROFILE ###################
+source $SSHHOME/.sshrc.d/sshrc_profile;
+
+# use my inputrc
+bind -f  $SSHHOME/.sshrc.d/inputrc

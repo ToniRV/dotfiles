@@ -1,0 +1,3 @@
+make_catkin_pkg() {
+  bash -c "$(curl -sLf https://raw.githubusercontent.com/ToniRV/catkin_package_maker/master/make_catkin_pkg.sh)"
+}

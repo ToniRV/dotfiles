@@ -3,12 +3,11 @@
 # Enable pbcopy and pbpaste on linux
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
-
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload='exec $SHELL -l'
@@ -32,8 +31,12 @@ alias workspaces='cd ~/Workspaces'
 
 # So lazy am i
 alias g='git'
+alias gc='git commit -m'
 alias h='history'
 alias j='jobs'
+
+# fix git conflicts with vim
+alias fix='git diff --name-only | uniq | xargs vim'
 
 # List all files colorized in long format
 alias l='ls -lhF --color'
@@ -127,17 +130,14 @@ alias cleanup-ds="find . -type f -name '*.DS_Store' -ls -delete"
 alias cleanup-dots="find . -type f -name '._*' -ls -delete"
 
 # Alias
-alias cd..="cd .."
-alias ..="cd .."
 alias cb="catkin build -w $CATKIN_WORKSPACE -DCMAKE_BUILD_TYPE=Release"
-
-# Mounting Snapdragon filesystem
-alias mountSnap="sshfs linaro:/home/linaro/catkin_ws/src/ /home/arosinol/remoteSnapdragon/"
-alias unmountSnap="fusermount -u ~/remoteSnapdragon"
-
-# Transferring snap_cam from host to Snapdragon.
-alias transferSnap="cp -r $CATKIN_WORKSPACE/src/aerial_dev_tools/adt_optical_flow ~/remoteSnapdragon/"
 
 # source bashrc
 alias sbash="source ~/.bashrc"
+alias svenv="source ./venv/bin/activate"
 
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+alias copy_ssh_key="xclip -sel clip < ~/.ssh/id_rsa.pub"

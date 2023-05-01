@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info>
+    <mime-type type="application/xml" pattern="*.xml;*.xbl;*.xsd;*.rng;*.launch">
+        <match value="&lt;?xml" type="string" offset="0:0" priority="40" mask=""/>
+        <match value="&lt;!--" type="string" offset="0:0" priority="40" mask=""/>
+    </mime-type>
+</mime-info>
