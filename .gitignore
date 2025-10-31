@@ -6,3 +6,5 @@ vim/bundle
 .netrwhist
 
 gutentags
+
+.DS_Store
