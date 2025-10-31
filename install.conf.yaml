@@ -19,6 +19,6 @@
   -
     command: bash ./bin/install_powerline_fonts
     stdout: true
-  - brew install vim-gnome
+  - brew install vim
   - brew install universal-ctags
   - vim +PluginInstall +qall
