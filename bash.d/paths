@@ -6,8 +6,6 @@
 declare -a dirs_to_prepend=(
   # For things installed by the usr.
   "/usr/local/bin"
-  "/usr/local/opt/ccache/libexec"
-  "/opt/homebrew/opt/libpq/bin"
 )
 
 # Directories to be appended to PATH
