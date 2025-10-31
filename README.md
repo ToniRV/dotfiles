@@ -21,6 +21,7 @@ Find and replace the [user] fields with your details in the ```gitconfig``` file
   email = youremail
   name = yourname
 ```
+Otherwise, you will see me as the author of your commits :) 
 
 Install: 
 ```./install```
