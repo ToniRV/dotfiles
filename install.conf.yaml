@@ -6,15 +6,6 @@
 - clean: ['~', '~/.config']
 
 - link:
-    ~/.config/terminator:
-      create: true
-      path: config/terminator
-    ~/.config/dconf:
-      create: true
-      path: config/dconf
-    ~/.config/zathura:
-      create: true
-      path: config/zathura
     ~/.bashrc:
     ~/.bash_profile:
     ~/.bash.d:
@@ -29,18 +20,9 @@
   -
     command: bash ./bin/install_powerline_fonts
     stdout: true
-  - brew install terminator
-  - brew install zathura
-    #- brew install exuberant-ctags
   - brew install vim-gnome
   - brew install universal-ctags
   - vim +PluginInstall +qall
-  -
-    command: sudo apt-get install build-essential cmake
-    stdin: true
-    stdout: true
-    stderr: true
-    description: Dependencies for YouCompleteMe
   -
     command: ~/.vim/bundle/YouCompleteMe/install.py
     stdin: true

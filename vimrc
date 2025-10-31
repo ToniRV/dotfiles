@@ -747,9 +747,6 @@ let g:vimtex_compiler_latexmk = {
 
 let g:vimtex_view_general_viewer = 'zathura'
 
-" Add automatic header for python files when starting from vim
-au BufNewFile *.py 0r /home/tonirv/dotfiles/python_template.txt
-
 " Pass a line (equation) to bc (calculator).
 map gbc yypkA =<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
 
