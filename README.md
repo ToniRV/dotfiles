@@ -27,6 +27,10 @@ Install:
 
 -> iTerm2 users need to set both the Regular font and the Non-ASCII Font in "iTerm > Preferences > Profiles > Text" to use a patched font (per this issue).
 
+-> iTerm2 users need to manually set the `Command` setting in `Profile` to `/bin/bash` (see image below)
+
+<img src="./images/iterm_custom_shell.png"/>
+
 Delete your backup files if you do not need them anymore.
 
 <!---
