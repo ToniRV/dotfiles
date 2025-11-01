@@ -21,4 +21,6 @@
     stdout: true
   - brew install vim
   - brew install universal-ctags
+  - brew install zoxide
+  - eval "$(zoxide init bash)"
   - vim +PluginInstall +qall
