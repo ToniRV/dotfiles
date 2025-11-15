@@ -53,3 +53,4 @@ if [ "${BASH-no}" != "no" ]; then
 fi
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(zoxide init bash)"

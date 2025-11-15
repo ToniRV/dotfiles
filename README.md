@@ -8,11 +8,11 @@ Clone the repo: ```git clone git@github.com:ToniRV/dotfiles.git```
 
 Backup your previous dotfiles:
 ```
-mv ~/.bashrc ~/.bashrc_backup
-mv ~/.bash_profile ~/.bash_profile_backup
-mv ~/.gitconfig ~/.gitconfig_backup
-mv ~/.inputrc ~/.inputrc_backup
-mv ~/.vimrc ~/.vimrc_backup
+cp ~/.bashrc ~/.bashrc_backup
+cp ~/.bash_profile ~/.bash_profile_backup
+cp ~/.gitconfig ~/.gitconfig_backup
+cp ~/.inputrc ~/.inputrc_backup
+cp ~/.vimrc ~/.vimrc_backup
 ```
 
 Find and replace the [user] fields with your details in the ```gitconfig``` file:
