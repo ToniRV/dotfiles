@@ -9,3 +9,27 @@ function f() {
 function r() {
   grep "$1" ${@:2} -Rn .  --exclude-dir=venv --exclude-dir=.git
 }
+
+# Case-insensitive recursive grep, skipping binary files
+function dgrep() {
+  grep -iRI --color=auto "$@" . --exclude-dir=venv --exclude-dir=.git
+}
+
+# Like dgrep, but only list the matching file names
+function dfgrep() {
+  grep -iRIl "$@" . --exclude-dir=venv --exclude-dir=.git
+}
+
+# List directories in the current directory
+function dls() {
+  ls -d -- */ 2> /dev/null | tr -d "/"
+}
+
+# Find running processes by name
+function psgrep() {
+  if [ -z "$1" ]; then
+    e_error "Usage: psgrep <name>"
+    return 1
+  fi
+  ps aux | grep -i -- "[${1:0:1}]${1:1}"
+}

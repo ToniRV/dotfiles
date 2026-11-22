@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# macOS specific settings. Loaded right after utils, before everything else.
+
+# Apple's /bin/bash nags about zsh being the default shell
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Homebrew (Apple Silicon first, then Intel)
+for _brew in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+  if [[ -x "$_brew" ]]; then
+    eval "$("$_brew" shellenv)"
+    break
+  fi
+done
+unset _brew
+
+# Network interface used for the default route (en0 is Wi-Fi on most Macs)
+function default_iface() {
+  route -n get default 2>/dev/null | awk '/interface:/ { print $2 }'
+}
+
+# Local IP address
+function localip() {
+  ipconfig getifaddr "$(default_iface)"
+}
+
+# All IP addresses
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# View HTTP traffic
+alias httpdump='sudo tcpdump -i "$(default_iface)" -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*"'
+
+# Public IP address (kept as `ip` here since macOS has no `ip` command)
+alias ip='myip'
+
+# Recommended 'top' invocation to minimize resources
+alias ttop='top -R -F -s 10 -o rsize'
+
+# Recursively delete `.DS_Store` and AppleDouble files
+alias cleanup-ds="find . -type f -name '*.DS_Store' -ls -delete"
+alias cleanup-dots="find . -type f -name '._*' -ls -delete"

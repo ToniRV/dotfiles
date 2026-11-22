@@ -2,7 +2,7 @@
 
 # Python version
 function python_version() {
-  python -c 'print __import__("sys").version.split(" ")[0]';
+  python3 -c 'print(__import__("sys").version.split(" ")[0])';
 }
 
 # Ruby version

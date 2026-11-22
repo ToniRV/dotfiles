@@ -1,0 +1,111 @@
+#!/bin/bash
+
+# ROS 1 (catkin) helpers. Only loaded when ROS is installed under /opt/ros.
+_ros_setup=$(ls -d /opt/ros/*/setup.bash 2> /dev/null | tail -n 1)
+if [[ -z "$_ros_setup" ]]; then
+  unset _ros_setup
+  return 0
+fi
+
+# Specific aliases for working with ROS
+alias rosenv='env | grep ROS | grep -v ROS_PACKAGE_PATH'
+alias rospath='echo -e ${ROS_PACKAGE_PATH//:/\\n}'
+alias sros="source ${_ros_setup}"
+alias cb='catkin build -w "$CATKIN_WORKSPACE" -DCMAKE_BUILD_TYPE=Release'
+
+# Re-source the workspaces this shell inherited (e.g. a new tmux pane)
+if [[ -n "$ROSLISP_PACKAGE_DIRECTORIES" ]]; then
+  IFS=: read -r -d '' -a _ros_workspaces < <(printf '%s:\0' "$ROSLISP_PACKAGE_DIRECTORIES")
+  for _workspace in "${_ros_workspaces[@]}"; do
+    _workspace_setup="${_workspace%"share/common-lisp"}setup.bash"
+    [[ -r "$_workspace_setup" ]] && source "$_workspace_setup" --extend
+  done
+  unset _ros_workspaces _workspace _workspace_setup
+fi
+
+# Source a workspace and remember it as $CATKIN_WORKSPACE.
+# Workspaces live in the home directory and are prefixed by ws_.
+# Usage: sws <workspace_name>
+function sws() {
+  source "$HOME/ws_$1/devel/setup.bash" && export CATKIN_WORKSPACE="$HOME/ws_$1"
+}
+
+# Aliases to source the correct workspace
+alias svnav='sws vnav'
+alias straj='sws trajectory_generation'
+alias smuma='sws muma'
+alias smav='sws mav'
+alias scatkin='sws catkin'
+alias skalibr='sws kalibr'
+alias seye='sws zurich_eye'
+alias siros='sws iros'
+alias smaplab="source $HOME/Code/ROS/maplab_ws/devel/setup.bash"
+alias skimera="source $HOME/Code/ROS/kimera_ws/devel/setup.bash"
+alias sgoggles="source $HOME/Code/ROS/flight_goggles_ws/devel/setup.bash"
+alias sflightmare="source $HOME/Code/ROS/flightmare_ws/devel/setup.bash"
+alias srotors="source $HOME/Code/ROS/rotors_ws/devel/setup.bash"
+alias sspark="source $HOME/Code/ROS/spark_vio_ws/devel/setup.bash"
+alias stess="source $HOME/Code/ROS/tess_ws/devel/setup.bash"
+alias sslam="source $HOME/Code/SLAM/SLAM_ws/devel/setup.bash"
+alias sflame="source $HOME/Code/ROS/flame_ws/devel/setup.bash"
+alias selas="source $HOME/Code/ROS/elas_ws/devel/setup.bash"
+alias svins="source $HOME/Code/SLAM/vins_ws/devel/setup.bash"
+alias svoxblox="source $HOME/Code/ROS/voxblox_ws/devel/setup.bash"
+alias sreal="source $HOME/Code/ROS/realsense_ws/devel/setup.bash"
+alias srosmitnet="sros && \
+source $HOME/Code/ROS/spark_vio_ws/src/rosmitnet/venv/bin/activate && \
+source $HOME/Code/ROS/spark_vio_ws/devel/setup.bash && \
+source $HOME/Code/ROS/cv_bridge_py3_ws/install/setup.bash --extend"
+
+# ROS_IP and ROS_MASTER_URI persist across shells in a state file outside the repo
+_ros_state="${XDG_STATE_HOME:-$HOME/.local/state}/ros"
+_ros_ip=$(cat "$_ros_state/ros_ip" 2> /dev/null)
+_ros_master=$(cat "$_ros_state/ros_master_uri" 2> /dev/null)
+export ROS_IP="${_ros_ip:-127.0.0.1}"
+export ROS_HOSTNAME=$ROS_IP
+export ROS_MASTER_URI="http://${_ros_master:-localhost}:11311"
+unset _ros_ip _ros_master
+
+# Shortcut to change ROS server URI
+# Usage: rosmaster [localhost|me|10.131.xx.yy]
+function rosmaster() {
+  local ip_master=${1:-localhost}
+  export ROS_MASTER_URI=http://$ip_master:11311
+  mkdir -p "$_ros_state" && echo "$ip_master" > "$_ros_state/ros_master_uri"
+}
+
+# Shortcut to change ROS IP
+# Usage: rosip [eth0|wlan0|lo|eth1...]
+function rosip() {
+  local interface=${1:-lo}
+  local inet_addr
+  if type_exists ip; then
+    inet_addr=$(ip -4 -o addr show dev "$interface" 2> /dev/null | awk '{ print $4 }' | cut -d/ -f1 | head -n 1)
+  else
+    inet_addr=$(ifconfig "$interface" 2> /dev/null | awk '/inet / { sub("addr:", "", $2); print $2; exit }')
+  fi
+  export ROS_IP=${inet_addr:-localhost}
+  export ROS_HOSTNAME=$ROS_IP
+  mkdir -p "$_ros_state" && echo "$ROS_IP" > "$_ros_state/ros_ip"
+}
+
+# Usage: cattest <package name> [OPTIONS|--no-deps|...]
+function cattest() {
+  catkin build "$1" "${@:2}" --workspace "$CATKIN_WORKSPACE" --catkin-make-args run_tests
+  catkin_test_results "$CATKIN_WORKSPACE/build/$1" --verbose
+}
+
+# Create a catkin package from a template
+function make_catkin_pkg() {
+  bash -c "$(curl -sLf https://raw.githubusercontent.com/ToniRV/catkin_package_maker/master/make_catkin_pkg.sh)"
+}
+
+# QtCreator: point it at the build dir of the current catkin workspace
+if [[ -n "$CATKIN_WORKSPACE" ]] && type_exists catkin; then
+  export CURRENT_CMAKE_BUILD_DIR="$(catkin locate --workspace "$CATKIN_WORKSPACE" --build)"
+fi
+
+# Allow ssh to launch remote nodes. This is required for Optitrack flights.
+export ROSLAUNCH_SSH_UNKNOWN=1
+
+unset _ros_setup

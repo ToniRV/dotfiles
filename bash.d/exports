@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 256 colors for terminals that only advertise plain xterm
+[[ "$TERM" == xterm ]] && export TERM=xterm-256color
+
 # Make vim the default editor
 export EDITOR="vim"
 
@@ -9,16 +12,11 @@ export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 
 # Make some commands not show up in history
-# This is not working as supposed...
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
 # Prefer US English and use UTF-8
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-
-# Make new shells get the history lines from all previous
-# shells instead of the default "last window closed" history
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Pip should only run if there is a virtualenv currently activated
 export PIP_REQUIRE_VIRTUALENV=true
@@ -32,20 +30,8 @@ export MANPAGER="less -X"
 # Set .marks as the folder for jumping symlinks
 export MARKPATH=~/.marks
 
-# Downgrade OpenGL from 3.3 to 2.1 for VMware 3D graphics acceleration
-#export SVGA_VGPU10=0
+# Colorize gcc/g++ diagnostics
+export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
-# MAVlink for mavros
-#export PYTHONPATH=${PYTHONPATH}:${CATKIN_WORKSPACE}/src/mavlink-gbp-release
-
-# QTcreator to work with catkin workspace
-if [[ -n $CATKIN_WORKSPACE ]]; then
-  export CURRENT_CMAKE_BUILD_DIR="$(catkin locate --workspace $CATKIN_WORKSPACE --build)"
-fi
-
-# To adapt qtcreator IDE to adapt to high resolution screen
-export QT_SCALE_FACTOR=1.0
-# Or in desktop application use: Exec=env QT_SCALE_FACTOR=1.5 /opt/qt57/bin/qtcreator-wrapper %F
-
-# For scaling applications such as zathura, chromium, firefox...
-#export GDK_SCALE=1.5
+# Avoid sending telemetry to Microsoft when using dotnet
+export DOTNET_CLI_TELEMETRY_OPTOUT=1

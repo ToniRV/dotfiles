@@ -1,56 +1,47 @@
 #!/usr/bin/env bash
 #
-export BASH_SILENCE_DEPRECATION_WARNING=1
+# Main entry point: login shells read this file, and ~/.bashrc sources it for
+# interactive non-login shells. Re-sourcing it is safe (see `sbash`).
 
-# set 256 color profile where possible
-export TERM=xterm-256color
+case "$(uname -s)" in
+  Darwin) DOTFILES_OS=darwin ;;
+  Linux)  DOTFILES_OS=linux ;;
+  *)      DOTFILES_OS=unknown ;;
+esac
+export DOTFILES_OS
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  elif [ -f /etc/profile.d/bash_completion.sh ]; then
-    source /etc/profile.d/bash_completion.sh
-  fi
-fi
-
-load_dotfiles() {
-    declare -a files=(
-        ${HOME}/.bash.d/colors        # Colors
-        ${HOME}/.bash.d/utils         # Utils
-        ${HOME}/.bash.d/options       # Options
-        ${HOME}/.bash.d/exports       # Exports
-        ${HOME}/.bash.d/paths         # Path modifications
-        ${HOME}/.bash.d/prompt        # Custom bash prompt
-        ${HOME}/.bash.d/autocompletes # Autocompletes
-        ${HOME}/.bash.d/aliases       # Aliases
-        ${HOME}/.bash.d/functions/*   # Functions
-        #$(brew --prefix)/etc/bash_completion # Bash completion (installed via Homebrew)
-    )
-
-    # if these files are readable, source them
-    for index in ${!files[*]}; do
-        if [[ -r ${files[$index]} ]]; then
-            source ${files[$index]}
-        fi
-    done
+# Source each readable file given as argument
+_dotfiles_source() {
+  local file
+  for file in "$@"; do
+    [[ -r "$file" ]] && source "$file"
+  done
 }
 
-load_dotfiles
-unset load_dotfiles
+# Environment: also needed by non-interactive login shells (e.g. `bash -lc`)
+_dotfiles_source \
+  ~/.bash.d/colors \
+  ~/.bash.d/utils \
+  ~/.bash.d/os/"${DOTFILES_OS}" \
+  ~/.bash.d/exports \
+  ~/.bash.d/paths
 
-# System-wide .profile for sh(1)
-if [ -x /usr/libexec/path_helper ]; then
-	eval `/usr/libexec/path_helper -s`
+# Interactive niceties
+if [[ $- == *i* ]]; then
+  _dotfiles_source \
+    ~/.bash.d/options \
+    ~/.bash.d/prompt \
+    ~/.bash.d/autocompletes \
+    ~/.bash.d/aliases \
+    ~/.bash.d/functions/* \
+    ~/.bash.d/ros/ros
+
+  # Smarter cd (`z foo`); must come after the prompt sets PROMPT_COMMAND
+  type_exists zoxide && eval "$(zoxide init bash)"
 fi
 
-if [ "${BASH-no}" != "no" ]; then
-	[ -r /etc/bashrc ] && . /etc/bashrc
-fi
+# Machine-specific overrides, not tracked by git
+_dotfiles_source ~/.bash.d/local
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(zoxide init bash)"
+path_dedupe
+unset -f _dotfiles_source

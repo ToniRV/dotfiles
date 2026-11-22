@@ -1,0 +1,77 @@
+#!/bin/bash
+
+# Linux specific settings. Loaded right after utils, before everything else.
+# Everything tied to optional software is only enabled when it is installed.
+
+# macOS-style clipboard commands
+if ! type_exists pbcopy; then
+  if [[ -n "$WAYLAND_DISPLAY" ]] && type_exists wl-copy; then
+    function pbcopy() { wl-copy "$@"; }
+    function pbpaste() { wl-paste --no-newline "$@"; }
+  elif type_exists xclip; then
+    function pbcopy() { xclip -selection clipboard "$@"; }
+    function pbpaste() { xclip -selection clipboard -o "$@"; }
+  elif type_exists xsel; then
+    function pbcopy() { xsel --clipboard --input "$@"; }
+    function pbpaste() { xsel --clipboard --output "$@"; }
+  fi
+fi
+
+# Local IP address
+function localip() {
+  hostname -I 2>/dev/null | awk '{ print $1 }'
+}
+
+# All IP addresses
+alias ips="ip -o addr show | awk '{ print \$4 }' | cut -d/ -f1"
+
+# View HTTP traffic
+alias httpdump='sudo tcpdump -i any -n -s 0 -w - | grep -a -o -E "Host\: .*|GET \/.*"'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Speed up rebuilds with ccache
+path_prepend /usr/lib/ccache
+
+# Ruby gems in the home directory
+if type_exists gem; then
+  export GEM_HOME="${HOME}/gems"
+  path_prepend "${GEM_HOME}/bin"
+fi
+
+# Append to LD_LIBRARY_PATH once, only if the directory exists
+function _ld_library_append() {
+  [[ -d "$1" && ":${LD_LIBRARY_PATH}:" != *":$1:"* ]] || return 0
+  export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$1"
+}
+
+# CUDA: /usr/local/cuda is the symlink the installer points at the active version
+if [[ -d /usr/local/cuda ]]; then
+  path_append /usr/local/cuda/bin
+  _ld_library_append /usr/local/cuda/lib64
+  # CUPTI, needed by Tensorflow: https://www.tensorflow.org/install/gpu
+  _ld_library_append /usr/local/cuda/extras/CUPTI/lib64
+fi
+
+# OptiX
+for _optix in /usr/local/OptiX-*; do
+  [[ -d "$_optix" ]] || continue
+  path_append "$_optix"
+  _ld_library_append "$_optix/build/lib"
+done
+unset _optix
+
+# Intel MKL (see https://github.com/pytorch/pytorch/issues/1505)
+if [[ -r /opt/intel/mkl/bin/mklvars.sh ]]; then
+  export MKL_ROOT=/opt/intel/mkl
+  export MKL_INCLUDE=$MKL_ROOT/include
+  export MKL_LIBRARY=$MKL_ROOT/lib/intel64
+  source /opt/intel/mkl/bin/mklvars.sh intel64
+  [[ -r /opt/intel/bin/compilervars.sh ]] && source /opt/intel/bin/compilervars.sh intel64
+  export CMAKE_INCLUDE_PATH=$MKL_INCLUDE${CMAKE_INCLUDE_PATH:+:$CMAKE_INCLUDE_PATH}
+  export CMAKE_LIBRARY_PATH=$MKL_LIBRARY${CMAKE_LIBRARY_PATH:+:$CMAKE_LIBRARY_PATH}
+fi
+
+unset -f _ld_library_append

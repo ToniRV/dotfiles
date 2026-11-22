@@ -121,6 +121,26 @@ function to_install() {
   echo "${remain[@]}"
 }
 
-export SVGA_VGPU10=0
-
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+# PATH helpers: only existing directories are added, and an entry that is
+# already present is moved instead of duplicated.
+function path_remove() {
+  local p=":${PATH}:"
+  p="${p//:$1:/:}"
+  p="${p#:}"; PATH="${p%:}"
+}
+function path_prepend() {
+  [[ -d "$1" ]] || return 0
+  path_remove "$1"; PATH="$1${PATH:+:$PATH}"
+}
+function path_append() {
+  [[ -d "$1" ]] || return 0
+  path_remove "$1"; PATH="${PATH:+$PATH:}$1"
+}
+# Drop duplicate PATH entries, keeping the first occurrence
+function path_dedupe() {
+  local entry new="" IFS=:
+  for entry in $PATH; do
+    [[ -n "$entry" && ":$new:" != *":$entry:"* ]] && new="${new:+$new:}$entry"
+  done
+  PATH="$new"; export PATH
+}

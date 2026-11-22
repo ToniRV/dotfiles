@@ -1,40 +1,21 @@
 #!/bin/bash
 
-# Set path by prepending and appending directories
+# Set path by prepending and appending directories.
+# Missing directories are skipped silently (see path_prepend in utils).
 
-# Directories to be prepended to PATH
+# Directories to be prepended to PATH (last one ends up first)
 declare -a dirs_to_prepend=(
-  # For things installed by the usr.
-  "/usr/local/bin"
+  "${HOME}/.local/bin"     # pip --user, pipx, uv tools...
+  "${HOME}/.bash.d/bin"    # Scripts shipped with these dotfiles
 )
 
 # Directories to be appended to PATH
 declare -a dirs_to_append=(
-  #"/Applications/Visual Studio Code 2.app/Contents/Resources/app/bin/"
 )
 
-# Prepend directories to PATH
-for index in ${!dirs_to_prepend[*]}
-do
-    if [ -d "${dirs_to_prepend[$index]}" ]; then
-        # If these directories exist, then prepend them to existing PATH
-        PATH="${dirs_to_prepend[$index]}:$PATH"
-    else
-        echo "Error prepending path: ${dirs_to_prepend[$index]} is not a directory or does not exist."
-    fi
-done
+for dir in "${dirs_to_prepend[@]}"; do path_prepend "$dir"; done
+for dir in "${dirs_to_append[@]}"; do path_append "$dir"; done
 
-# Append directories to PATH
-for index in ${!dirs_to_append[*]}
-do
-    if [ -d "${dirs_to_append[$index]}" ]; then
-        # If these bins exist, then append them to existing PATH
-        PATH="$PATH:${dirs_to_append[$index]}"
-    else
-        echo "Error appending path: ${dirs_to_append[$index]} is not a directory or does not exist."
-    fi
-done
-
-unset dirs_to_prepend dirs_to_append
+unset dir dirs_to_prepend dirs_to_append
 
 export PATH

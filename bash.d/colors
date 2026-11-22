@@ -1,18 +1,19 @@
 #!/bin/bash
 
-# Set colors
-tput sgr0; # reset colors
-reset=$(tput sgr0);
-bold=$(tput bold);
-underline=$(tput sgr 0 1);
-black=$(tput setaf 0);
-tan=$(tput setaf 3)
-blue=$(tput setaf 33);
-cyan=$(tput setaf 37);
-green=$(tput setaf 70);
-orange=$(tput setaf 166);
-purple=$(tput setaf 125);
-red=$(tput setaf 124);
-violet=$(tput setaf 61);
-white=$(tput setaf 15);
-yellow=$(tput setaf 136);
+# Set colors (empty strings when the terminal has no color support, e.g. TERM unset)
+_c() { tput "$@" 2>/dev/null; }
+reset=$(_c sgr0);
+bold=$(_c bold);
+underline=$(_c sgr 0 1);
+black=$(_c setaf 0);
+tan=$(_c setaf 3)
+blue=$(_c setaf 33);
+cyan=$(_c setaf 37);
+green=$(_c setaf 70);
+orange=$(_c setaf 166);
+purple=$(_c setaf 125);
+red=$(_c setaf 124);
+violet=$(_c setaf 61);
+white=$(_c setaf 15);
+yellow=$(_c setaf 136);
+unset -f _c

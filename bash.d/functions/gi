@@ -2,5 +2,5 @@
 
 # Call the Gitignore.io API
 function gi() {
-  curl -L -s "https://www.gitignore.io/api/$@"
+  curl -L -s "https://www.toptal.com/developers/gitignore/api/$*"
 }

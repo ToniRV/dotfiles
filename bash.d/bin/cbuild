@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+
+import signal
+import sys
+import os
+import subprocess
+import argparse
+
+# Group of Different functions for different styles
+if sys.platform.lower() == "win32":
+    os.system('color')
+RED = '\033[31m'
+GREEN = '\033[32m'
+RESET = '\033[0m'
+
+def cmake():
+    print(GREEN + "Calling cmake:" + RESET)
+    if not os.path.exists('./CMakeLists.txt'):
+        raise Exception ('Missing CMakeLists.txt.')
+    try:
+        subprocess.check_call('cmake ..', shell = True, cwd="./build")
+    except:
+        raise Exception (RED + 'cmake failed.' + RESET)
+    return True
+
+def make_clean():
+    print(GREEN + "Calling make clean." + RESET)
+    try:
+        subprocess.check_call('make clean', shell=True, cwd='./build')
+    except:
+        raise Exception (RED + 'make clean failed.' + RESET)
+    return True
+
+def make_test():
+    print(GREEN + "Calling make test." + RESET)
+    try:
+        subprocess.check_call('make test', shell=True, cwd='./build')
+    except:
+        raise Exception (RED + 'make test failed.' + RESET)
+    return True
+
+def make():
+    print(GREEN + "Calling make:" + RESET)
+    try:
+        subprocess.check_call('make -j {}'.format(os.cpu_count() or 1), shell=True, cwd='./build')
+    except:
+        raise Exception (RED + 'make failed.' + RESET)
+    return True
+
+def parser():
+    import argparse
+    basic_desc = "Automated build: cmake + make. Use `cbuild --clean` to call `make clean`. \
+    Or `cbuild --test` to call `make test`."
+    parser = argparse.ArgumentParser(add_help=True, description="{}".format(basic_desc))
+    parser.add_argument("-c", "--clean", action="store_true", help="Call make clean.",)
+    parser.add_argument("-t", "--test", action="store_true", help="Call make test.",)
+    return parser
+
+if __name__ == "__main__":
+    # Parse command line flags
+    args = parser().parse_args()
+
+    if not os.path.isdir('build'):
+        print(GREEN + 'Creating build folder.' + RESET)
+        os.mkdir('build')
+
+    assert(cmake())
+    if args.clean:
+        assert(make_clean())
+    assert(make())
+    if args.test:
+        assert(make_test())

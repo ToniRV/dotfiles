@@ -4,6 +4,6 @@
 # (Requires PHP 5.4.0+.)
 function phpserver() {
   local port="${1:-4000}";
-  sleep 1 && xdg-open "http://localhost:${port}/" &
+  sleep 1 && o "http://localhost:${port}/" &
   php -S "localhost:${port}";
 }

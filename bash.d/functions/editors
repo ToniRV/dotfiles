@@ -23,9 +23,11 @@ function v() {
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location
 function o() {
+  local opener="xdg-open";
+  is_os darwin && opener="open";
   if [ $# -eq 0 ]; then
-    xdg-open .;
+    "$opener" .;
   else
-    xdg-open "$@";
+    "$opener" "$@";
   fi;
 }

@@ -7,65 +7,39 @@ function set_title() {
 
 # Set a few globals to compute prompt string length
 function prompt_update() {
-  if is_git_repository; then
-    git_status="$(git status 2> /dev/null)";
-    remote_pattern="Your branch is (behind|ahead) of .* by ([0-9]*) commit(s)?";
-    diverge_pattern="and have ([0-9]*) and ([0-9]*) different commits"
+  # One machine-readable `git status` call gives branch, ahead/behind and
+  # file states (locale independent, unlike parsing the human output).
+  branch=""; status=""; remote="";
+  local line oid="" ahead=0 behind=0 unstaged="" staged="" untracked="" stashed="";
+  while IFS= read -r line; do
+    case "$line" in
+      "# branch.oid "*)  oid="${line#\# branch.oid }" ;;
+      "# branch.head "*) branch="${line#\# branch.head }" ;;
+      "# branch.ab "*)   read -r _ _ ahead behind <<< "$line"; ahead="${ahead#+}"; behind="${behind#-}" ;;
+      [12]" "*)          [[ "${line:2:1}" != "." ]] && staged="+"; [[ "${line:3:1}" != "." ]] && unstaged="●" ;;
+      "u "*)             unstaged="●" ;;
+      "? "*)             untracked="?" ;;
+    esac
+  done < <(git status --porcelain=v2 --branch --ignore-submodules 2> /dev/null)
 
-    # Ensure the index is up to date.
-    git update-index --really-refresh -q &>/dev/null;
+  if [[ -n "$branch" ]]; then
+    [[ "$branch" == "(detached)" ]] && branch="${oid:0:7}";
+    git rev-parse --verify --quiet refs/stash &> /dev/null && stashed="⚑";
 
-    # Set status according to previous checks
-    if [[ ${git_status} =~ "working directory clean" ]]; then
+    local s="${unstaged}${staged}${untracked}${stashed}";
+    if [[ -z "$s" ]]; then
       status=" ✔";
     else
-      s="";
-      # Check for unstaged changes.
-      if ! $(git diff-files --quiet --ignore-submodules --); then
-        s+="●";
-      fi;
-
-      # Check for uncommitted changes in the index.
-      if ! $(git diff --quiet --ignore-submodules --cached); then
-        s+="+";
-      fi;
-
-      # Check for untracked files.
-      if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-        s+="?";
-      fi;
-
-      # Check for stashed files
-      if $(git rev-parse --verify refs/stash &>/dev/null); then
-        s+="⚑";
-      fi;
-
       status=" [${s}]";
     fi;
 
-    # Check for diverged branches and set remote
-    if [[ ${git_status} =~ ${remote_pattern} ]]; then
-      if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
-        r="↑";
-      else
-        r="↓";
-      fi;
-      remote=" [${r}${BASH_REMATCH[2]}]";
-    elif [[ ${git_status} =~ ${diverge_pattern} ]]; then
-      remote=" [↑${BASH_REMATCH[1]}↓${BASH_REMATCH[2]}]";
-    else
-      remote=""
+    if (( ahead > 0 && behind > 0 )); then
+      remote=" [↑${ahead}↓${behind}]";
+    elif (( ahead > 0 )); then
+      remote=" [↑${ahead}]";
+    elif (( behind > 0 )); then
+      remote=" [↓${behind}]";
     fi;
-
-    branch="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
-      git rev-parse --short HEAD 2> /dev/null || \
-      echo '(unknown)')";
-
-    unset git_status;
-  else
-    status="";
-    remote="";
-    branch="";
   fi;
 
   gitLength=$((${#branch}+${#status}+${#remote}));
@@ -126,7 +100,7 @@ function prompt_ros_ws() {
 
 # Prompt git
 function prompt_git() {
-  if is_git_repository; then
+  if [[ -n "$branch" ]]; then
     echo -e "${purple}${branch}${tan}${status}${cyan}${remote}${reset}";
   fi;
 }
@@ -134,7 +108,7 @@ function prompt_git() {
 # Prompt command prompt
 function prompt_command() {
   local p=""
-  if [[ "${user}" == "root" ]]; then
+  if (( EUID == 0 )); then
     p="\[${red}\]▶";
   else
     p="\[${blue}\]❯";
@@ -151,7 +125,10 @@ function prompt_align() {
 
   PS1=$(printf "%s%*s\r%s\n%s" "$(set_title)" "$(($(tput cols)+${offset}-${rightLength}))" "$PRIGHT" "$PLEFT" "$(prompt_command)");
 }
-PROMPT_COMMAND=prompt_align
+# prompt_align runs first so it can still see the last exit status.
+# `history -a` makes new shells get the history lines from all previous
+# shells instead of the default "last window closed" history.
+PROMPT_COMMAND="prompt_align; history -a"
 export PS1;
 
 PS2="\[${cyan}\]→ \[${reset}\]";

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-# Main entry point
-[ -n "$PS1" ] && source ~/.bash_profile;
+# Interactive non-login shells read this file. Everything lives in
+# ~/.bash_profile so login and non-login shells behave the same.
+[[ $- == *i* ]] && source ~/.bash_profile
