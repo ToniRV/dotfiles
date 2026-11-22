@@ -1,9 +1,14 @@
-# Ignore virtualenv
-/venv
+# Global gitignore, linked to ~/.config/git/ignore
 
-# Ignore vim plugins
-vim/bundle
-! vim/bundle/Vundle.vim
-
-# Ignore MacOS things
+# MacOS things
 .DS_Store
+._*
+
+# Python virtualenvs
+venv/
+.venv/
+
+# Editors and IDEs
+.vscode/
+.netrwhist
+CMakeLists.txt.user*

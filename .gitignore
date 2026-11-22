@@ -1,20 +1,16 @@
 # Ignore virtualenv
 /venv
 
-# Ignore vim plugins
-vim/bundle
-! vim/bundle/Vundle.vim
+# Ignore vim plugins, except the plugin manager
+vim/bundle/*
+!vim/bundle/Vundle.vim
 
-# Ignore this thing
+# Ignore vim state generated at runtime
+vim/gutentags/
 .netrwhist
 
-# Ignore QtCreator files
-CMakeLists.txt.user
+# Machine-specific shell settings
+bash.d/local
 
 # Ignore MacOS things
 .DS_Store
-
-# Ignore random files
-.netrwhist
-
-gutentags

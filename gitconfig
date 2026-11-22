@@ -24,7 +24,7 @@
   # Stashes
   sl = stash list
   sa = stash apply
-  ss = stash save
+  ss = "!f() { git stash push ${1:+-m \"$1\"}; }; f"
   # Show verbose output about tags, branches or remotes
   tags = tag -l
   branches = branch -a
@@ -32,7 +32,7 @@
   # Amend the currently staged files to the latest commit
   amend = commit --amend --reuse-message=HEAD
   # Remove branches that have already been merged with master
-  removeBranches = !"git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+  removeBranches = !"git branch --merged | grep -vE '^[*+]|^  (master|main)$' | xargs -r -n 1 git branch -d"
   # Show the diff between the latest commit and the current state
   di = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
   # Show the diff between staged work and last HEAD
@@ -40,11 +40,11 @@
   # `git di $number` shows the diff between the state `$number` revisions ago and the current state
   din = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
   # Pull in remote changes for the current repository and all its submodules
-  pl = !"git pull; git submodule foreach git pull origin master"
+  pl = !"git pull && git submodule update --init --recursive"
   # Set upstream remote branch
   upstr = !"f() { git branch --set-upstream-to=origin/$1 $1; }; f"
   # I know what you did yesterday - great for follow-ups
-  logme = log --since '1 day ago' --oneline --author tonirosinol@hotmail.com
+  logme = !"git log --since '1 day ago' --oneline --author=\"$(git config user.email)\""
   # Credit an author on the latest commit
   credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
   # List contributors with number of commits
@@ -52,7 +52,7 @@
   # Interactive rebase with the given number of latest commits
   reb = "!r() { git rebase -i HEAD~$1; }; r"
   # Reset with given number of latest commits
-  res = "!r() { git reset HEAD^$1 $2; }; r"
+  res = "!r() { git reset HEAD~$1 $2; }; r"
   # Find branches containing commit
   fb = "!f() { git branch -a --contains $1; }; f"
   # Find tags containing commit
@@ -62,13 +62,12 @@
   # Find commits by commit message
   fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
   # Find commits made by a contributor the last day
-  fp = "!f() { git log --since '1 day ago' --online --author $1; }; f"
+  fp = "!f() { git log --since '1 day ago' --oneline --author $1; }; f"
   # Show git history as a tree
   tree = "log --graph --decorate --abbrev-commit --date-order --pretty=format:'%Cgreen%h%Creset : %s%Cred%d%Creset (%Cblue%an%Creset, %Cblue%ar%Creset)'"
   tree-all = "log --graph --decorate --abbrev-commit --date-order --pretty=format:'%Cgreen%h%Creset : %s%Cred%d%Creset (%Cblue%an%Creset, %Cblue%ar%Creset)' --all"
-  # Merge GitHub pull request on top of the `master` branch
-  #  mpr = "!f() { \
-  #  springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
+  # List branches sorted by last commit date
+  springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
   # Runs `git pull` on every directory within the current directory
   # updateall = "!f() { find . -type d -print -maxdepth 1 -execdir git --git-dir={}/.git --work-tree=$PWD/{} pull \; }; f"
 
@@ -77,11 +76,10 @@
   whitespace = fix
 
 [core]
-	editor = /usr/bin/vim
+  editor = vim
 
-  # Use custom `.gitignore` and `.gitattributes`
-  excludesfile = ~/.gitignore
-  # attributesfile = ~/.gitattributes
+  # Global ignore rules live in ~/.config/git/ignore (git's default location,
+  # linked from this repo's `gitignore` by install.conf.yaml)
 
   # Treat spaces before tabs and all kinds of trailing whitespace as an error
   # [default] trailing-space: looks for spaces at the end of a line
@@ -96,10 +94,8 @@
   # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
   precomposeunicode = false
 
-  legacyheaders = false
-
-  pager = less -+e
-	autocrlf = input
+  pager = less -FRX
+  autocrlf = input
 
 [gc]
   packrefs = true
@@ -141,4 +137,10 @@
 [grep]
   lineNumber = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

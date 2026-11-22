@@ -19,7 +19,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin('~/.vim/bundle')
 
 " Let Vundle manage Vundle
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 "
 
 " Add all your plugins below
@@ -31,7 +31,8 @@ Plugin 'gmarik/Vundle.vim'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
-" Alternative to YouCompleteMe
+" Alternative to YouCompleteMe (needs vim compiled with +lua)
+if has('lua')
 Plugin 'Shougo/neocomplete' "{{{
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
@@ -40,6 +41,7 @@ let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 2
 "}}}
+endif
 
 " Colors
 Plugin 'flazz/vim-colorschemes'
@@ -635,14 +637,12 @@ let g:SimpylFold_docstring_preview=1
 
 " {{{ Python development
 " Proper PEP8 indentation
-au BufNewFile,BufRead *.py:
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
+au FileType python
+    \ setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79
+    \ expandtab autoindent fileformat=unix
+
+" Add a shebang to new python files
+au BufNewFile *.py call setline(1, '#!/usr/bin/env python3')
 
 " Make python code look pretty
 "let python_highlight_all=1
@@ -651,26 +651,20 @@ syntax on
 " }}}
 
 " {{{ Full stack development
-au BufNewFile,BufRead *.js, *.html, *.css:
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
+au FileType javascript,html,css
+    \ setlocal tabstop=2 softtabstop=2 shiftwidth=2
 " }}}
 
 " Mark extraneous whitespace
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-" YouCompleteMe configuration
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 " Nerd Tree config
 nnoremap <leader>f :NERDTreeToggle<CR>
 nnoremap <leader><leader>f :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$'] " ignore files in NERDTree
 let NERDTreeAutoDeleteBuffer = 1
-let NERdTreeMinimalUI = 1
+let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:nerdtree_tabs_open_on_console_startup=0
 
@@ -777,3 +771,6 @@ let g:vim_markdown_preview_toggle=3
 
 " Set vertical line in 80th character
 :set colorcolumn=80
+
+" Change Color highlighting for spelling mistakes
+hi SpellBad cterm=italic,underline ctermfg=lightred ctermbg=none
