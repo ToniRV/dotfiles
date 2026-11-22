@@ -1,0 +1,29 @@
+# Linux (Debian/Ubuntu)
+- link:
+    ~/.config/terminator:
+      path: config/terminator
+    ~/.config/zathura:
+      path: config/zathura
+
+- shell:
+  - command: >-
+      if command -v apt-get > /dev/null; then
+      sudo apt-get update &&
+      sudo apt-get install -y bash-completion build-essential cmake htop
+      python3 python3-argcomplete terminator tree universal-ctags vim-gtk3
+      xclip zathura zoxide;
+      else echo "No apt-get: install the packages listed in install.linux.conf.yaml manually"; fi
+    description: Installing apt packages
+    stdin: true
+    stdout: true
+    stderr: true
+  - command: >-
+      if command -v dconf > /dev/null; then
+      dconf load /org/gnome/desktop/wm/keybindings/ < config/gnome/wm-keybindings.dconf;
+      fi
+    description: Loading GNOME window manager keybindings
+  - command: vim +PluginInstall +qall
+    description: Installing vim plugins
+    stdin: true
+    stdout: true
+    stderr: true

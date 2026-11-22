@@ -1,3 +1,4 @@
+# Common to every OS. `./install` then runs install.<os>.conf.yaml.
 - defaults:
     link:
       create: true
@@ -10,16 +11,15 @@
     ~/.bash_profile:
     ~/.bash.d:
     ~/.gitconfig:
+    ~/.config/git/ignore: gitignore
     ~/.inputrc:
     ~/.vim:
     ~/.vimrc:
 
 - shell:
-  - git submodule update --init --recursive
-  -
-    command: bash ./bin/install_powerline_fonts
+  - command: git submodule update --init --recursive
+    description: Updating submodules
+  - command: bash ./bin/install_powerline_fonts
+    description: Installing powerline fonts
     stdout: true
-  - brew install vim
-  - brew install universal-ctags
-  - brew install zoxide
-  - vim +PluginInstall +qall
+    stderr: true

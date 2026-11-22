@@ -1,0 +1,14 @@
+# macOS: packages come from the Brewfile
+- shell:
+  - command: command -v brew > /dev/null || { echo "Homebrew is required, see https://brew.sh"; exit 1; }
+    description: Checking for Homebrew
+    stdout: true
+  - command: brew bundle --file=Brewfile
+    description: Installing Homebrew packages
+    stdout: true
+    stderr: true
+  - command: vim +PluginInstall +qall
+    description: Installing vim plugins
+    stdin: true
+    stdout: true
+    stderr: true

@@ -1,10 +1,18 @@
-if [ ! -d ~/.local/share/fonts ]; then
-  rm -rf /tmp/fonts
-  mkdir -p /tmp/fonts
-  git clone https://github.com/powerline/fonts.git /tmp/fonts
-  cd /tmp/fonts
-  ./install.sh
-  rm -rf /tmp/fonts
-else
+#!/usr/bin/env bash
+# Install powerline fonts (used by vim-airline and the terminal profiles)
+set -e
+
+case "$(uname -s)" in
+  Darwin) font_dir="$HOME/Library/Fonts" ;;
+  *)      font_dir="$HOME/.local/share/fonts" ;;
+esac
+
+if ls "$font_dir" 2> /dev/null | grep -qi "powerline"; then
   echo "Powerline fonts seem to be already installed"
+  exit 0
 fi
+
+tmp_dir="$(mktemp -d)"
+trap 'rm -rf "$tmp_dir"' EXIT
+git clone --depth=1 https://github.com/powerline/fonts.git "$tmp_dir/fonts"
+"$tmp_dir/fonts/install.sh"

@@ -1,10 +1,11 @@
 # My dotfiles
 
-Meant for MacOS
+Bash, git, vim and readline configuration for **macOS and Linux** (Debian/Ubuntu), from a single branch.
+The OS is detected at install time and at shell startup.
 
-Clone the repo: ```git clone git@github.com:ToniRV/dotfiles.git```
+## Install
 
-`git checkout MacOS/bash`
+Clone the repo: ```git clone --recursive git@github.com:ToniRV/dotfiles.git```
 
 Backup your previous dotfiles:
 ```
@@ -21,28 +22,46 @@ Find and replace the [user] fields with your details in the ```gitconfig``` file
   email = youremail
   name = yourname
 ```
-Otherwise, you will see me as the author of your commits :) 
+Otherwise, you will see me as the author of your commits :)
 
-Install: 
+Install:
 ```./install```
 
--> iTerm2 users need to set both the Regular font and the Non-ASCII Font in "iTerm > Preferences > Profiles > Text" to use a patched font (per this issue).
-
--> iTerm2 users need to manually set the `Command` setting in `Profile` to `/bin/bash` (see image below)
-
-<img src="./images/iterm_custom_shell.png"/>
+This links the dotfiles (`install.conf.yaml`), then runs the OS specific part:
+- **macOS** (`install.darwin.conf.yaml`): installs the [Homebrew](https://brew.sh) packages in `Brewfile`, Homebrew must be installed first.
+- **Linux** (`install.linux.conf.yaml`): installs apt packages, links terminator and zathura configs, and loads GNOME keybindings.
 
 Delete your backup files if you do not need them anymore.
 
-<!---
-Install the fonts for the vim configs to work well:
-https://github.com/powerline/fonts
+### macOS terminal setup
 
+-> iTerm2 users need to set both the Regular font and the Non-ASCII Font in "iTerm > Preferences > Profiles > Text" to use a patched (powerline) font.
 
-<!---
-To unset <Super>+t shortcut that pops the trash in ubuntu on Mac
-sudo apt-get install compizconfig-settings-manager
-Run CompizConfig, go to ubuntu Unity Plugin and change the Key to show the Dash, Launcher and Help Overlay from <Super>
-to something like <Alt><Super>
-<!---
-Install [Vundle](https://github.com/VundleVim/Vundle.vim) to manage vim plugins
+-> iTerm2 users need to manually set the `Command` setting in `Profile` to `/opt/homebrew/bin/bash` (Homebrew's bash 5, see image below).
+`/bin/bash` also works, but it is bash 3.2: no `globstar`/`autocd` and no bash-completion@2.
+
+<img src="./images/iterm_custom_shell.png"/>
+
+## Layout
+
+```
+bash_profile        entry point (~/.bashrc sources it for non-login shells)
+bash.d/
+  colors utils      loaded first
+  os/darwin         macOS only: Homebrew, network helpers...
+  os/linux          Linux only: clipboard (pbcopy/pbpaste), CUDA, MKL... (each only if installed)
+  exports paths options prompt autocompletes aliases functions/*
+  ros/ros           ROS 1 helpers, only loaded when /opt/ros exists
+  bin/              scripts on PATH (cbuild, mp4-to-gif)
+  local             your machine-specific settings, not tracked by git
+gitignore           global gitignore, linked to ~/.config/git/ignore
+config/             Linux app configs (terminator, zathura, GNOME keybindings)
+utils/              standalone Linux scripts (ip_updater.sh, mute_and_lock.sh)
+```
+
+Put anything specific to one machine (work paths, tokens, extra aliases) in `~/.bash.d/local`.
+
+## History
+
+This branch used to be split into per-OS/per-ROS-distro branches (`master`, `osx`, `indigo`, `kinetic`, `melodic`, `noetic`).
+They are all merged into this branch's history, and their last commits are tagged `archive/<branch>`.

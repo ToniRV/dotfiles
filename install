@@ -2,13 +2,20 @@
 
 set -e
 
-CONFIG="install.conf.yaml"
 DOTBOT_DIR="dotbot"
-
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Common config first, then the one for this OS (install.darwin.conf.yaml, install.linux.conf.yaml)
+OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
+CONFIGS=("install.conf.yaml")
+if [[ -f "${BASEDIR}/install.${OS}.conf.yaml" ]]; then
+  CONFIGS+=("install.${OS}.conf.yaml")
+else
+  echo "No install.${OS}.conf.yaml: only linking dotfiles, install packages manually." >&2
+fi
 
 cd "${BASEDIR}"
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIGS[@]}" "${@}"
