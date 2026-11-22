@@ -12,7 +12,16 @@ if ls "$font_dir" 2> /dev/null | grep -qi "powerline"; then
   exit 0
 fi
 
+# powerline's install.sh does not create the font dir (missing on fresh macOS)
+mkdir -p "$font_dir"
+
 tmp_dir="$(mktemp -d)"
 trap 'rm -rf "$tmp_dir"' EXIT
 git clone --depth=1 https://github.com/powerline/fonts.git "$tmp_dir/fonts"
 "$tmp_dir/fonts/install.sh"
+
+# install.sh exits 0 even when copying fails, so check the result
+if ! ls "$font_dir" | grep -qi "powerline"; then
+  echo "Powerline fonts were not installed to $font_dir" >&2
+  exit 1
+fi

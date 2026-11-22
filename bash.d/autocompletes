@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Load bash-completion: v2 needs bash >= 4.2, v1 also works with macOS' bash 3.2
-if ! shopt -oq posix && ! declare -F _completion_loader &> /dev/null; then
+# (_comp_load is the bash-completion >= 2.12 name of _completion_loader)
+if ! shopt -oq posix && ! { declare -F _comp_load || declare -F _completion_loader; } &> /dev/null; then
   if (( BASH_VERSINFO[0] > 4 || (BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] >= 2) )); then
     _completion_files=(
       "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
