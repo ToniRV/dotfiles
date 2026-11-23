@@ -18,6 +18,22 @@
     stdout: true
     stderr: true
   - command: >-
+      if command -v apt-get > /dev/null; then
+      for pkg in btop gh just; do
+      if apt-cache show "$pkg" > /dev/null 2>&1; then sudo apt-get install -y "$pkg";
+      else echo "$pkg is not in this distro's apt repos, install it manually"; fi;
+      done; fi
+    description: Installing apt packages missing from older distros
+    stdin: true
+    stdout: true
+    stderr: true
+  - command: >-
+      command -v uv > /dev/null ||
+      curl -LsSf https://astral.sh/uv/install.sh | env UV_NO_MODIFY_PATH=1 sh
+    description: Installing uv
+    stdout: true
+    stderr: true
+  - command: >-
       if command -v dconf > /dev/null; then
       dconf load /org/gnome/desktop/wm/keybindings/ < config/gnome/wm-keybindings.dconf;
       fi
