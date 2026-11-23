@@ -12,3 +12,10 @@
     stdin: true
     stdout: true
     stderr: true
+  - command: >-
+      if [ -d /Applications/iTerm.app ]; then
+      if pgrep -x iTerm2 > /dev/null; then bin/iterm_use_bash --wait; else bin/iterm_use_bash; fi;
+      fi
+    description: Making iTerm2 use bash and a powerline font
+    stdout: true
+    stderr: true

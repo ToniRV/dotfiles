@@ -35,10 +35,13 @@ Delete your backup files if you do not need them anymore.
 
 ### macOS terminal setup
 
--> iTerm2 users need to set both the Regular font and the Non-ASCII Font in "iTerm > Preferences > Profiles > Text" to use a patched (powerline) font.
-
--> iTerm2 users need to manually set the `Command` setting in `Profile` to `/opt/homebrew/bin/bash` (Homebrew's bash 5, see image below).
+`./install` configures iTerm2's Default profile to run Homebrew's bash 5 as a login shell with a powerline font
+(`bin/iterm_use_bash`). iTerm2 rewrites its preferences on quit, so if it is running the change is applied
+in the background as soon as you quit it (Cmd-Q), and iTerm2 reopens.
 `/bin/bash` also works, but it is bash 3.2: no `globstar`/`autocd` and no bash-completion@2.
+
+Manual equivalent: iTerm2 > Settings > Profiles > General > Command: "Custom Shell" (see image below),
+and Profiles > Text > Font.
 
 <img src="./images/iterm_custom_shell.png"/>
 

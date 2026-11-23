@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# Make iTerm2's Default profile run Homebrew's bash (login shell) with a powerline font.
+#
+# iTerm2 rewrites its preferences when it quits, so they can only be changed
+# while it is closed. Usage:
+#   iterm_use_bash          apply now (iTerm2 must not be running)
+#   iterm_use_bash --wait   wait in the background until iTerm2 quits, apply,
+#                           then reopen iTerm2 (use this from inside iTerm2)
+set -euo pipefail
+
+DOMAIN="${ITERM_PREFS_DOMAIN:-com.googlecode.iterm2}"  # overridable for testing
+COMMAND="/usr/bin/env PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin bash -l"
+FONT="MesloLGMForPowerline-Regular 12"
+LABEL="dotfiles.iterm-use-bash"
+
+iterm_running() { pgrep -x iTerm2 > /dev/null; }
+
+apply() {
+  local tmp
+  tmp="$(mktemp -d)"
+  trap 'rm -rf "$tmp"' RETURN
+  # Go through `defaults` (cfprefsd) instead of editing the plist file, which cfprefsd may cache
+  defaults export "$DOMAIN" "$tmp/prefs.plist"
+  python3 -I - "$tmp/prefs.plist" "$COMMAND" "$FONT" <<'EOF'
+import plistlib, sys
+path, command, font = sys.argv[1:]
+with open(path, "rb") as f:
+    prefs = plistlib.load(f)
+profiles = prefs.get("New Bookmarks", [])
+default_guid = prefs.get("Default Bookmark Guid")
+default = next((p for p in profiles if p.get("Guid") == default_guid), profiles[0] if profiles else None)
+if default is None:
+    sys.exit("No iTerm2 profile found: open iTerm2 once, quit it, and retry")
+default["Custom Command"] = "Yes"
+default["Command"] = command
+default["Normal Font"] = font
+default["Use Non-ASCII Font"] = False
+prefs["Default Bookmark Guid"] = default["Guid"]
+with open(path, "wb") as f:
+    plistlib.dump(prefs, f, fmt=plistlib.FMT_BINARY)
+print("Updated iTerm2 profile '%s'" % default.get("Name"))
+EOF
+  defaults import "$DOMAIN" "$tmp/prefs.plist"
+}
+
+if [[ "${1:-}" == "--wait" ]]; then
+  # Run detached under launchd so quitting iTerm2 does not kill us
+  log="${TMPDIR:-/tmp}/iterm_use_bash.log"
+  launchctl remove "$LABEL" 2> /dev/null || true
+  launchctl submit -l "$LABEL" -o "$log" -e "$log" -- "$(cd "$(dirname "$0")" && pwd)/$(basename "$0")" --wait-internal
+  echo "Quit iTerm2 (Cmd-Q): it will reopen using bash. Log: $log"
+  exit 0
+fi
+
+if [[ "${1:-}" == "--wait-internal" ]]; then
+  # launchd restarts submitted jobs that exit, so never fail here and
+  # unregister ourselves once done
+  set +e
+  while iterm_running; do sleep 1; done
+  apply || echo "Failed to update iTerm2 preferences" >&2
+  open -a iTerm
+  launchctl remove "$LABEL"
+  exit 0
+fi
+
+if [[ -z "${ITERM_PREFS_DOMAIN:-}" ]] && iterm_running; then
+  echo "iTerm2 is running: quit it first, or use '$(basename "$0") --wait'" >&2
+  exit 1
+fi
+apply
