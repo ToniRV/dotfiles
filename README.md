@@ -35,13 +35,14 @@ Delete your backup files if you do not need them anymore.
 
 ### macOS terminal setup
 
-`./install` configures iTerm2's Default profile to run Homebrew's bash 5 as a login shell with a powerline font
-(`bin/iterm_use_bash`). iTerm2 rewrites its preferences on quit, so if it is running the change is applied
-in the background as soon as you quit it (Cmd-Q), and iTerm2 reopens.
+`./install` configures iTerm2's Default profile to run Homebrew's bash 5 as a login shell with a powerline font,
+and keeps it in dark mode even when macOS is in light mode (`bin/iterm_use_bash`).
+iTerm2 rewrites its preferences on quit, so if it is running the change is applied in the background as soon as you quit it (Cmd-Q), and iTerm2 reopens.
 `/bin/bash` also works, but it is bash 3.2: no `globstar`/`autocd` and no bash-completion@2.
 
 Manual equivalent: iTerm2 > Settings > Profiles > General > Command: "Custom Shell" (see image below),
-and Profiles > Text > Font.
+Profiles > Text > Font, Profiles > Colors > untick "Use different colors for light and dark mode",
+and Appearance > General > Theme: Dark.
 
 <img src="./images/iterm_custom_shell.png"/>
 

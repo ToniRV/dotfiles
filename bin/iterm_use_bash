@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Make iTerm2's Default profile run Homebrew's bash (login shell) with a powerline font.
+# Make iTerm2's Default profile run Homebrew's bash (login shell) with a powerline font,
+# and keep iTerm2 in dark mode regardless of the macOS appearance.
 #
 # iTerm2 rewrites its preferences when it quits, so they can only be changed
 # while it is closed. Usage:
@@ -35,6 +36,11 @@ default["Custom Command"] = "Yes"
 default["Command"] = command
 default["Normal Font"] = font
 default["Use Non-ASCII Font"] = False
+# Always dark: use the profile's dark-mode colors for both appearances
+for key in [k for k in default if k.endswith(" (Dark)")]:
+    default[key[:-len(" (Dark)")]] = default[key]
+default["Use Separate Colors for Light and Dark Mode"] = False
+prefs["TabStyleWithAutomaticOption"] = 1  # Settings > Appearance > Theme: Dark
 prefs["Default Bookmark Guid"] = default["Guid"]
 with open(path, "wb") as f:
     plistlib.dump(prefs, f, fmt=plistlib.FMT_BINARY)
