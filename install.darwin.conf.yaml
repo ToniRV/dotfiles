@@ -1,10 +1,15 @@
-# macOS: packages come from the Brewfile
+# macOS: packages and apps come from the Brewfile
+- link:
+    ~/Library/Application Support/iTerm2/DynamicProfiles/dotfiles.json:
+      path: config/iterm2/dotfiles.json
+
 - shell:
-  - command: command -v brew > /dev/null || { echo "Homebrew is required, see https://brew.sh"; exit 1; }
+  - command: 'command -v brew > /dev/null || { echo "Homebrew is required, run bootstrap.sh or see https://brew.sh"; exit 1; }'
     description: Checking for Homebrew
     stdout: true
   - command: brew bundle --file=Brewfile
-    description: Installing Homebrew packages
+    description: Installing Homebrew packages and apps
+    stdin: true
     stdout: true
     stderr: true
   - command: vim +PluginInstall +qall
@@ -12,10 +17,23 @@
     stdin: true
     stdout: true
     stderr: true
+  - command: bin/set_login_shell
+    description: Making Homebrew bash the login shell
+    stdin: true
+    stdout: true
+    stderr: true
+  - command: bin/macos_defaults
+    description: Applying macOS preferences
+    stdout: true
+    stderr: true
   - command: >-
       if [ -d /Applications/iTerm.app ]; then
-      if pgrep -x iTerm2 > /dev/null; then bin/iterm_use_bash --wait; else bin/iterm_use_bash; fi;
+      if pgrep -x iTerm2 > /dev/null; then bin/iterm_setup --wait; else bin/iterm_setup; fi;
       fi
-    description: Making iTerm2 use bash, a powerline font and dark mode
+    description: Making iTerm2 use the Dotfiles profile and dark theme
+    stdout: true
+    stderr: true
+  - command: '[ -n "$CI" ] || bin/set_default_browser'
+    description: Making Chrome the default browser
     stdout: true
     stderr: true

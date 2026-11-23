@@ -1,0 +1,44 @@
+# Run ./install on fresh macOS and Ubuntu machines, so it keeps working for the next new laptop
+name: install
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"  # weekly: catch breakage from upstream (Homebrew, apt, plugins)
+  workflow_dispatch:
+
+jobs:
+  install:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Check that the Brewfile casks exist
+        if: runner.os == 'macOS'
+        run: |
+          casks=$(sed -n 's/^ *cask "\([^"]*\)".*/\1/p' Brewfile)
+          echo "$casks"
+          brew info --cask $casks > /dev/null
+
+      - name: Install
+        run: ./install < /dev/null
+
+      - name: Check the result
+        shell: bash
+        run: |
+          set -x
+          test -L ~/.bashrc && test -L ~/.bash_profile && test -L ~/.vimrc
+          test -d ~/.vim/bundle/vim-airline
+          bash -lc 'echo "bash $BASH_VERSION"; type z'
+          if [[ "$RUNNER_OS" == macOS ]]; then
+            dscl . -read "/Users/$USER" UserShell | grep -q "$(brew --prefix)/bin/bash"
+            test -L ~/"Library/Application Support/iTerm2/DynamicProfiles/dotfiles.json"
+            python3 -m json.tool config/iterm2/dotfiles.json > /dev/null
+          fi

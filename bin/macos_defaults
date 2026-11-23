@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# macOS system preferences. Safe to re-run; edit to taste.
+# Find more keys with: defaults read > before; (change a setting); defaults read > after; diff before after
+set -euo pipefail
+
+# Keyboard: fast key repeat, and repeat instead of the accent popup when holding a key (vim)
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# No smart quotes/dashes or autocorrect: they break code pasted into chats and terminals
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Finder: show file extensions, path and status bars, list view, search the current folder
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write com.apple.finder ShowPathbar -bool true
+defaults write com.apple.finder ShowStatusBar -bool true
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+# No .DS_Store files on network and USB drives
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# Screenshots go to ~/Pictures/Screenshots instead of the Desktop
+mkdir -p "$HOME/Pictures/Screenshots"
+defaults write com.apple.screencapture location -string "$HOME/Pictures/Screenshots"
+
+# Dock: no "recent apps" section
+defaults write com.apple.dock show-recents -bool false
+
+# Restart the affected apps so the changes apply now (some need a log out)
+for app in Finder Dock SystemUIServer; do killall "$app" > /dev/null 2>&1 || true; done
+echo "macOS preferences applied (keyboard repeat changes need a log out)"

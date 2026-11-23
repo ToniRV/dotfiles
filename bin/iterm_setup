@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# Make iTerm2 use the "Dotfiles" profile (config/iterm2/dotfiles.json: Homebrew bash,
+# powerline font, dark colors) by default, with the dark window theme.
+#
+# The profile itself is a Dynamic Profile linked by ./install, which iTerm2 reloads live.
+# The two settings below live in iTerm2's preferences, which it rewrites when it quits,
+# so they can only be changed while it is closed. Usage:
+#   iterm_setup          apply now (iTerm2 must not be running)
+#   iterm_setup --wait   wait in the background until iTerm2 quits, apply,
+#                        then reopen iTerm2 (use this from inside iTerm2)
+set -euo pipefail
+
+DOMAIN="${ITERM_PREFS_DOMAIN:-com.googlecode.iterm2}"  # overridable for testing
+PROFILE_GUID="dotfiles-0000-4000-8000-000000000001"     # must match config/iterm2/dotfiles.json
+LABEL="dotfiles.iterm-setup"
+
+iterm_running() { pgrep -x iTerm2 > /dev/null; }
+
+already_applied() {
+  [[ "$(defaults read "$DOMAIN" "Default Bookmark Guid" 2> /dev/null)" == "$PROFILE_GUID" ]] &&
+    [[ "$(defaults read "$DOMAIN" TabStyleWithAutomaticOption 2> /dev/null)" == 1 ]]
+}
+
+apply() {
+  defaults write "$DOMAIN" "Default Bookmark Guid" -string "$PROFILE_GUID"
+  defaults write "$DOMAIN" TabStyleWithAutomaticOption -int 1  # Appearance > Theme: Dark
+  echo "iTerm2 now defaults to the Dotfiles profile with the dark theme"
+}
+
+if already_applied; then
+  echo "iTerm2 is already set up"
+  exit 0
+fi
+
+if [[ "${1:-}" == "--wait" ]]; then
+  # Run detached under launchd so quitting iTerm2 does not kill us
+  log="${TMPDIR:-/tmp}/iterm_setup.log"
+  launchctl remove "$LABEL" 2> /dev/null || true
+  launchctl submit -l "$LABEL" -o "$log" -e "$log" -- "$(cd "$(dirname "$0")" && pwd)/$(basename "$0")" --wait-internal
+  echo "Quit iTerm2 (Cmd-Q) to finish its setup: it will reopen. Log: $log"
+  exit 0
+fi
+
+if [[ "${1:-}" == "--wait-internal" ]]; then
+  # launchd restarts submitted jobs that exit, so never fail here and
+  # unregister ourselves once done
+  set +e
+  while iterm_running; do sleep 1; done
+  apply || echo "Failed to update iTerm2 preferences" >&2
+  open -a iTerm
+  launchctl remove "$LABEL"
+  exit 0
+fi
+
+if [[ -z "${ITERM_PREFS_DOMAIN:-}" ]] && iterm_running; then
+  echo "iTerm2 is running: quit it first, or use '$(basename "$0") --wait'" >&2
+  exit 1
+fi
+apply

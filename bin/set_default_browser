@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Make Google Chrome the default browser. macOS asks for confirmation in a dialog,
+# which is not skippable, so this is only attempted when Chrome is not already the default.
+set -euo pipefail
+
+if ! [[ -d "/Applications/Google Chrome.app" ]]; then
+  echo "Google Chrome is not installed, skipping"
+  exit 0
+fi
+if defaultbrowser | grep -qE '^\* chrome$'; then
+  echo "Chrome is already the default browser"
+  exit 0
+fi
+defaultbrowser chrome
+echo "Click \"Use Chrome\" in the macOS dialog to confirm"
