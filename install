@@ -25,4 +25,16 @@ fi
 cd "${BASEDIR}"
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
+# Fresh macOS/Ubuntu ship their own ~/.bashrc, ~/.gitconfig..., and dotbot will not replace
+# regular files. Move any link target that is not already a symlink to ~/.dotfiles_backup/<date>/.
+BACKUP_DIR="${HOME}/.dotfiles_backup/$(date +%Y%m%d-%H%M%S)"
+while IFS= read -r target; do
+  target="${HOME}/${target#\~/}"
+  if [[ -e "${target}" && ! -L "${target}" ]]; then
+    mkdir -p "${BACKUP_DIR}/$(dirname "${target#"${HOME}"/}")"
+    mv "${target}" "${BACKUP_DIR}/${target#"${HOME}"/}"
+    echo "Backed up ${target} to ${BACKUP_DIR}/"
+  fi
+done < <(sed -n 's/^ *\(~\/[^:]*\):.*/\1/p' "${CONFIGS[@]}")
+
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIGS[@]}" "${@}"
