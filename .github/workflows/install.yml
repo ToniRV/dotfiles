@@ -36,7 +36,8 @@ jobs:
           set -x
           test -L ~/.bashrc && test -L ~/.bash_profile && test -L ~/.vimrc
           test -d ~/.vim/bundle/vim-airline
-          bash -lc 'echo "bash $BASH_VERSION"; type z'
+          bash -lc 'echo "bash $BASH_VERSION"; command -v htop btop uv just gh'
+          bash -ilc 'type z' < /dev/null  # zoxide is only set up in interactive shells
           if [[ "$RUNNER_OS" == macOS ]]; then
             dscl . -read "/Users/$USER" UserShell | grep -q "$(brew --prefix)/bin/bash"
             test -L ~/"Library/Application Support/iTerm2/DynamicProfiles/dotfiles.json"
